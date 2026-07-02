@@ -1,0 +1,7 @@
+^LICENSE\.md$
+^node_modules$
+^package\.json$
+^package-lock\.json$
+^inst/paper/generate_docx\.js$
+^\.Rproj\.user$
+^\.gitignore$

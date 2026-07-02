@@ -1,0 +1,234 @@
+---
+title: "ggmultiplot — 10 Software Style Gallery"
+author: "ggmultiplot"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ggmultiplot Style Gallery}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 8, fig.height = 5)
+library(ggmultiplot)
+library(ggplot2)
+```
+
+## Overview
+
+`ggmultiplot` lets you reproduce the default plot styles of 10 major
+statistical graphing software packages with **a single function call**:
+`ggchoice("style")`.
+
+Each `ggchoice()` call applies three things at once:
+
+1. A complete `theme_xxx()` — grid lines, borders, fonts, legend position
+2. A `scale_color_xxx()` — discrete colour palette matching the software
+3. A `scale_fill_xxx()` — discrete fill palette matching the software
+
+**Scales are additive:** user-supplied `scale_*()` calls added *after*
+`ggchoice()` take priority, so you can always fine-tune.
+
+---
+
+## Style Gallery
+
+### 1. GraphPad Prism
+*White background, no grid, black box border, sans-serif (Arial) font, bold title.
+Prism pastel-to-bold colour defaults.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("prism") +
+  labs(title = "GraphPad Prism Style")
+```
+
+### 2. SPSS (v12–24 default)
+*Classic SPSS: white bg, light grey grid, full box border, sans-serif (Arial),
+blue-dominant (RGB 62,88,172). Legend right, title centred.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("spss") +
+  labs(title = "SPSS Style")
+```
+
+### 3. OriginPro (classic default)
+*Black-Red-Green-Blue palette, white bg, grid OFF (classic default),
+black axes + layer frame, legend with box, bold title.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("origin") +
+  labs(title = "OriginPro Style")
+```
+
+### 4. Stata (s2color scheme)
+*Light bluish background tint, 15-colour s2color palette,
+thin bluish grid. Factory default prior to Stata 18.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("stata") +
+  labs(title = "Stata s2color Style")
+```
+
+### 5. Academic (AMS / Science)
+*Minimal B&W, no grid, thin axis lines, bottom legend.
+Ideal for journal submission.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("academic") +
+  labs(title = "Academic Style")
+```
+
+### 6. SigmaPlot
+*Single-series black, multi-series grayscale. Light grid,
+boxed legend, modest title. Publication-ready defaults.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("sigmaplot") +
+  labs(title = "SigmaPlot Style")
+```
+
+### 7. JMP
+*No grid, no outer frame (axes only), tick marks outside,
+bottom legend. Clean interactive feel.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("jmp") +
+  labs(title = "JMP Style")
+```
+
+### 8. MATLAB (R2014b+)
+*Black outer box frame, 7-colour R2014b order (parula-like),
+right legend. Anti-aliased modern look with inward ticks.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("matlab") +
+  labs(title = "MATLAB Style")
+```
+
+### 9. Minitab
+*Light grey background (#F5F5F5), dark blue lines (#1F497D),
+white major grid on grey. Dark blue strip headers.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("minitab") +
+  labs(title = "Minitab Style")
+```
+
+### 10. MedCalc (ROC-optimised)
+*Square plot area, fine grey grid, legend inside plot area (lower right).
+Optimised for ROC curve presentation.*
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("medcalc") +
+  labs(title = "MedCalc Style")
+```
+
+---
+
+## Prism-style error bars
+
+```{r}
+df <- data.frame(
+  group = c("Control", "Treatment A", "Treatment B"),
+  mean  = c(10, 14, 8),
+  sd    = c(2, 3, 1.5)
+)
+
+ggplot(df, aes(group, mean)) +
+  geom_col_prism(fill = "#5B9BD5") +
+  geom_errorbar_prism(aes(ymin = mean - sd, ymax = mean + sd)) +
+  ggchoice("prism") +
+  labs(title = "Prism T-bar Error Bars", x = "", y = "Value")
+```
+
+## Overriding scales
+
+User scales added *after* `ggchoice()` take priority:
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("prism") +
+  scale_fill_brewer(palette = "Set2") +   # overrides Prism fill
+  labs(title = "Prism Theme + Custom Brewer Fill")
+```
+
+---
+
+## Continuous Colour Scales
+
+For heatmaps, surface plots, or any continuous-colour visualization, use
+the `_c` suffix variants:
+
+```{r}
+# Simulated expression matrix
+set.seed(42)
+dm <- data.frame(
+  gene  = rep(LETTERS[1:20], each = 10),
+  sample = rep(1:10, 20),
+  expr   = rnorm(200)
+)
+
+# MATLAB-style heatmap (Parula colormap)
+ggplot(dm, aes(sample, gene, fill = expr)) +
+  geom_tile() +
+  ggchoice("matlab") +
+  scale_fill_matlab_c() +
+  labs(title = "MATLAB Parula Heatmap", x = "Sample", y = "Gene")
+
+# Academic grayscale heatmap
+ggplot(dm, aes(sample, gene, fill = expr)) +
+  geom_tile() +
+  ggchoice("academic") +
+  scale_fill_academic_c() +
+  labs(title = "Academic Grayscale Heatmap", x = "Sample", y = "Gene")
+```
+
+Available continuous scales: `scale_color/fill_prism_c()`,
+`scale_color/fill_origin_c()`, `scale_color/fill_matlab_c()`,
+`scale_color/fill_stata_c()`, `scale_color/fill_academic_c()`,
+`scale_color/fill_minitab_c()`, `scale_color/fill_medcalc_c()`.
+
+---
+
+## Style Reference Table
+
+| Software | Default Font | Grid | Outer Frame | Palette Type |
+|----------|-------------|------|-------------|-------------|
+| Prism | sans | Off | Black box (ticks outward) | Pastel-bold |
+| SPSS | sans | Light grey | Black box | Blue-dominant |
+| OriginPro | sans | Off | Black box (ticks outward) | Black→Red→Green→Blue |
+| Stata s2color | sans | Light bluish | Thin grey | 15-colour cycle |
+| Academic | sans | Off | Off (axes only) | Grayscale |
+| SigmaPlot | sans | Off | Black box | Black + grayscale |
+| JMP | sans | Off | Off (axes only) | JMP blue + Tableau |
+| MATLAB | sans | Off | Black box | R2014b 7-colour |
+| Minitab | sans | Off | Dark blue | Dark blue primary |
+| MedCalc | sans | Light grey | Black box | Clinical contrast |
+
+---
+
+## Default ggplot2
+
+Calling `ggchoice()` with no argument (or `ggchoice("ggplot2")`)
+returns plain `theme_bw()` — no scale changes applied.

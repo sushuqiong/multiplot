@@ -1,0 +1,25 @@
+Package: ggmultiplot
+Title: Reproduce Statistical Plot Styles of 10 Major Graphing Software Packages
+Version: 0.1.0
+Authors@R:
+    person("Feng", "Qiao", , "fengq@example.com", role = c("aut", "cre"))
+Description: One-stop ggplot2 extension that reproduces the default plot styles
+    of 10 major statistical graphing software packages. A single ggchoice() call
+    applies the complete visual style (theme + colour/fill scales) for GraphPad
+    Prism, SPSS, OriginPro, Stata (s2color), SigmaPlot, JMP, MATLAB, Minitab,
+    MedCalc, and classic academic (AMS/Science) output.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    ggplot2 (>= 3.4.0)
+Suggests:
+    ggpubr,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+URL: https://github.com/sushuqiong/multiplot
+BugReports: https://github.com/sushuqiong/multiplot/issues
