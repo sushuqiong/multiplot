@@ -41,7 +41,7 @@ where:
 | Software | Type | N Colours | Colour Strategy | Colour 1 | Colour 2 | Colour 3 | Colour 4 | Colour 5 | Source |
 |---|---|---|---|---|---|---|---|---|---|
 | **Prism** | Qualitative | 10 | Pastel-to-bold | `#5B9BD5` (blue) | `#ED7D31` (orange) | `#A5A5A5` (grey) | `#FFC000` (yellow) | `#4472C4` (dk blue) | Prism v8+ non-B&W schemes |
-| **SPSS (12–24)** | Qualitative | 10 | Blue-dominant | `#3E58AC` (blue) | `#C0392B` (red) | `#27AE60` (green) | `#F39C12` (yellow) | `#8E44AD` (purple) | SPSS legacy palette, blue=RGB(62,88,172) |
+| **SPSS (12–24)** | Qualitative | 10 | Blue-dominant, low-saturation corporate | `#3E58AC` (SPSS blue) | `#6B6B7B` | `#4A7A6A` | `#8B7B5A` | `#5A5A7A` | SPSS legacy: all desaturated, L* 30-55, no rainbow |
 | **OriginPro** | Qualitative | 10 | Black→Red→Green→Blue increment | `#000000` (black) | `#FF0000` (red) | `#008000` (green) | `#0000FF` (blue) | `#00FFFF` (cyan) | Origin classic default colour list |
 | **Stata s2color** | Qualitative | 15 | Named colour cycle (navy, maroon, forest_green, …) | `#000080` (navy) | `#800000` (maroon) | `#228B22` (forest_green) | `#FF8C00` (dkorange) | `#008080` (teal) | scheme-s2color.scheme (Stata pre-18) |
 | **Academic** | Qualitative | 10 | Grayscale | `#000000` (black) | `#525252` (dk grey) | `#969696` (mid grey) | `#BDBDBD` (lt grey) | `#D9D9D9` (v lt grey) | AMS/Science journal convention |
