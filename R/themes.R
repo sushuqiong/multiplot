@@ -243,8 +243,7 @@ theme_medcalc <- function(base_size = 12, base_family = "sans") {
       strip.background   = ggplot2::element_rect(fill = "grey90", color = "grey50", linewidth = 0.3),
       strip.text         = ggplot2::element_text(size = base_size - 1),
       plot.title         = ggplot2::element_text(size = base_size + 1, face = "plain"),
-      plot.subtitle      = ggplot2::element_text(size = base_size - 1),
-      aspect.ratio       = 1
+      plot.subtitle      = ggplot2::element_text(size = base_size - 1)
     )
   )
 }

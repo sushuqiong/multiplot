@@ -9,12 +9,12 @@ prism_palette <- c("#5B9BD5", "#ED7D31", "#A5A5A5", "#FFC000", "#4472C4",
 
 # SPSS classic palette: blue-dominant, muted, low-saturation professional tones.
 # SPSS real output: the same dark blue for single-series; for multi-group,
-# it introduces subtle hue variation but keeps everything desaturated and
-# corporate — never a rainbow.  Colours are all within L* ≈ 30–55,
-# avoiding bright/pastel extremes.
-spss_palette  <- c("#3E58AC", "#6B6B7B", "#4A7A6A", "#8B7B5A",
-                   "#5A5A7A", "#6B8A8A", "#7A5A5A", "#5A7A8A",
-                   "#7A6A5A", "#5A6A7A")
+# it introduces subtle lightness variation within the BLUE family,
+# never jumping to red/green/gold.  A 7-group boxplot still reads as
+# "SPSS blue" rather than a rainbow.  10 colours, all blue tones.
+spss_palette  <- c("#3E58AC", "#4A6DB8", "#5682C4", "#6297D0",
+                   "#6EACDC", "#7ABBE8", "#86C8F0", "#92D3F4",
+                   "#9EDCF8", "#AAE5FC")
 
 # OriginPro classic: Black → Red → Green → Blue (and beyond)
 origin_palette <- c("#000000", "#FF0000", "#008000", "#0000FF", "#00FFFF",
