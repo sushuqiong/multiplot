@@ -134,8 +134,9 @@ ggplot(mpg, aes(class, hwy)) +
 ```
 
 ### 10. MedCalc (ROC-optimised)
-*Square plot area, fine grey grid, legend inside plot area (lower right).
-Optimised for ROC curve presentation.*
+*Square plot area, clean white background, legend inside plot area
+(lower right).  Optimised for ROC curve presentation; grid off for
+uniform appearance in multi-panel layouts.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +

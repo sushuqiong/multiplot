@@ -224,13 +224,13 @@ theme_minitab <- function(base_size = 12, base_family = "sans") {
 }
 
 # ---- MedCalc (ROC-optimised) ----
-# Square plot area, 50%-grey diagonal reference line, clean clinical aesthetic,
-# AUC annotation position in lower-right legend.
+# Square plot area, clean clinical aesthetic.  Grid set nearly invisible
+# so that multi-panel plots look uniform with other grid-off styles.
 theme_medcalc <- function(base_size = 12, base_family = "sans") {
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
-      panel.grid.major   = ggplot2::element_line(color = "grey85", linewidth = 0.25),
+      panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
       panel.border       = ggplot2::element_rect(fill = NA, color = "black", linewidth = 0.5),
       axis.line          = ggplot2::element_blank(),

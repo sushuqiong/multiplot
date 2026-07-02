@@ -34,7 +34,7 @@ where:
 | **JMP** | White `#FFFFFF` | Off | Off | Off (axes only) | On, grey50 (0.4 pt) | Outward (2.5 mm) | Sans (Arial) | Bold centred, +2 pt | Bottom, thin border | Grey80 (0.3 pt) | Grey95 fill, grey75 border |
 | **MATLAB (R2014b+)** | White `#FFFFFF` | Off | Off | **Black box (0.5 pt)** | On, black (0.5 pt) | Inward (3.0 mm) | Sans (Helvetica) | Plain, +1 pt | Right, no border | None | Grey90 fill, no border |
 | **Minitab** | Light grey `#F5F5F5` | Off | Off | Dark blue box (0.4 pt) | Off (frame only) | Inward (2.5 mm) | Sans (Arial) | Bold, +2 pt, black | Right, boxed | Dark blue (0.3 pt) | Dark blue fill, white text |
-| **MedCalc** | White `#FFFFFF` | On, grey85 (0.25 pt) | Off | Black box (0.5 pt) | Off (frame only) | Inward (2.0 mm) | Sans (Arial) | Plain, +1 pt | Inside plot (0.78, 0.22) | Black (0.3 pt) | Grey90 fill, grey50 border |
+| **MedCalc** | White `#FFFFFF` | Off | Off | Black box (0.5 pt) | Off (frame only) | Inward (2.0 mm) | Sans (Arial) | Plain, +1 pt | Inside plot (0.78, 0.22) | Black (0.3 pt) | Grey90 fill, grey50 border |
 
 ## Table 1b — Palette Ontology
 
