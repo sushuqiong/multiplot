@@ -206,9 +206,9 @@ scientific graphing software.
 The complete ontology mapping is presented in Table 1 (Supplementary Materials).
 Key findings from the cross-software comparison:
 
-- **Grid usage**: 4/10 software default to grid OFF (Prism, OriginPro, JMP,
-  MATLAB); 4/10 use light grids (SPSS, Stata, SigmaPlot, MedCalc); 2/10 use
-  distinctive grid patterns (Minitab white-on-grey, Academic none).
+- **Grid usage**: 6/10 software default to grid OFF (Prism, OriginPro, JMP,
+  MATLAB, SigmaPlot, Minitab); 3/10 use light grids (SPSS, Stata, MedCalc);
+  1/10 has no grid by design (Academic).
 - **Frame**: 8/10 use a full box border; 2/10 use axes-only (Academic, JMP).
 - **Font**: 10/10 default to sans-serif (Arial/Helvetica variants). No major
   statistical graphing software defaults to a serif font for chart elements.

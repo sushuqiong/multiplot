@@ -34,9 +34,9 @@ sigmaplot_palette <- c("#000000", "#595959", "#8C8C8C", "#BFBFBF", "#D9D9D9",
 jmp_palette <- c("#1F77B4", "#FF7F0E", "#2CA02C", "#D62728", "#9467BD",
                  "#8C564B", "#E377C2", "#7F7F7F", "#BCBD22", "#17BECF")
 
-# MATLAB R2014b+ new default colour order (exact RGB→hex)
+# MATLAB R2014b+ default colour order — exactly 7 colours (MathWorks official RGB)
 matlab_palette <- c("#0072BD", "#D95319", "#EDB120", "#7E2F8E", "#77AC30",
-                    "#4DBEEE", "#A2142F", "#000000", "#FF0000", "#00FF00")
+                    "#4DBEEE", "#A2142F")
 
 # Minitab: dark blue primary → accent palette
 minitab_palette <- c("#1F497D", "#C0504D", "#9BBB59", "#8064A2", "#4BACC6",

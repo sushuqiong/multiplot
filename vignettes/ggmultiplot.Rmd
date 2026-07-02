@@ -90,8 +90,8 @@ ggplot(mpg, aes(class, hwy)) +
 ```
 
 ### 6. SigmaPlot
-*Single-series black, multi-series grayscale. Light grid,
-boxed legend, modest title. Publication-ready defaults.*
+*Single-series black, multi-series grayscale. White background,
+no grid, black box frame. Publication-ready defaults.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
@@ -123,8 +123,8 @@ ggplot(mpg, aes(class, hwy)) +
 ```
 
 ### 9. Minitab
-*Light grey background (#F5F5F5), dark blue lines (#1F497D),
-white major grid on grey. Dark blue strip headers.*
+*Light grey background (#F5F5F5), dark blue frame (#1F497D),
+no grid, black title. Dark blue strip headers.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +

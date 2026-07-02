@@ -30,10 +30,10 @@ where:
 | **OriginPro** | White `#FFFFFF` | Off | Off | Black box (0.5 pt) | Off (frame only) | Inward (3.0 mm) | Sans (Arial) | Bold, +2 pt | Right, boxed | Black (0.3 pt) | Grey95 fill, grey70 border |
 | **Stata s2color** | Light blue tint `#F4F7FA` | On, bluish `#D5E3F0` (0.25 pt) | Off | Thin grey (0.3 pt) | Off (frame only) | Inward (2.5 mm) | Sans | Plain, +1 pt | Right, no border | None | White fill, grey80 border |
 | **Academic** | White `#FFFFFF` | Off | Off | Off (axes only) | On, black (0.4 pt) | Inward (2.0 mm) | Sans | Plain, +2 pt | Bottom, clean | None | Blank, bold text |
-| **SigmaPlot** | White `#FFFFFF` | On, grey85 (0.20 pt) | On, grey93 (0.10 pt) | Black box (0.5 pt) | Off (frame only) | Inward (2.5 mm) | Sans (Arial) | Plain, +1 pt | Right, boxed | Black (0.3 pt) | Grey95 fill, grey60 border |
+| **SigmaPlot** | White `#FFFFFF` | Off | Off | Black box (0.5 pt) | Off (frame only) | Inward (2.5 mm) | Sans (Arial) | Plain, +1 pt | Right, boxed | Black (0.3 pt) | Grey95 fill, grey60 border |
 | **JMP** | White `#FFFFFF` | Off | Off | Off (axes only) | On, grey50 (0.4 pt) | Outward (2.5 mm) | Sans (Arial) | Bold centred, +2 pt | Bottom, thin border | Grey80 (0.3 pt) | Grey95 fill, grey75 border |
 | **MATLAB (R2014b+)** | White `#FFFFFF` | Off | Off | **Black box (0.5 pt)** | On, black (0.5 pt) | Inward (3.0 mm) | Sans (Helvetica) | Plain, +1 pt | Right, no border | None | Grey90 fill, no border |
-| **Minitab** | Light grey `#F5F5F5` | On, white (0.6 pt) | On, white (0.3 pt) | Dark blue box (0.4 pt) | Off (frame only) | Inward (2.5 mm) | Sans (Arial) | Bold, +2 pt, blue | Right, boxed | Dark blue (0.3 pt) | Dark blue fill, white text |
+| **Minitab** | Light grey `#F5F5F5` | Off | Off | Dark blue box (0.4 pt) | Off (frame only) | Inward (2.5 mm) | Sans (Arial) | Bold, +2 pt, black | Right, boxed | Dark blue (0.3 pt) | Dark blue fill, white text |
 | **MedCalc** | White `#FFFFFF` | On, grey85 (0.25 pt) | Off | Black box (0.5 pt) | Off (frame only) | Inward (2.0 mm) | Sans (Arial) | Plain, +1 pt | Inside plot (0.78, 0.22) | Black (0.3 pt) | Grey90 fill, grey50 border |
 
 ## Table 1b — Palette Ontology
@@ -85,8 +85,8 @@ where:
 
 ## Summary of Inter-Software Variation
 
-- **Grid usage**: 5/10 default to grid OFF (Prism, SPSS, OriginPro, JMP, MATLAB); 3/10 use light grids (Stata, SigmaPlot, MedCalc); 2/10 use distinctive grid patterns (Minitab white-on-grey, Stata thin bluish)
-- **Frame/border**: 6/10 use a full box border; 4/10 use axes-only (Academic, JMP, MATLAB, Stata)
+- **Grid usage**: 6/10 default to grid OFF (Prism, Origin, JMP, MATLAB, SigmaPlot, Minitab); 3/10 use light grids (SPSS, Stata, MedCalc); 1/10 has no grid by design (Academic)
+- **Frame/border**: 8/10 use a full box border; 2/10 use axes-only (Academic, JMP)
 - **Font**: 10/10 default to sans-serif (Arial/Helvetica). No popular statistical graphing software defaults to serif for chart elements.
 - **Legend position**: 5/10 place right; 2/10 place bottom; MedCalc places inside the plot area
 - **Palette strategy**: 5/10 use qualitative colour cycles; 1/10 uses grayscale; 1/10 uses B&W-then-grayscale

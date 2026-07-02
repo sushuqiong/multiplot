@@ -160,7 +160,7 @@ theme_jmp <- function(base_size = 12, base_family = "sans") {
       panel.border       = ggplot2::element_blank(),
       axis.line          = ggplot2::element_line(color = "grey50", linewidth = 0.4),
       axis.ticks         = ggplot2::element_line(color = "grey50", linewidth = 0.3),
-      axis.ticks.length  = ggplot2::unit(2.5, "mm"),
+      axis.ticks.length  = ggplot2::unit(-2.5, "mm"),
       legend.key         = ggplot2::element_rect(fill = "white", color = NA),
       legend.background  = ggplot2::element_rect(fill = "white", color = "grey80", linewidth = 0.3),
       legend.position    = "bottom",
