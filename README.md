@@ -27,7 +27,7 @@ into one function: **`ggchoice()`**.
 | Software | `ggchoice()` | Key Visuals |
 |---|---|---|
 | **GraphPad Prism** | `"prism"` | White bg, no grid, black box, sans-serif, pastel colours |
-| **SPSS** (v12–24) | `"spss"` | White bg, light grey grid, box border, blue-dominant, sans-serif |
+| **SPSS** (v12–24) | `"spss"` | White bg, light grey grid, box border, muted professional palette, sans-serif |
 | **OriginPro** (classic) | `"origin"` | White bg, no grid, Black→Red→Green→Blue palette |
 | **Stata** (s2color) | `"stata"` | Light bluish tint, 15-colour s2color palette |
 | **Academic** (AMS/Science) | `"academic"` | Minimal B&W, no decoration, journal-ready |

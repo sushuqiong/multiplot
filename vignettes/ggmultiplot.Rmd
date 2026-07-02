@@ -46,7 +46,8 @@ ggplot(mpg, aes(class, hwy)) +
 
 ### 2. SPSS (v12–24 default)
 *Classic SPSS: white bg, light grey grid, full box border, sans-serif (Arial),
-blue-dominant (RGB 62,88,172). Legend right, title centred.*
+muted professional palette with SPSS blue (#3E58AC) dominant. Legend right,
+title centred. Understated, publication-ready.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +

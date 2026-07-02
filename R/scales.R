@@ -7,9 +7,11 @@
 prism_palette <- c("#5B9BD5", "#ED7D31", "#A5A5A5", "#FFC000", "#4472C4",
                    "#70AD47", "#264478", "#9B59B6", "#E74C3C", "#1ABC9C")
 
-# SPSS 12–24 classic blue-dominant palette (blue = RGB 62,88,172)
-spss_palette  <- c("#3E58AC", "#C0392B", "#27AE60", "#F39C12", "#8E44AD",
-                   "#16A085", "#D35400", "#7F8C8D", "#2980B9", "#E67E22")
+# SPSS 12–24 classic palette: blue-dominant, muted, professional.
+# Primary = SPSS blue (RGB 62,88,172).  Secondary colours are
+# deliberately restrained — SPSS real output is understated, not rainbow.
+spss_palette  <- c("#3E58AC", "#8B4E4E", "#5B826B", "#B8954C", "#7B5C8B",
+                   "#5A8A8A", "#8B6B4E", "#8C9298", "#517A9B", "#9B6B4B")
 
 # OriginPro classic: Black → Red → Green → Blue (and beyond)
 origin_palette <- c("#000000", "#FF0000", "#008000", "#0000FF", "#00FFFF",
