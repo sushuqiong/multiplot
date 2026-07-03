@@ -32,6 +32,6 @@ tuned to match GraphPad Prism's T-bar error bar appearance
 library(ggplot2)
 df <- data.frame(x = c("A", "B"), y = c(10, 15), sd = c(2, 3))
 ggplot(df, aes(x, y)) +
-  geom_col_prism(fill = "#5B9BD5", width = 0.6) +
+  geom_col_prism(fill = "#5B9BD5") +
   geom_errorbar_prism(aes(ymin = y - sd, ymax = y + sd))
 }

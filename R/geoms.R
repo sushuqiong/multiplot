@@ -14,7 +14,7 @@
 #' library(ggplot2)
 #' df <- data.frame(x = c("A", "B"), y = c(10, 15), sd = c(2, 3))
 #' ggplot(df, aes(x, y)) +
-#'   geom_col_prism(fill = "#5B9BD5", width = 0.6) +
+#'   geom_col_prism(fill = "#5B9BD5") +
 #'   geom_errorbar_prism(aes(ymin = y - sd, ymax = y + sd))
 geom_errorbar_prism <- function(mapping = NULL, data = NULL,
                                 width = 0.3, linewidth = 0.5, ...) {
@@ -44,4 +44,28 @@ geom_col_prism <- function(mapping = NULL, data = NULL, width = 0.7,
                            color = "black", linewidth = 0.3, ...) {
   ggplot2::geom_col(mapping = mapping, data = data,
                     width = width, color = color, linewidth = linewidth, ...)
+}
+
+#' Prism-style boxplot
+#'
+#' A wrapper around \code{\link[ggplot2]{geom_boxplot}} with Prism defaults:
+#' black border, compact width, hidden outliers.  Intended to be paired with
+#' \code{ggchoice("prism")} for authentic GraphPad Prism appearance.
+#'
+#' @param mapping Set of aesthetic mappings.
+#' @param data The data to be displayed.
+#' @param width Box width (default 0.6).
+#' @param outlier.shape Shape of outliers (\code{NA} = hidden, Prism default).
+#' @param ... Other arguments passed to \code{\link[ggplot2]{geom_boxplot}}.
+#' @export
+#' @examples
+#' library(ggplot2)
+#' ggplot(mpg, aes(class, hwy)) +
+#'   geom_boxplot_prism(aes(fill = class)) +
+#'   ggchoice("prism")
+geom_boxplot_prism <- function(mapping = NULL, data = NULL, width = 0.6,
+                               outlier.shape = NA, ...) {
+  ggplot2::geom_boxplot(mapping = mapping, data = data,
+                        width = width, colour = "black",
+                        outlier.shape = outlier.shape, ...)
 }

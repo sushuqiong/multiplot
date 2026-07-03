@@ -98,6 +98,7 @@ ggplot(ToothGrowth, aes(supp, len)) +
 | `ggchoice(style)` | Apply a software's full visual style (theme + scales) |
 | `geom_errorbar_prism()` | Prism-style T-bar error bars |
 | `geom_col_prism()` | Prism-style column bars (solid fill, thin black border) |
+| `geom_boxplot_prism()` | Prism-style boxplot (black border, compact width, no outliers) |
 | `stat_compare_means_prism()` | Prism-style significance annotations (wraps `ggpubr`) |
 | `scale_color/fill_xxx()` | Discrete colour/fill scales for each software (overridable by user) |
 | `scale_color/fill_xxx_c()` | Continuous colour/fill scales (heatmaps, surfaces, gradients) |

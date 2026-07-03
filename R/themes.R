@@ -1,248 +1,341 @@
 # Internal theme functions for each software style.
-# Called by ggchoice(), not exported to the user.
+# Called by ggchoice(), not exported.
+#
+# Design principles (informed by ggprism):
+#   - Colour tokens per theme (axis, axisTitle, axisLabel, title, tick)
+#   - Tick length proportional to base_size (unit(base_size/2.5, "pt"))
+#   - Axis text margins scaled from base_size
+#   - Legend key sizing in relative units
 
 # ---- GraphPad Prism ----
-# White background, no grid, black box border + axis lines, sans-serif (Arial) font,
-# bold title. Bars: solid colour with thin black border. Ticks: outward.
-# Ref: Prism 8+ default; cross-referenced with ggprism and real screenshot.
 theme_prism <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "black", axisTitle = "black", axisLabel = "black",
+              title = "black", tick = "black")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
-      panel.grid.major   = ggplot2::element_blank(),
-      panel.grid.minor   = ggplot2::element_blank(),
-      panel.border       = ggplot2::element_rect(fill = NA, color = "black", linewidth = 0.5),
-      axis.line          = ggplot2::element_line(color = "black", linewidth = 0.5),
-      axis.ticks         = ggplot2::element_line(color = "black", linewidth = 0.5),
-      axis.ticks.length  = ggplot2::unit(-2.5, "mm"),
-      legend.key         = ggplot2::element_blank(),
-      legend.title       = ggplot2::element_text(size = base_size - 1, face = "bold"),
-      strip.background   = ggplot2::element_rect(fill = "grey90", color = NA),
-      strip.text         = ggplot2::element_text(face = "bold", size = base_size - 1),
-      plot.title         = ggplot2::element_text(face = "bold", size = base_size + 2),
-      plot.subtitle      = ggplot2::element_text(size = base_size)
+      panel.grid.major    = ggplot2::element_blank(),
+      panel.grid.minor    = ggplot2::element_blank(),
+      panel.border        = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.5),
+      axis.line           = ggplot2::element_line(color = clr$axis, linewidth = 0.5),
+      axis.ticks          = ggplot2::element_line(color = clr$tick, linewidth = 0.5),
+      axis.ticks.length   = ggplot2::unit(-ts, "pt"),
+      axis.text           = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x         = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y         = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title          = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
+      legend.key          = ggplot2::element_blank(),
+      legend.key.size     = ggplot2::unit(1.2, "lines"),
+      legend.title        = ggplot2::element_text(size = base_size - 1, face = "bold"),
+      strip.background    = ggplot2::element_rect(fill = "grey90", color = NA),
+      strip.text          = ggplot2::element_text(face = "bold", size = base_size - 1),
+      plot.title          = ggplot2::element_text(face = "bold", size = base_size + 2, color = clr$title),
+      plot.subtitle       = ggplot2::element_text(size = base_size)
     )
   )
 }
 
-# ---- SPSS (default output, v12-24 classic) ----
-# White bg, light grey grid, box border, sans-serif (Arial) font, blue-dominant
-# bars with black outline. Ref: SPSS 12–24 default chart; IBM documentation
-# and real screenshot verification.
+# ---- SPSS (v12-24 classic) ----
 theme_spss <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "black", axisTitle = "black", axisLabel = "black",
+              title = "black", tick = "black")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_classic(base_size = base_size, base_family = base_family),
     ggplot2::theme(
-      panel.grid.major   = ggplot2::element_line(color = "grey90", linewidth = 0.3),
-      panel.grid.minor   = ggplot2::element_blank(),
-      panel.border       = ggplot2::element_rect(fill = NA, color = "black", linewidth = 0.6),
-      axis.line          = ggplot2::element_line(color = "black", linewidth = 0.6),
-      axis.ticks         = ggplot2::element_line(color = "black", linewidth = 0.5),
-      axis.ticks.length  = ggplot2::unit(2.5, "mm"),
-      legend.position    = "right",
-      legend.key         = ggplot2::element_blank(),
-      legend.title       = ggplot2::element_text(face = "bold", size = base_size),
-      strip.background   = ggplot2::element_rect(fill = "grey85", color = "black", linewidth = 0.3),
-      strip.text         = ggplot2::element_text(size = base_size - 1),
-      plot.title         = ggplot2::element_text(face = "bold", size = base_size + 2, hjust = 0.5),
-      plot.subtitle      = ggplot2::element_text(size = base_size, hjust = 0.5)
+      panel.grid.major    = ggplot2::element_line(color = "grey90", linewidth = 0.3),
+      panel.grid.minor    = ggplot2::element_blank(),
+      panel.border        = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.6),
+      axis.line           = ggplot2::element_line(color = clr$axis, linewidth = 0.6),
+      axis.ticks          = ggplot2::element_line(color = clr$tick, linewidth = 0.5),
+      axis.ticks.length   = ggplot2::unit(ts, "pt"),
+      axis.text           = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x         = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y         = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title          = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
+      legend.position     = "right",
+      legend.key          = ggplot2::element_blank(),
+      legend.key.size     = ggplot2::unit(1.2, "lines"),
+      legend.title        = ggplot2::element_text(face = "bold", size = base_size),
+      strip.background    = ggplot2::element_rect(fill = "grey85", color = "black", linewidth = 0.3),
+      strip.text          = ggplot2::element_text(size = base_size - 1),
+      plot.title          = ggplot2::element_text(face = "bold", size = base_size + 2, hjust = 0.5, color = clr$title),
+      plot.subtitle       = ggplot2::element_text(size = base_size, hjust = 0.5)
     )
   )
 }
 
-# ---- OriginPro (classic default) ----
-# Classic palette: Black→Red→Green→Blue increment.
-# White background, grid OFF, black axes with OUTWARD ticks, visible layer frame.
+# ---- OriginPro (classic) ----
 theme_origin <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "black", axisTitle = "black", axisLabel = "black",
+              title = "black", tick = "black")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
-      panel.grid.major   = ggplot2::element_blank(),
-      panel.grid.minor   = ggplot2::element_blank(),
-      panel.border       = ggplot2::element_rect(fill = NA, color = "black", linewidth = 0.5),
-      axis.line          = ggplot2::element_blank(),
-      axis.ticks         = ggplot2::element_line(color = "black", linewidth = 0.5),
-      axis.ticks.length  = ggplot2::unit(-3, "mm"),
-      legend.background  = ggplot2::element_rect(fill = "white", color = "black", linewidth = 0.3),
-      legend.key         = ggplot2::element_blank(),
-      legend.title       = ggplot2::element_text(face = "bold", size = base_size),
-      strip.background   = ggplot2::element_rect(fill = "grey95", color = "grey70", linewidth = 0.3),
-      strip.text         = ggplot2::element_text(size = base_size - 1),
-      plot.title         = ggplot2::element_text(face = "bold", size = base_size + 2),
-      plot.subtitle      = ggplot2::element_text(size = base_size)
+      panel.grid.major    = ggplot2::element_blank(),
+      panel.grid.minor    = ggplot2::element_blank(),
+      panel.border        = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.5),
+      axis.line           = ggplot2::element_blank(),
+      axis.ticks          = ggplot2::element_line(color = clr$tick, linewidth = 0.5),
+      axis.ticks.length   = ggplot2::unit(-ts, "pt"),
+      axis.text           = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x         = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y         = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title          = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
+      legend.background   = ggplot2::element_rect(fill = "white", color = "black", linewidth = 0.3),
+      legend.key          = ggplot2::element_blank(),
+      legend.key.size     = ggplot2::unit(1.2, "lines"),
+      legend.title        = ggplot2::element_text(face = "bold", size = base_size),
+      strip.background    = ggplot2::element_rect(fill = "grey95", color = "grey70", linewidth = 0.3),
+      strip.text          = ggplot2::element_text(size = base_size - 1),
+      plot.title          = ggplot2::element_text(face = "bold", size = base_size + 2, color = clr$title),
+      plot.subtitle       = ggplot2::element_text(size = base_size)
     )
   )
 }
 
-# ---- Stata s2color (factory default prior to Stata 18) ----
-# Light bluish-tinted background (not pure white), 15-colour palette,
-# bluish grid lines slightly thicker than axis lines.
-# Ref: scheme-s2color.scheme; background tint ≈ #EAF2F8.
+# ---- Stata s2color ----
 theme_stata <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "grey50", axisTitle = "black", axisLabel = "grey40",
+              title = "black", tick = "grey40")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
-      panel.background  = ggplot2::element_rect(fill = "#F4F7FA"),
+      panel.background   = ggplot2::element_rect(fill = "#F4F7FA"),
       panel.grid.major   = ggplot2::element_line(color = "#D5E3F0", linewidth = 0.25),
       panel.grid.minor   = ggplot2::element_blank(),
-      panel.border       = ggplot2::element_rect(fill = NA, color = "grey50", linewidth = 0.3),
+      panel.border       = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.3),
       axis.line          = ggplot2::element_blank(),
-      axis.ticks         = ggplot2::element_line(color = "grey40", linewidth = 0.3),
-      axis.ticks.length  = ggplot2::unit(2.5, "mm"),
+      axis.ticks         = ggplot2::element_line(color = clr$tick, linewidth = 0.3),
+      axis.ticks.length  = ggplot2::unit(ts, "pt"),
+      axis.text          = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title         = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x       = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y       = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
       legend.key         = ggplot2::element_rect(fill = "#F4F7FA", color = NA),
+      legend.key.size    = ggplot2::unit(1.2, "lines"),
       legend.title       = ggplot2::element_text(size = base_size - 1),
       legend.background  = ggplot2::element_rect(fill = "white", color = NA),
       strip.background   = ggplot2::element_rect(fill = "white", color = "grey80", linewidth = 0.3),
       strip.text         = ggplot2::element_text(size = base_size - 1),
-      plot.title         = ggplot2::element_text(size = base_size + 1, face = "plain"),
+      plot.title         = ggplot2::element_text(size = base_size + 1, face = "plain", color = clr$title),
       plot.subtitle      = ggplot2::element_text(size = base_size - 1)
     )
   )
 }
 
 # ---- Academic (AMS / Science) ----
-# Minimal B&W, no grid, thin axis lines, bottom legend, clean typography.
 theme_academic <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "black", axisTitle = "black", axisLabel = "black",
+              title = "black", tick = "black")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_classic(base_size = base_size, base_family = base_family),
     ggplot2::theme(
       panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
       panel.border       = ggplot2::element_blank(),
-      axis.line          = ggplot2::element_line(color = "black", linewidth = 0.4),
-      axis.ticks         = ggplot2::element_line(color = "black", linewidth = 0.4),
-      axis.ticks.length  = ggplot2::unit(2, "mm"),
+      axis.line          = ggplot2::element_line(color = clr$axis, linewidth = 0.4),
+      axis.ticks         = ggplot2::element_line(color = clr$tick, linewidth = 0.4),
+      axis.ticks.length  = ggplot2::unit(ts, "pt"),
+      axis.text          = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title         = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x       = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y       = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
       legend.key         = ggplot2::element_blank(),
+      legend.key.size    = ggplot2::unit(1.2, "lines"),
       legend.position    = "bottom",
       legend.title       = ggplot2::element_text(size = base_size),
       strip.background   = ggplot2::element_blank(),
       strip.text         = ggplot2::element_text(face = "bold", size = base_size),
-      plot.title         = ggplot2::element_text(size = base_size + 2, face = "plain"),
+      plot.title         = ggplot2::element_text(size = base_size + 2, face = "plain", color = clr$title),
       plot.subtitle      = ggplot2::element_text(size = base_size)
     )
   )
 }
 
 # ---- SigmaPlot ----
-# Single series: black fill/line. Multi-series: grayscale.
-# White background, NO grid, black box frame, circle markers.
 theme_sigmaplot <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "black", axisTitle = "black", axisLabel = "black",
+              title = "black", tick = "black")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
       panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
-      panel.border       = ggplot2::element_rect(fill = NA, color = "black", linewidth = 0.5),
+      panel.border       = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.5),
       axis.line          = ggplot2::element_blank(),
-      axis.ticks         = ggplot2::element_line(color = "black", linewidth = 0.4),
-      axis.ticks.length  = ggplot2::unit(2.5, "mm"),
+      axis.ticks         = ggplot2::element_line(color = clr$tick, linewidth = 0.4),
+      axis.ticks.length  = ggplot2::unit(ts, "pt"),
+      axis.text          = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title         = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x       = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y       = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
       legend.key         = ggplot2::element_blank(),
+      legend.key.size    = ggplot2::unit(1.2, "lines"),
       legend.background  = ggplot2::element_rect(fill = "white", color = "black", linewidth = 0.3),
       legend.title       = ggplot2::element_text(face = "bold", size = base_size),
       strip.background   = ggplot2::element_rect(fill = "grey95", color = "grey60", linewidth = 0.3),
       strip.text         = ggplot2::element_text(size = base_size - 1),
-      plot.title         = ggplot2::element_text(face = "plain", size = base_size + 1),
+      plot.title         = ggplot2::element_text(face = "plain", size = base_size + 1, color = clr$title),
       plot.subtitle      = ggplot2::element_text(size = base_size - 1)
     )
   )
 }
 
 # ---- JMP ----
-# No grid lines (default off), no outer frame border, tick marks outside.
-# Frame borders shown on axes only. Solid fills, clean interactive feel.
-# Ref: JMP Preferences → Graphs → major/minor grid deselected by default.
 theme_jmp <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "grey50", axisTitle = "black", axisLabel = "grey40",
+              title = "black", tick = "grey50")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_classic(base_size = base_size, base_family = base_family),
     ggplot2::theme(
       panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
       panel.border       = ggplot2::element_blank(),
-      axis.line          = ggplot2::element_line(color = "grey50", linewidth = 0.4),
-      axis.ticks         = ggplot2::element_line(color = "grey50", linewidth = 0.3),
-      axis.ticks.length  = ggplot2::unit(-2.5, "mm"),
+      axis.line          = ggplot2::element_line(color = clr$axis, linewidth = 0.4),
+      axis.ticks         = ggplot2::element_line(color = clr$tick, linewidth = 0.3),
+      axis.ticks.length  = ggplot2::unit(-ts, "pt"),
+      axis.text          = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title         = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x       = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y       = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
       legend.key         = ggplot2::element_rect(fill = "white", color = NA),
+      legend.key.size    = ggplot2::unit(1.2, "lines"),
       legend.background  = ggplot2::element_rect(fill = "white", color = "grey80", linewidth = 0.3),
       legend.position    = "bottom",
       legend.title       = ggplot2::element_text(size = base_size),
       strip.background   = ggplot2::element_rect(fill = "grey95", color = "grey75", linewidth = 0.3),
       strip.text         = ggplot2::element_text(size = base_size - 1),
-      plot.title         = ggplot2::element_text(size = base_size + 2, face = "bold", hjust = 0.5),
+      plot.title         = ggplot2::element_text(size = base_size + 2, face = "bold", hjust = 0.5, color = clr$title),
       plot.subtitle      = ggplot2::element_text(size = base_size, hjust = 0.5)
     )
   )
 }
 
 # ---- MATLAB R2014b+ ----
-# Outer box frame present, internal axes. 7-colour order (parula-like).
-# Ref: MATLAB R2014b+ default bar/plot output; real screenshot verified.
 theme_matlab <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "black", axisTitle = "black", axisLabel = "black",
+              title = "black", tick = "black")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
       panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
-      panel.border       = ggplot2::element_rect(fill = NA, color = "black", linewidth = 0.5),
-      axis.line          = ggplot2::element_line(color = "black", linewidth = 0.5),
-      axis.ticks         = ggplot2::element_line(color = "black", linewidth = 0.5),
-      axis.ticks.length  = ggplot2::unit(3, "mm"),
+      panel.border       = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.5),
+      axis.line          = ggplot2::element_line(color = clr$axis, linewidth = 0.5),
+      axis.ticks         = ggplot2::element_line(color = clr$tick, linewidth = 0.5),
+      axis.ticks.length  = ggplot2::unit(ts, "pt"),
+      axis.text          = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title         = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x       = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y       = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
       legend.key         = ggplot2::element_blank(),
+      legend.key.size    = ggplot2::unit(1.2, "lines"),
       legend.background  = ggplot2::element_rect(fill = "white", color = NA),
       legend.position    = "right",
       legend.title       = ggplot2::element_text(size = base_size),
       strip.background   = ggplot2::element_rect(fill = "grey90", color = NA),
       strip.text         = ggplot2::element_text(size = base_size - 1),
-      plot.title         = ggplot2::element_text(size = base_size + 1, face = "plain"),
+      plot.title         = ggplot2::element_text(size = base_size + 1, face = "plain", color = clr$title),
       plot.subtitle      = ggplot2::element_text(size = base_size - 1)
     )
   )
 }
 
 # ---- Minitab ----
-# Light grey background (#F5F5F5), dark blue frame lines (#1F497D),
-# NO grid, title black, solid fill.
 theme_minitab <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "#1F497D", axisTitle = "#1F497D", axisLabel = "#1F497D",
+              title = "black", tick = "#1F497D")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
-      panel.background  = ggplot2::element_rect(fill = "#F5F5F5"),
+      panel.background   = ggplot2::element_rect(fill = "#F5F5F5"),
       panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
-      panel.border       = ggplot2::element_rect(fill = NA, color = "#1F497D", linewidth = 0.4),
+      panel.border       = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.4),
       axis.line          = ggplot2::element_blank(),
-      axis.ticks         = ggplot2::element_line(color = "#1F497D", linewidth = 0.3),
-      axis.ticks.length  = ggplot2::unit(2.5, "mm"),
+      axis.ticks         = ggplot2::element_line(color = clr$tick, linewidth = 0.3),
+      axis.ticks.length  = ggplot2::unit(ts, "pt"),
+      axis.text          = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title         = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x       = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y       = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
       legend.key         = ggplot2::element_rect(fill = "#F5F5F5", color = NA),
-      legend.background  = ggplot2::element_rect(fill = "white", color = "#1F497D", linewidth = 0.3),
+      legend.key.size    = ggplot2::unit(1.2, "lines"),
+      legend.background  = ggplot2::element_rect(fill = "white", color = clr$axis, linewidth = 0.3),
       legend.title       = ggplot2::element_text(size = base_size, face = "bold"),
-      strip.background   = ggplot2::element_rect(fill = "#1F497D", color = NA),
+      strip.background   = ggplot2::element_rect(fill = clr$axis, color = NA),
       strip.text         = ggplot2::element_text(color = "white", face = "bold", size = base_size - 1),
-      plot.title         = ggplot2::element_text(size = base_size + 2, face = "bold", color = "black"),
+      plot.title         = ggplot2::element_text(size = base_size + 2, face = "bold", color = clr$title),
       plot.subtitle      = ggplot2::element_text(size = base_size)
     )
   )
 }
 
-# ---- MedCalc (ROC-optimised) ----
-# Square plot area, clean clinical aesthetic.  Grid set nearly invisible
-# so that multi-panel plots look uniform with other grid-off styles.
+# ---- MedCalc ----
 theme_medcalc <- function(base_size = 12, base_family = "sans") {
+  clr <- list(axis = "black", axisTitle = "black", axisLabel = "black",
+              title = "black", tick = "black")
+  ts  <- base_size / 2.5
+  mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
       panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
-      panel.border       = ggplot2::element_rect(fill = NA, color = "black", linewidth = 0.5),
+      panel.border       = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.5),
       axis.line          = ggplot2::element_blank(),
-      axis.ticks         = ggplot2::element_line(color = "black", linewidth = 0.4),
-      axis.ticks.length  = ggplot2::unit(2, "mm"),
+      axis.ticks         = ggplot2::element_line(color = clr$tick, linewidth = 0.4),
+      axis.ticks.length  = ggplot2::unit(ts, "pt"),
+      axis.text          = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
+      axis.text.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
+      axis.text.y        = ggplot2::element_text(margin = ggplot2::margin(r = mgn)),
+      axis.title         = ggplot2::element_text(color = clr$axisTitle),
+      axis.title.x       = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
+      axis.title.y       = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
       legend.key         = ggplot2::element_blank(),
+      legend.key.size    = ggplot2::unit(1.2, "lines"),
       legend.position    = c(0.78, 0.22),
       legend.background  = ggplot2::element_rect(fill = "white", color = "black", linewidth = 0.3),
       legend.title       = ggplot2::element_text(size = base_size - 1),
       strip.background   = ggplot2::element_rect(fill = "grey90", color = "grey50", linewidth = 0.3),
       strip.text         = ggplot2::element_text(size = base_size - 1),
-      plot.title         = ggplot2::element_text(size = base_size + 1, face = "plain"),
+      plot.title         = ggplot2::element_text(size = base_size + 1, face = "plain", color = clr$title),
       plot.subtitle      = ggplot2::element_text(size = base_size - 1)
     )
   )
