@@ -28,7 +28,7 @@ where:
 | **Prism** | White `#FFFFFF` | Off | Off | Black box (0.5 pt) | On, black (0.5 pt) | **Outward** (2.5 mm) | Sans (Arial) | Bold, +2 pt | Right, no border | None | Grey90 fill, no border |
 | **SPSS (12–24)** | White `#FFFFFF` | **On, grey90 (0.3 pt)** | Off | Black box (0.6 pt) | On, black (0.6 pt) | Inward (2.5 mm) | Sans (Arial) | Bold centred, +2 pt | Right, clean | None | Grey85 fill, black border |
 | **OriginPro** | White `#FFFFFF` | Off | Off | Black box (0.5 pt) | Off (frame only) | Inward (3.0 mm) | Sans (Arial) | Bold, +2 pt | Right, boxed | Black (0.3 pt) | Grey95 fill, grey70 border |
-| **Stata s2color** | Light blue tint `#F4F7FA` | On, bluish `#D5E3F0` (0.25 pt) | Off | Thin grey (0.3 pt) | Off (frame only) | Inward (2.5 mm) | Sans | Plain, +1 pt | Right, no border | None | White fill, grey80 border |
+| **Stata s2color** | Light blue tint `#F4F7FA` | Horizontal only, bluish `#D5E3F0` (0.25 pt) | Off | Thin grey (0.3 pt) | Off (frame only) | Inward (2.5 mm) | Sans | Plain, +1 pt | Bottom, no border | None | White fill, grey80 border |
 | **Academic** | White `#FFFFFF` | Off | Off | Off (axes only) | On, black (0.4 pt) | Inward (2.0 mm) | Sans | Plain, +2 pt | Bottom, clean | None | Blank, bold text |
 | **SigmaPlot** | White `#FFFFFF` | Off | Off | Black box (0.5 pt) | Off (frame only) | Inward (2.5 mm) | Sans (Arial) | Plain, +1 pt | Right, boxed | Black (0.3 pt) | Grey95 fill, grey60 border |
 | **JMP** | White `#FFFFFF` | Off | Off | Off (axes only) | On, grey50 (0.4 pt) | Outward (2.5 mm) | Sans (Arial) | Bold centred, +2 pt | Bottom, thin border | Grey80 (0.3 pt) | Grey95 fill, grey75 border |

@@ -115,7 +115,8 @@ theme_stata <- function(base_size = 12, base_family = "sans") {
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
       panel.background   = ggplot2::element_rect(fill = "#F4F7FA"),
-      panel.grid.major   = ggplot2::element_line(color = "#D5E3F0", linewidth = 0.25),
+      panel.grid.major.y = ggplot2::element_line(color = "#D5E3F0", linewidth = 0.25),
+      panel.grid.major.x = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
       panel.border       = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.3),
       axis.line          = ggplot2::element_blank(),
@@ -127,6 +128,7 @@ theme_stata <- function(base_size = 12, base_family = "sans") {
       axis.title         = ggplot2::element_text(color = clr$axisTitle),
       axis.title.x       = ggplot2::element_text(margin = ggplot2::margin(t = mgn * 1.5)),
       axis.title.y       = ggplot2::element_text(margin = ggplot2::margin(r = mgn * 1.5)),
+      legend.position    = "bottom",
       legend.key         = ggplot2::element_rect(fill = "#F4F7FA", color = NA),
       legend.key.size    = ggplot2::unit(1.2, "lines"),
       legend.title       = ggplot2::element_text(size = base_size - 1),
