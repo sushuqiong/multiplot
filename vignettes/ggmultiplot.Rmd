@@ -39,7 +39,7 @@ Prism pastel-to-bold colour defaults.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("prism") +
   labs(title = "GraphPad Prism Style")
 ```
@@ -51,7 +51,7 @@ title centred. Understated, publication-ready.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("spss") +
   labs(title = "SPSS Style")
 ```
@@ -62,7 +62,7 @@ black axes + layer frame, legend with box, bold title.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("origin") +
   labs(title = "OriginPro Style")
 ```
@@ -73,7 +73,7 @@ thin bluish grid. Factory default prior to Stata 18.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("stata") +
   labs(title = "Stata s2color Style")
 ```
@@ -84,7 +84,7 @@ Ideal for journal submission.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("academic") +
   labs(title = "Academic Style")
 ```
@@ -95,7 +95,7 @@ no grid, black box frame. Publication-ready defaults.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("sigmaplot") +
   labs(title = "SigmaPlot Style")
 ```
@@ -106,7 +106,7 @@ bottom legend. Clean interactive feel.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("jmp") +
   labs(title = "JMP Style")
 ```
@@ -117,7 +117,7 @@ right legend. Anti-aliased modern look with inward ticks.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("matlab") +
   labs(title = "MATLAB Style")
 ```
@@ -128,7 +128,7 @@ no grid, black title. Dark blue strip headers.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("minitab") +
   labs(title = "Minitab Style")
 ```
@@ -140,7 +140,7 @@ uniform appearance in multi-panel layouts.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("medcalc") +
   labs(title = "MedCalc Style")
 ```
@@ -169,7 +169,7 @@ User scales added *after* `ggchoice()` take priority:
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot(aes(fill = class)) +
+  geom_boxplot_prism(aes(fill = class)) +
   ggchoice("prism") +
   scale_fill_brewer(palette = "Set2") +   # overrides Prism fill
   labs(title = "Prism Theme + Custom Brewer Fill")
