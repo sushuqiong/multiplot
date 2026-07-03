@@ -63,35 +63,35 @@ pal_gen <- function(palette) {
 
 # ---- Internal scale constructors ----
 
-scale_color_prism    <- function(...) ggplot2::discrete_scale("colour", "prism",    palette = pal_gen(prism_palette),    ...)
-scale_fill_prism     <- function(...) ggplot2::discrete_scale("fill",   "prism",    palette = pal_gen(prism_palette),    ...)
+scale_color_prism    <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(prism_palette),    ...)
+scale_fill_prism     <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(prism_palette),    ...)
 
-scale_color_spss     <- function(...) ggplot2::discrete_scale("colour", "spss",     palette = pal_gen(spss_palette),     ...)
-scale_fill_spss      <- function(...) ggplot2::discrete_scale("fill",   "spss",     palette = pal_gen(spss_palette),     ...)
+scale_color_spss     <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(spss_palette),     ...)
+scale_fill_spss      <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(spss_palette),     ...)
 
-scale_color_origin   <- function(...) ggplot2::discrete_scale("colour", "origin",   palette = pal_gen(origin_palette),   ...)
-scale_fill_origin    <- function(...) ggplot2::discrete_scale("fill",   "origin",   palette = pal_gen(origin_palette),   ...)
+scale_color_origin   <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(origin_palette),   ...)
+scale_fill_origin    <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(origin_palette),   ...)
 
-scale_color_stata    <- function(...) ggplot2::discrete_scale("colour", "stata",    palette = pal_gen(stata_palette),    ...)
-scale_fill_stata     <- function(...) ggplot2::discrete_scale("fill",   "stata",    palette = pal_gen(stata_palette),    ...)
+scale_color_stata    <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(stata_palette),    ...)
+scale_fill_stata     <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(stata_palette),    ...)
 
-scale_color_academic <- function(...) ggplot2::discrete_scale("colour", "academic", palette = pal_gen(academic_palette), ...)
-scale_fill_academic  <- function(...) ggplot2::discrete_scale("fill",   "academic", palette = pal_gen(academic_palette), ...)
+scale_color_academic <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(academic_palette), ...)
+scale_fill_academic  <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(academic_palette), ...)
 
-scale_color_sigmaplot <- function(...) ggplot2::discrete_scale("colour", "sigmaplot", palette = pal_gen(sigmaplot_palette), ...)
-scale_fill_sigmaplot  <- function(...) ggplot2::discrete_scale("fill",   "sigmaplot", palette = pal_gen(sigmaplot_palette), ...)
+scale_color_sigmaplot <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(sigmaplot_palette), ...)
+scale_fill_sigmaplot  <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(sigmaplot_palette), ...)
 
-scale_color_jmp      <- function(...) ggplot2::discrete_scale("colour", "jmp",      palette = pal_gen(jmp_palette),      ...)
-scale_fill_jmp       <- function(...) ggplot2::discrete_scale("fill",   "jmp",      palette = pal_gen(jmp_palette),      ...)
+scale_color_jmp      <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(jmp_palette),      ...)
+scale_fill_jmp       <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(jmp_palette),      ...)
 
-scale_color_matlab   <- function(...) ggplot2::discrete_scale("colour", "matlab",   palette = pal_gen(matlab_palette),   ...)
-scale_fill_matlab    <- function(...) ggplot2::discrete_scale("fill",   "matlab",   palette = pal_gen(matlab_palette),   ...)
+scale_color_matlab   <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(matlab_palette),   ...)
+scale_fill_matlab    <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(matlab_palette),   ...)
 
-scale_color_minitab  <- function(...) ggplot2::discrete_scale("colour", "minitab",  palette = pal_gen(minitab_palette),  ...)
-scale_fill_minitab   <- function(...) ggplot2::discrete_scale("fill",   "minitab",  palette = pal_gen(minitab_palette),  ...)
+scale_color_minitab  <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(minitab_palette),  ...)
+scale_fill_minitab   <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(minitab_palette),  ...)
 
-scale_color_medcalc  <- function(...) ggplot2::discrete_scale("colour", "medcalc",  palette = pal_gen(medcalc_palette),  ...)
-scale_fill_medcalc   <- function(...) ggplot2::discrete_scale("fill",   "medcalc",  palette = pal_gen(medcalc_palette),  ...)
+scale_color_medcalc  <- function(...) ggplot2::discrete_scale(aesthetics = "colour", palette = pal_gen(medcalc_palette),  ...)
+scale_fill_medcalc   <- function(...) ggplot2::discrete_scale(aesthetics = "fill",   palette = pal_gen(medcalc_palette),  ...)
 
 # ---- Shape scales (per-software default point shape sequences) ----
 
@@ -118,31 +118,31 @@ medcalc_shapes  <- c(1,  16, 0,  15, 5,  2,  18, 17, 8,  3)
 #' @name scale_shape_software
 #' @rdname scale_shape_software
 #' @export
-scale_shape_prism    <- function(...) ggplot2::discrete_scale("shape", "prism",    palette = gen_shape(prism_shapes),    ...)
+scale_shape_prism    <- function(...) ggplot2::discrete_scale(aesthetics = "shape",    palette = gen_shape(prism_shapes),    ...)
 #' @rdname scale_shape_software
 #' @export
-scale_shape_spss     <- function(...) ggplot2::discrete_scale("shape", "spss",     palette = gen_shape(spss_shapes),     ...)
+scale_shape_spss     <- function(...) ggplot2::discrete_scale(aesthetics = "shape",     palette = gen_shape(spss_shapes),     ...)
 #' @rdname scale_shape_software
 #' @export
-scale_shape_origin   <- function(...) ggplot2::discrete_scale("shape", "origin",   palette = gen_shape(origin_shapes),   ...)
+scale_shape_origin   <- function(...) ggplot2::discrete_scale(aesthetics = "shape",   palette = gen_shape(origin_shapes),   ...)
 #' @rdname scale_shape_software
 #' @export
-scale_shape_stata    <- function(...) ggplot2::discrete_scale("shape", "stata",    palette = gen_shape(stata_shapes),    ...)
+scale_shape_stata    <- function(...) ggplot2::discrete_scale(aesthetics = "shape",    palette = gen_shape(stata_shapes),    ...)
 #' @rdname scale_shape_software
 #' @export
-scale_shape_academic <- function(...) ggplot2::discrete_scale("shape", "academic", palette = gen_shape(academic_shapes), ...)
+scale_shape_academic <- function(...) ggplot2::discrete_scale(aesthetics = "shape", palette = gen_shape(academic_shapes), ...)
 #' @rdname scale_shape_software
 #' @export
-scale_shape_sigmaplot<- function(...) ggplot2::discrete_scale("shape", "sigmaplot",palette = gen_shape(sigmaplot_shapes),...)
+scale_shape_sigmaplot<- function(...) ggplot2::discrete_scale(aesthetics = "shape",palette = gen_shape(sigmaplot_shapes),...)
 #' @rdname scale_shape_software
 #' @export
-scale_shape_jmp      <- function(...) ggplot2::discrete_scale("shape", "jmp",      palette = gen_shape(jmp_shapes),      ...)
+scale_shape_jmp      <- function(...) ggplot2::discrete_scale(aesthetics = "shape",      palette = gen_shape(jmp_shapes),      ...)
 #' @rdname scale_shape_software
 #' @export
-scale_shape_matlab   <- function(...) ggplot2::discrete_scale("shape", "matlab",   palette = gen_shape(matlab_shapes),   ...)
+scale_shape_matlab   <- function(...) ggplot2::discrete_scale(aesthetics = "shape",   palette = gen_shape(matlab_shapes),   ...)
 #' @rdname scale_shape_software
 #' @export
-scale_shape_minitab  <- function(...) ggplot2::discrete_scale("shape", "minitab",  palette = gen_shape(minitab_shapes),  ...)
+scale_shape_minitab  <- function(...) ggplot2::discrete_scale(aesthetics = "shape",  palette = gen_shape(minitab_shapes),  ...)
 #' @rdname scale_shape_software
 #' @export
-scale_shape_medcalc  <- function(...) ggplot2::discrete_scale("shape", "medcalc",  palette = gen_shape(medcalc_shapes),  ...)
+scale_shape_medcalc  <- function(...) ggplot2::discrete_scale(aesthetics = "shape",  palette = gen_shape(medcalc_shapes),  ...)
