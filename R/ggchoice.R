@@ -1,10 +1,9 @@
 #' Apply a software-specific plot style
 #'
 #' One-stop function that applies the complete visual style of a target
-#' graphing software to a ggplot2 plot.  Each style bundles three layers:
-#' a full \code{theme_xxx()}, a \code{scale_color_xxx()}, and a
-#' \code{scale_fill_xxx()}.  Scales are applied additively so that
-#' user-supplied scales added \emph{after} \code{ggchoice()} take priority.
+#' graphing software to a ggplot2 plot.  Each style bundles a theme,
+#' colour scale, and fill scale.  Scales are additive: user-supplied
+#' scales added \emph{after} \code{ggchoice()} take priority.
 #'
 #' @param style Character string naming the target software.  Supported
 #'   values: \code{"prism"}, \code{"spss"}, \code{"origin"}, \code{"stata"},
@@ -14,6 +13,10 @@
 #' @param base_size Base font size in pts (default 12).
 #' @param base_family Base font family.  All styles default to
 #'   \code{"sans"} (Arial/Helvetica).
+#' @param axis_offset If \code{TRUE}, apply axis offset expansion to create
+#'   the characteristic Prism/SPSS axis separation gap.  Only effective for
+#'   \code{"prism"} and \code{"spss"} styles; ignored for others.
+#'   Default \code{FALSE}.
 #' @param ... Ignored (reserved for future use).
 #'
 #' @return A list of ggplot2 theme + scale objects that can be added to a
@@ -38,19 +41,20 @@
 #' ggplot(mpg, aes(class, hwy)) +
 #'   geom_boxplot(aes(fill = class)) +
 #'   ggchoice()
+#'
+#' # Prism with axis offset: ggchoice("prism", axis_offset = TRUE)
 ggchoice <- function(style = c("ggplot2", "prism", "spss", "origin", "stata",
                                 "academic", "sigmaplot", "jmp", "matlab",
                                 "minitab", "medcalc"),
-                     base_size = 12, base_family = NULL, ...) {
+                     base_size = 12, base_family = NULL,
+                     axis_offset = FALSE, ...) {
 
   style <- match.arg(style)
 
-  # Default ggplot2: theme_bw, no scale change
   if (style == "ggplot2") {
     return(ggplot2::theme_bw(base_size = base_size))
   }
 
-  # Resolve base_family per style (all default to "sans")
   if (is.null(base_family)) {
     base_family <- "sans"
   }
@@ -94,9 +98,20 @@ ggchoice <- function(style = c("ggplot2", "prism", "spss", "origin", "stata",
     medcalc     = scale_fill_medcalc
   )
 
-  list(
+  result <- list(
     theme_fn(base_size = base_size, base_family = base_family),
     scale_color_fn(),
     scale_fill_fn()
   )
+
+  # Axis offset: Prism-style axis gap.  Adds expansion to continuous
+  # axes so they don't touch at the origin.
+  if (axis_offset && style %in% c("prism", "spss")) {
+    result <- c(result, list(
+      ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = c(0, 0.05))),
+      ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = c(0, 0.05)))
+    ))
+  }
+
+  result
 }

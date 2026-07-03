@@ -92,3 +92,29 @@ scale_fill_minitab   <- function(...) ggplot2::discrete_scale("fill",   "minitab
 
 scale_color_medcalc  <- function(...) ggplot2::discrete_scale("colour", "medcalc",  palette = pal_gen(medcalc_palette),  ...)
 scale_fill_medcalc   <- function(...) ggplot2::discrete_scale("fill",   "medcalc",  palette = pal_gen(medcalc_palette),  ...)
+
+# ---- Shape scales (per-software default point shape sequences) ----
+
+gen_shape <- function(shapes) function(n) rep_len(shapes, n)
+
+prism_shapes    <- c(16, 15, 17, 18, 21, 22, 24, 25, 23, 8)
+spss_shapes     <- c(16, 1,  15, 0,  18, 5,  17, 2,  8,  3)
+origin_shapes   <- c(1,  0,  5,  2,  6,  4,  3,  8,  16, 15)
+stata_shapes    <- c(1,  16, 0,  15, 5,  18, 2,  17, 8,  4)
+academic_shapes <- c(1,  0,  5,  2,  6,  4,  3,  7,  8,  9)
+sigmaplot_shapes<- c(16, 1,  15, 0,  17, 2,  18, 5,  8,  3)
+jmp_shapes      <- c(16, 19, 15, 18, 17, 21, 22, 24, 25, 23)
+matlab_shapes   <- c(1,  0,  5,  2,  3,  4,  6,  16, 15, 8)
+minitab_shapes  <- c(16, 15, 18, 17, 21, 22, 24, 25, 23, 8)
+medcalc_shapes  <- c(1,  16, 0,  15, 5,  2,  18, 17, 8,  3)
+
+scale_shape_prism    <- function(...) ggplot2::discrete_scale("shape", "prism",    palette = gen_shape(prism_shapes),    ...)
+scale_shape_spss     <- function(...) ggplot2::discrete_scale("shape", "spss",     palette = gen_shape(spss_shapes),     ...)
+scale_shape_origin   <- function(...) ggplot2::discrete_scale("shape", "origin",   palette = gen_shape(origin_shapes),   ...)
+scale_shape_stata    <- function(...) ggplot2::discrete_scale("shape", "stata",    palette = gen_shape(stata_shapes),    ...)
+scale_shape_academic <- function(...) ggplot2::discrete_scale("shape", "academic", palette = gen_shape(academic_shapes), ...)
+scale_shape_sigmaplot<- function(...) ggplot2::discrete_scale("shape", "sigmaplot",palette = gen_shape(sigmaplot_shapes),...)
+scale_shape_jmp      <- function(...) ggplot2::discrete_scale("shape", "jmp",      palette = gen_shape(jmp_shapes),      ...)
+scale_shape_matlab   <- function(...) ggplot2::discrete_scale("shape", "matlab",   palette = gen_shape(matlab_shapes),   ...)
+scale_shape_minitab  <- function(...) ggplot2::discrete_scale("shape", "minitab",  palette = gen_shape(minitab_shapes),  ...)
+scale_shape_medcalc  <- function(...) ggplot2::discrete_scale("shape", "medcalc",  palette = gen_shape(medcalc_shapes),  ...)

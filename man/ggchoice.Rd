@@ -9,6 +9,7 @@ ggchoice(
     "jmp", "matlab", "minitab", "medcalc"),
   base_size = 12,
   base_family = NULL,
+  axis_offset = FALSE,
   ...
 )
 }
@@ -24,6 +25,11 @@ returns \code{theme_bw()} (no scale change).}
 \item{base_family}{Base font family.  All styles default to
 \code{"sans"} (Arial/Helvetica).}
 
+\item{axis_offset}{If \code{TRUE}, apply axis offset expansion to create
+the characteristic Prism/SPSS axis separation gap.  Only effective for
+\code{"prism"} and \code{"spss"} styles; ignored for others.
+Default \code{FALSE}.}
+
 \item{...}{Ignored (reserved for future use).}
 }
 \value{
@@ -32,10 +38,9 @@ ggplot with \code{+}.
 }
 \description{
 One-stop function that applies the complete visual style of a target
-graphing software to a ggplot2 plot.  Each style bundles three layers:
-a full \code{theme_xxx()}, a \code{scale_color_xxx()}, and a
-\code{scale_fill_xxx()}.  Scales are applied additively so that
-user-supplied scales added \emph{after} \code{ggchoice()} take priority.
+graphing software to a ggplot2 plot.  Each style bundles a theme,
+colour scale, and fill scale.  Scales are additive: user-supplied
+scales added \emph{after} \code{ggchoice()} take priority.
 }
 \examples{
 library(ggplot2)
@@ -55,4 +60,6 @@ ggplot(mpg, aes(class, hwy)) +
 ggplot(mpg, aes(class, hwy)) +
   geom_boxplot(aes(fill = class)) +
   ggchoice()
+
+# Prism with axis offset: ggchoice("prism", axis_offset = TRUE)
 }
