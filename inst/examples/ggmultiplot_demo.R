@@ -1,12 +1,15 @@
 # ============================================================
-# ggmultiplot — Figures for manuscript (rich showcase)
-# Run: source("D:/ssq/generate_figures.R")
+# ggmultiplot — Reproducible demo (shareable)
+# Installs from GitHub, generates all 10 manuscript figures.
+#
+# Run anywhere: source("ggmultiplot_demo.R")
+# Output: figures/Figure1.pdf ... Figure10.pdf
 # ============================================================
-if ("ggmultiplot" %in% .packages()) detach("package:ggmultiplot", unload = TRUE)
-try(remove.packages("ggmultiplot"), silent = TRUE)
-install.packages("D:/ssq/ggmultiplot", repos = NULL, type = "source")
+if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+remotes::install_github("sushuqiong/multiplot", upgrade = "always")
 library(ggmultiplot)
 library(ggplot2)
+if (!requireNamespace("cowplot", quietly = TRUE)) install.packages("cowplot")
 suppressMessages(library(cowplot))
 
 dir.create("figures", showWarnings = FALSE)
@@ -115,3 +118,39 @@ ggsave("figures/Figure7.png", fig7, width = 8, height = 5, dpi = 300)
 # ---- Figure 8: Stata scatter with s2color style ----
 cat("[8/10] Stata s2color scatter + line\n")
 set.seed(789)
+fig8 <- ggplot(mtcars, aes(wt, mpg)) +
+  geom_point(aes(colour = factor(cyl), shape = factor(cyl)), size = 3) +
+  ggchoice("stata") +
+  labs(title = "", x = "Weight (1000 lbs)", y = "MPG", colour = "Cylinders", shape = "Cylinders")
+ggsave("figures/Figure8.pdf", fig8, width = 8, height = 5)
+ggsave("figures/Figure8.png", fig8, width = 8, height = 5, dpi = 300)
+
+# ---- Figure 9: Origin density + rug plot ----
+cat("[9/10] Origin multi-group density\n")
+fig9 <- ggplot(mpg, aes(hwy, fill = class)) +
+  geom_density(alpha = 0.4, linewidth = 0.5) +
+  ggchoice("origin") +
+  labs(title = "", x = "HWY MPG", y = "Density")
+ggsave("figures/Figure9.pdf", fig9, width = 8, height = 5)
+ggsave("figures/Figure9.png", fig9, width = 8, height = 5, dpi = 300)
+
+# ---- Figure 10: Medical KM curve (SPSS style) ----
+cat("[10/10] SPSS-style Kaplan-Meier survival curve\n")
+if (!requireNamespace("survival", quietly = TRUE)) install.packages("survival")
+suppressMessages(library(survival))
+km_fit <- survfit(Surv(time, status) ~ sex, data = lung)
+km_df <- data.frame(
+  time = km_fit$time, surv = km_fit$surv,
+  strata = rep(names(km_fit$strata), km_fit$strata)
+)
+fig10 <- ggplot(km_df, aes(time, surv)) +
+  geom_step(aes(colour = strata), linewidth = 1) +
+  ggchoice("spss") +
+  labs(title = "", x = "Survival Time (days)", y = "Survival Probability",
+       colour = "Sex") +
+  ylim(0, 1)
+ggsave("figures/Figure10.pdf", fig10, width = 8, height = 5)
+ggsave("figures/Figure10.png", fig10, width = 8, height = 5, dpi = 300)
+
+cat("\n=== All 10 figures saved to figures/ ===\n")
+cat("Files:", paste(list.files("figures", pattern="*.pdf"), collapse=", "), "\n")

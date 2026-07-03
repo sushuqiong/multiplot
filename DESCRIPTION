@@ -2,7 +2,7 @@ Package: ggmultiplot
 Title: Reproduce Statistical Plot Styles of 10 Major Graphing Software Packages
 Version: 0.3.0
 Authors@R:
-    person("Feng", "Qiao", , "fengq@example.com", role = c("aut", "cre"))
+    person("Shuqiong", "Su", , "sushuqiong@outlook.com", role = c("aut", "cre"))
 Description: One-stop ggplot2 extension that reproduces the default plot styles
     of 10 major statistical graphing software packages. A single ggchoice() call
     applies the complete visual style (theme + colour/fill scales) for GraphPad

@@ -3,5 +3,7 @@
 ^package\.json$
 ^package-lock\.json$
 ^inst/paper/generate_docx\.js$
+^inst/paper/build_f1000_final\.js$
 ^\.Rproj\.user$
 ^\.gitignore$
+^\.github$
