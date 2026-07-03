@@ -1,3 +1,15 @@
+<p align="center">
+  <img src="assets/repo-cover.svg" alt="ggmultiplot cover" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://github.com/sushuqiong/multiplot/actions/workflows/pkgdown.yaml"><img alt="pkgdown" src="https://github.com/sushuqiong/multiplot/actions/workflows/pkgdown.yaml/badge.svg"></a>
+  <a href="https://www.r-project.org/"><img alt="R" src="https://img.shields.io/badge/R-4.1%2B-276DC3?logo=r&logoColor=white"></a>
+  <a href="https://ggplot2.tidyverse.org/"><img alt="ggplot2" src="https://img.shields.io/badge/ggplot2-extension-1A7F64"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/sushuqiong/multiplot"></a>
+  <a href="https://github.com/sushuqiong/multiplot/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/sushuqiong/multiplot?style=social"></a>
+</p>
+
 # ggmultiplot
 
 Reproduce the default statistical plot styles of 10 major graphing software
@@ -11,6 +23,13 @@ ggplot(mpg, aes(class, hwy)) +
   geom_boxplot(aes(fill = class)) +
   ggchoice("prism")   # one call = theme + colour + fill
 ```
+
+## Highlights
+
+- **One API for many software looks**: `ggchoice()` applies theme, colour scale, fill scale, and axis details together.
+- **10 familiar statistical styles**: Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, MedCalc, and Academic.
+- **Publication-friendly helpers**: Prism-style columns, error bars, boxplots, and comparison annotations.
+- **Still pure ggplot2**: user-added scales after `ggchoice()` keep priority, so every style remains easy to customize.
 
 ## Why ggmultiplot?
 
