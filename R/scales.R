@@ -108,13 +108,41 @@ matlab_shapes   <- c(1,  0,  5,  2,  3,  4,  6,  16, 15, 8)
 minitab_shapes  <- c(16, 15, 18, 17, 21, 22, 24, 25, 23, 8)
 medcalc_shapes  <- c(1,  16, 0,  15, 5,  2,  18, 17, 8,  3)
 
+#' Software-specific point shape scales
+#'
+#' Discrete shape scales that apply each graphing software's default
+#' point marker sequence.  Each scale maps shape aesthetics to the
+#' marker shapes used by that software's factory defaults.
+#'
+#' @param ... Arguments passed to \code{\link[ggplot2]{discrete_scale}}.
+#' @name scale_shape_software
+#' @rdname scale_shape_software
+#' @export
 scale_shape_prism    <- function(...) ggplot2::discrete_scale("shape", "prism",    palette = gen_shape(prism_shapes),    ...)
+#' @rdname scale_shape_software
+#' @export
 scale_shape_spss     <- function(...) ggplot2::discrete_scale("shape", "spss",     palette = gen_shape(spss_shapes),     ...)
+#' @rdname scale_shape_software
+#' @export
 scale_shape_origin   <- function(...) ggplot2::discrete_scale("shape", "origin",   palette = gen_shape(origin_shapes),   ...)
+#' @rdname scale_shape_software
+#' @export
 scale_shape_stata    <- function(...) ggplot2::discrete_scale("shape", "stata",    palette = gen_shape(stata_shapes),    ...)
+#' @rdname scale_shape_software
+#' @export
 scale_shape_academic <- function(...) ggplot2::discrete_scale("shape", "academic", palette = gen_shape(academic_shapes), ...)
+#' @rdname scale_shape_software
+#' @export
 scale_shape_sigmaplot<- function(...) ggplot2::discrete_scale("shape", "sigmaplot",palette = gen_shape(sigmaplot_shapes),...)
+#' @rdname scale_shape_software
+#' @export
 scale_shape_jmp      <- function(...) ggplot2::discrete_scale("shape", "jmp",      palette = gen_shape(jmp_shapes),      ...)
+#' @rdname scale_shape_software
+#' @export
 scale_shape_matlab   <- function(...) ggplot2::discrete_scale("shape", "matlab",   palette = gen_shape(matlab_shapes),   ...)
+#' @rdname scale_shape_software
+#' @export
 scale_shape_minitab  <- function(...) ggplot2::discrete_scale("shape", "minitab",  palette = gen_shape(minitab_shapes),  ...)
+#' @rdname scale_shape_software
+#' @export
 scale_shape_medcalc  <- function(...) ggplot2::discrete_scale("shape", "medcalc",  palette = gen_shape(medcalc_shapes),  ...)
