@@ -1,12 +1,12 @@
 # ============================================================
-# ggmultiplot — Fidelity comparison: ggmultiplot vs real software
-# Generates ggmultiplot boxplots to match real software screenshots.
+# multiplot — Fidelity comparison: multiplot vs real software
+# Generates multiplot boxplots to match real software screenshots.
 # Run: source("D:/ssq/fidelity_comparison.R")
 # ============================================================
-if ("ggmultiplot" %in% .packages()) detach("package:ggmultiplot", unload = TRUE)
-try(remove.packages("ggmultiplot"), silent = TRUE)
-install.packages("D:/ssq/ggmultiplot", repos = NULL, type = "source")
-library(ggmultiplot); library(ggplot2)
+if ("multiplot" %in% .packages()) detach("package:multiplot", unload = TRUE)
+try(remove.packages("multiplot"), silent = TRUE)
+install.packages("D:/ssq/multiplot", repos = NULL, type = "source")
+library(multiplot); library(ggplot2)
 
 dir.create("fidelity_comparison", showWarnings = FALSE)
 
@@ -19,7 +19,7 @@ p2 <- ggplot(iris, aes(Species, Sepal.Length)) +
   geom_boxplot_prism(aes(fill = Species), show.legend = FALSE) +
   labs(y = "Sepal Length")
 
-# Generate ggmultiplot output for each software
+# Generate multiplot output for each software
 software <- c("prism","spss","origin","stata","academic",
               "sigmaplot","jmp","matlab","minitab","medcalc")
 names <- c("GraphPad-Prism","SPSS","OriginPro","Stata","Academic",
@@ -31,9 +31,9 @@ for (i in seq_along(software)) {
   cat(sprintf("[%02d/10] %s\n", i, nm))
 
   data <- if (s == "jmp") p2 else p1
-  gg <- data + ggchoice(s) + labs(title = paste0("ggmultiplot — ", nm))
+  gg <- data + ggchoice(s) + labs(title = paste0("multiplot — ", nm))
 
-  ggsave(sprintf("fidelity_comparison/ggmultiplot_%s.png", s),
+  ggsave(sprintf("fidelity_comparison/multiplot_%s.png", s),
          gg, width = 8, height = 5, dpi = 300)
 }
 
@@ -43,7 +43,7 @@ cat("  C:/Users/fengq/Desktop/其它软件的截图验证/\n")
 
 # ---- Summary notes ----
 cat("\n=== Comparison checklist ===\n")
-cat("For each software pair (ggmultiplot vs real), check:\n")
+cat("For each software pair (multiplot vs real), check:\n")
 cat("  1. Background colour and grid presence\n")
 cat("  2. Frame/border style\n")
 cat("  3. Font family and title style\n")

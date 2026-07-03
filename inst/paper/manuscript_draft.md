@@ -1,4 +1,4 @@
-# ggmultiplot: A Unified Framework and R Implementation for Reproducing Biomedical Statistical Plot Styles Across Ten Major Graphing Software Packages
+# multiplot: A Unified Framework and R Implementation for Reproducing Biomedical Statistical Plot Styles Across Ten Major Graphing Software Packages
 
 ## Abstract
 
@@ -14,12 +14,12 @@ statistical graphing software's default output into a 5-tuple of
 {Theme, Palette, Geom, Annotation, Convention} dimensions; (2) a systematic
 compliance assessment of ten software default palettes across colour vision
 deficiency (CVD) safety, grayscale print fidelity, and CMYK gamut compatibility;
-and (3) **ggmultiplot**, an open-source R package implementing the ontology as a
+and (3) **multiplot**, an open-source R package implementing the ontology as a
 ggplot2 extension. A single `ggchoice("prism")` call applies the complete visual
 style of the target software. The package exports 18 functions, requires only
 ggplot2 (≥3.4.0), and passes R CMD check with zero errors or warnings.
 
-**Conclusions**: ggmultiplot fills a gap between general-purpose ggplot2 theme
+**Conclusions**: multiplot fills a gap between general-purpose ggplot2 theme
 packages and single-software emulators, providing the first unified framework
 for cross-software plot style reproduction with built-in publication compliance
 guidance. The formal ontology and compliance benchmark are reusable beyond the
@@ -61,7 +61,7 @@ provide (a) multi-software coverage, (b) a formal framework for reasoning about
 plot style differences, or (c) systematic guidance on which default styles meet
 publication accessibility standards.
 
-Here we introduce **ggmultiplot**, an R package that addresses all three gaps.
+Here we introduce **multiplot**, an R package that addresses all three gaps.
 Its contributions are:
 
 1. A **Plot Style Ontology** that formalises any graphing software's default
@@ -119,7 +119,7 @@ For each software, we extracted the default visual parameters from:
   MATLAB's `ColorOrder` defaults);
 - Direct software output inspection: real screenshots of default bar and box
   plots were obtained from GraphPad Prism 8, IBM SPSS Statistics 24, and
-  MATLAB R2014b+, and compared side-by-side with ggmultiplot output. Three
+  MATLAB R2014b+, and compared side-by-side with multiplot output. Three
   discrepancies were identified and corrected (Prism tick direction, SPSS grid
   presence, MATLAB outer frame);
 - Published descriptions in the methodology literature [3,4,11].
@@ -129,7 +129,7 @@ Materials).
 
 ### 2.3 Implementation in R
 
-The ggmultiplot R package implements the ontology on top of ggplot2 (≥3.4.0).
+The multiplot R package implements the ontology on top of ggplot2 (≥3.4.0).
 The architecture follows a layered design:
 
 - **10 internal `theme_xxx()` functions** — each inherits from `theme_bw()` or
@@ -183,7 +183,7 @@ All colour computations were performed using the `colorspace` [13] and
 
 ### 2.5 Comparison with Existing Packages
 
-| Feature | ggmultiplot | ggprism | r2spss | ggthemes | cowplot |
+| Feature | multiplot | ggprism | r2spss | ggthemes | cowplot |
 |---|---|---|---|---|---|
 | Multi-software coverage | **10** | 1 (Prism) | 1 (SPSS) | ~8 themes† | 1 (generic) |
 | Formal style ontology | **Yes** | No | No | No | No |
@@ -270,7 +270,7 @@ parameters.
 
 ### 4.1 Contribution
 
-ggmultiplot is, to our knowledge, the first R package to provide both
+multiplot is, to our knowledge, the first R package to provide both
 multi-software coverage and a formal ontology for reasoning about statistical
 plot styles. Its three contributions—ontology, implementation, and compliance
 benchmark—are mutually reinforcing: the ontology provides the vocabulary for
@@ -287,7 +287,7 @@ palette, not either in isolation. Exporting `theme_prism()` without its
 corresponding palette would invite users to produce Prism-themed plots with
 ggplot2's default hue wheel—defeating the purpose of style reproduction.
 
-The additive-scale strategy (user scales override ggmultiplot scales) preserves
+The additive-scale strategy (user scales override multiplot scales) preserves
 ggplot2's composability while providing sensible defaults. This differs from
 ggprism, which exports separate `theme_prism()` and `scale_fill_prism()`
 functions requiring explicit coordination by the user.
@@ -308,14 +308,14 @@ functions requiring explicit coordination by the user.
    interpolation rather than the exact algorithmic colormaps used by the
    original software (e.g., MATLAB's parula is a piecewise Bézier curve; we
    approximate with 9 keypoints).
-4. **3D and interactive plots**: ggmultiplot covers only 2D static ggplot2
+4. **3D and interactive plots**: multiplot covers only 2D static ggplot2
    output. Interactive features (JMP's hover tooltips, Prism's linked analyses)
    are out of scope.
 
 ### 4.4 Future Work
 
 - Formal perceptual fidelity study with human raters (N ≥ 20) comparing
-  ggmultiplot output to real software screenshots;
+  multiplot output to real software screenshots;
 - Support for additional software (e.g., SAS, RStudio default, Python
   matplotlib/seaborn);
 - Shiny gadget for interactive style preview and on-the-fly switching;
@@ -327,12 +327,12 @@ functions requiring explicit coordination by the user.
 
 ## 5. Availability
 
-- **Package**: ggmultiplot v0.1.0
+- **Package**: multiplot v0.1.0
 - **Language**: R (≥4.0)
 - **License**: MIT
 - **Dependencies**: ggplot2 (≥3.4.0); ggpubr (optional, for `stat_compare_means_prism()`)
 - **Source code**: https://github.com/sushuqiong/multiplot
-- **Documentation**: Vignette included (`vignette("ggmultiplot")`)
+- **Documentation**: Vignette included (`vignette("multiplot")`)
 - **Supplementary Materials**: Table 1 (Plot Style Ontology), Table 2 (Compliance Assessment) included in `inst/paper/`
 
 ---
@@ -390,7 +390,7 @@ and per-colour gamut analysis.
 ## Appendix A: Demonstration Figures
 
 The following figures were generated by the demonstration script
-(`demo_ggmultiplot.R`, included in the package repository):
+(`demo_multiplot.R`, included in the package repository):
 
 **Figure S1.** 10-style comparison — the same boxplot (mpg dataset: highway
 fuel economy by vehicle class) rendered in all 10 software styles, illustrating

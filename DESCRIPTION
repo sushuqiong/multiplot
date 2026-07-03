@@ -1,4 +1,4 @@
-Package: ggmultiplot
+Package: multiplot
 Title: Reproduce Statistical Plot Styles of 10 Major Graphing Software Packages
 Version: 0.3.0
 Authors@R:

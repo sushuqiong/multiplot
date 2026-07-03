@@ -73,7 +73,7 @@ const children = [];
 children.push(new Paragraph({ spacing: { before: 3600 }, children: [] }));
 children.push(new Paragraph({
   alignment: AlignmentType.CENTER, spacing: { after: 400 },
-  children: [new TextRun({ text: "ggmultiplot: A Unified Framework and R Implementation for Reproducing Biomedical Statistical Plot Styles Across Ten Major Graphing Software Packages", bold: true, font: "Arial", size: 36 })]
+  children: [new TextRun({ text: "multiplot: A Unified Framework and R Implementation for Reproducing Biomedical Statistical Plot Styles Across Ten Major Graphing Software Packages", bold: true, font: "Arial", size: 36 })]
 }));
 children.push(new Paragraph({
   alignment: AlignmentType.CENTER, spacing: { after: 200 },
@@ -85,7 +85,7 @@ children.push(new Paragraph({
 }));
 children.push(new Paragraph({
   alignment: AlignmentType.CENTER, spacing: { after: 100 },
-  children: [new TextRun({ text: "R package: ggmultiplot v0.1.0", font: "Arial", size: 22, italics: true })]
+  children: [new TextRun({ text: "R package: multiplot v0.1.0", font: "Arial", size: 22, italics: true })]
 }));
 children.push(new Paragraph({
   alignment: AlignmentType.CENTER, spacing: { after: 100 },
@@ -96,8 +96,8 @@ children.push(new Paragraph({ children: [new PageBreak()] }));
 // ===== ABSTRACT =====
 children.push(heading1("Abstract"));
 children.push(boldPara("Background:", "Biomedical researchers routinely switch between statistical graphing software (GraphPad Prism, SPSS, OriginPro, Stata, MATLAB, etc.), each with a distinctive default visual style. When publishing, the absence of a unified method to replicate these styles programmatically creates friction: plots generated in R may be rejected by reviewers accustomed to specific software aesthetics, and manual re-styling per target journal is inefficient."));
-children.push(boldPara("Results:", "We present (1) a formal Plot Style Ontology that decomposes any statistical graphing software's default output into a 5-tuple of {Theme, Palette, Geom, Annotation, Convention} dimensions; (2) a systematic compliance assessment of ten software default palettes across colour vision deficiency (CVD) safety, grayscale print fidelity, and CMYK gamut compatibility; and (3) ggmultiplot, an open-source R package implementing the ontology as a ggplot2 extension. A single ggchoice(\"prism\") call applies the complete visual style of the target software. The package exports 17 functions, requires only ggplot2 (≥3.4.0), and passes R CMD check with zero errors or warnings."));
-children.push(boldPara("Conclusions:", "ggmultiplot fills a gap between general-purpose ggplot2 theme packages and single-software emulators, providing the first unified framework for cross-software plot style reproduction with built-in publication compliance guidance. The formal ontology and compliance benchmark are reusable beyond the R ecosystem."));
+children.push(boldPara("Results:", "We present (1) a formal Plot Style Ontology that decomposes any statistical graphing software's default output into a 5-tuple of {Theme, Palette, Geom, Annotation, Convention} dimensions; (2) a systematic compliance assessment of ten software default palettes across colour vision deficiency (CVD) safety, grayscale print fidelity, and CMYK gamut compatibility; and (3) multiplot, an open-source R package implementing the ontology as a ggplot2 extension. A single ggchoice(\"prism\") call applies the complete visual style of the target software. The package exports 17 functions, requires only ggplot2 (≥3.4.0), and passes R CMD check with zero errors or warnings."));
+children.push(boldPara("Conclusions:", "multiplot fills a gap between general-purpose ggplot2 theme packages and single-software emulators, providing the first unified framework for cross-software plot style reproduction with built-in publication compliance guidance. The formal ontology and compliance benchmark are reusable beyond the R ecosystem."));
 children.push(para("Keywords: data visualization, ggplot2, R package, statistical graphics, GraphPad Prism, SPSS, colour vision deficiency, reproducible research", { italics: true }));
 children.push(new Paragraph({ children: [new PageBreak()] }));
 
@@ -106,7 +106,7 @@ children.push(heading1("1. Introduction"));
 children.push(para("Biomedical and life-science researchers produce statistical graphs using a heterogeneous mix of software: GraphPad Prism for dose-response curves, SPSS for survey-weighted bar charts, OriginPro for multi-panel scientific figures, Stata for econometric-style regressions, MATLAB for engineering visualizations, and MedCalc for diagnostic ROC analysis [1-4]. Each software ships with a distinctive default visual style—a specific combination of background colour, grid line presence, font family, axis formatting, and colour palette—that becomes deeply familiar to its user community."));
 children.push(para("This fragmentation creates two problems. First, reviewer expectation: manuscript reviewers accustomed to one software's visual conventions may perceive plots generated with a different tool as \"unfamiliar\" or \"unpolished,\" even when statistically identical [5]. Second, reproducibility friction: a computationally reproducible analysis pipeline (e.g., in R) produces output that may not match the visual style expected by a target journal or co-author using a different primary software [6]."));
 children.push(para("Existing R packages address parts of this problem. ggprism [7] provides GraphPad Prism-inspired themes and palettes for ggplot2 but covers only one software. r2spss [8] replicates SPSS output formatting, including legacy and modern SPSS graph styles, but is similarly single-software. ggthemes [9] offers themes inspired by publications (The Economist, Wall Street Journal) and software (Stata, Excel) but prioritises aesthetic variety over fidelity to software defaults. cowplot [10] provides a clean publication-ready default theme but makes no attempt to emulate specific software. None of these packages provide (a) multi-software coverage, (b) a formal framework for reasoning about plot style differences, or (c) systematic guidance on which default styles meet publication accessibility standards."));
-children.push(para("Here we introduce ggmultiplot, an R package that addresses all three gaps. Its contributions are:"));
+children.push(para("Here we introduce multiplot, an R package that addresses all three gaps. Its contributions are:"));
 children.push(para("1. A Plot Style Ontology that formalises any graphing software's default visual output as a 5-tuple of {Theme, Palette, Geom, Annotation, Convention};"));
 children.push(para("2. A single-function entry point, ggchoice(\"style\"), that applies the complete style (theme + colour scale + fill scale) of ten major statistical graphing software packages;"));
 children.push(para("3. A systematic compliance assessment of each software's default palette against CVD safety, grayscale print fidelity, and CMYK gamut compatibility, providing actionable guidance for journal submission."));
@@ -149,7 +149,7 @@ children.push(para("1. GraphPad Prism (v8+); 2. IBM SPSS Statistics (v12–24 cl
 children.push(para("For each software, we extracted the default visual parameters from: (i) official software documentation and user guides; (ii) default scheme/theme definition files (e.g., Stata's scheme-s2color.scheme, MATLAB's ColorOrder defaults); (iii) direct software output inspection verified against documentation for Prism, SPSS, OriginPro, and MATLAB; and (iv) published descriptions in the methodology literature [3,4,11]. The full ontology mapping is provided in Table 1 (Supplementary Materials)."));
 
 children.push(heading2("2.3 Implementation in R"));
-children.push(para("The ggmultiplot R package implements the ontology on top of ggplot2 (≥3.4.0). The architecture follows a layered design:"));
+children.push(para("The multiplot R package implements the ontology on top of ggplot2 (≥3.4.0). The architecture follows a layered design:"));
 children.push(para("10 internal theme_xxx() functions—each inherits from theme_bw() or theme_classic() and overrides grid, border, font, legend, and strip parameters to match the target software's defaults."));
 children.push(para("20 internal discrete scale_color/fill_xxx() functions—each defines a qualitative palette of 10 hex colours extracted from the software's default colour order."));
 children.push(para("14 exported continuous scale_color/fill_xxx_c() functions—each wraps ggplot2::scale_color_gradientn() with a software-specific continuous gradient (e.g., MATLAB's parula, Origin's BlueGreenYellow)."));
@@ -166,7 +166,7 @@ children.push(boldPara("CMYK Gamut Compatibility.", "ΔE (CIEDE2000) between sRG
 children.push(para("All colour computations were performed using the colorspace [13] and farver [14] R packages."));
 
 children.push(heading2("2.5 Comparison with Existing Packages"));
-const cmpHeader = ["Feature", "ggmultiplot", "ggprism", "r2spss", "ggthemes", "cowplot"];
+const cmpHeader = ["Feature", "multiplot", "ggprism", "r2spss", "ggthemes", "cowplot"];
 const cmpRows = [
   ["Multi-software coverage", "10", "1 (Prism)", "1 (SPSS)", "~8 themes*", "1 (generic)"],
   ["Formal style ontology", "Yes", "No", "No", "No", "No"],
@@ -237,20 +237,20 @@ children.push(new Paragraph({ children: [new PageBreak()] }));
 children.push(heading1("4. Discussion"));
 
 children.push(heading2("4.1 Contribution"));
-children.push(para("ggmultiplot is, to our knowledge, the first R package to provide both multi-software coverage and a formal ontology for reasoning about statistical plot styles. Its three contributions—ontology, implementation, and compliance benchmark—are mutually reinforcing: the ontology provides the vocabulary for describing differences; the implementation demonstrates that these differences are mechanically reproducible; and the compliance benchmark reveals which defaults are fit for purpose in accessible, print-ready publication."));
+children.push(para("multiplot is, to our knowledge, the first R package to provide both multi-software coverage and a formal ontology for reasoning about statistical plot styles. Its three contributions—ontology, implementation, and compliance benchmark—are mutually reinforcing: the ontology provides the vocabulary for describing differences; the implementation demonstrates that these differences are mechanically reproducible; and the compliance benchmark reveals which defaults are fit for purpose in accessible, print-ready publication."));
 
 children.push(heading2("4.2 Design Rationale"));
 children.push(para("We chose to make theme and scale functions internal (not exported) with ggchoice() as the single user-facing entry point. This design reflects a philosophical position: the unit of \"style\" is the combination of theme + palette, not either in isolation. Exporting theme_prism() without its corresponding palette would invite users to produce Prism-themed plots with ggplot2's default hue wheel—defeating the purpose of style reproduction."));
-children.push(para("The additive-scale strategy (user scales override ggmultiplot scales) preserves ggplot2's composability while providing sensible defaults. This differs from ggprism, which exports separate theme_prism() and scale_fill_prism() functions requiring explicit coordination by the user."));
+children.push(para("The additive-scale strategy (user scales override multiplot scales) preserves ggplot2's composability while providing sensible defaults. This differs from ggprism, which exports separate theme_prism() and scale_fill_prism() functions requiring explicit coordination by the user."));
 
 children.push(heading2("4.3 Limitations"));
 children.push(para("1. Fidelity: While parameters were extracted from official documentation, scheme files, and cross-referenced with reference packages (ggprism, r2spss), a formal perceptual fidelity study with side-by-side comparison has not yet been completed. Small differences in anti-aliasing, font metrics, and rendering engine behaviour may exist."));
 children.push(para("2. Software versioning: Software defaults evolve (e.g., SPSS 25+ modern charts, Stata 18's stcolor replacing s2color). We target the most widely recognisable defaults."));
 children.push(para("3. Continuous palettes: Our continuous colour scales use fixed keypoint interpolation rather than the exact algorithmic colormaps of the original software (e.g., MATLAB's parula uses a piecewise Bézier curve; we approximate with 9 keypoints)."));
-children.push(para("4. 3D and interactive plots: ggmultiplot covers only 2D static ggplot2 output. Interactive features (JMP's hover tooltips, Prism's linked analyses) are out of scope."));
+children.push(para("4. 3D and interactive plots: multiplot covers only 2D static ggplot2 output. Interactive features (JMP's hover tooltips, Prism's linked analyses) are out of scope."));
 
 children.push(heading2("4.4 Future Work"));
-children.push(para("• Formal perceptual fidelity study with human raters (N ≥ 20) comparing ggmultiplot output to real software screenshots;"));
+children.push(para("• Formal perceptual fidelity study with human raters (N ≥ 20) comparing multiplot output to real software screenshots;"));
 children.push(para("• Support for additional software (SAS, RStudio default, Python matplotlib/seaborn);"));
 children.push(para("• Shiny gadget for interactive style preview and on-the-fly switching;"));
 children.push(para("• Journal-specific templates (Nature, Cell, Science, The Lancet) built on the Academic base;"));
@@ -259,12 +259,12 @@ children.push(new Paragraph({ children: [new PageBreak()] }));
 
 // ===== AVAILABILITY =====
 children.push(heading1("5. Availability"));
-children.push(para("Package: ggmultiplot v0.1.0"));
+children.push(para("Package: multiplot v0.1.0"));
 children.push(para("Language: R (≥4.0)"));
 children.push(para("License: MIT"));
 children.push(para("Dependencies: ggplot2 (≥3.4.0); ggpubr (optional, for stat_compare_means_prism())"));
 children.push(para("Source code: https://github.com/sushuqiong/multiplot"));
-children.push(para("Documentation: Vignette included (vignette(\"ggmultiplot\"))"));
+children.push(para("Documentation: Vignette included (vignette(\"multiplot\"))"));
 children.push(para("Supplementary Materials: Table 1 (Plot Style Ontology), Table 2 (Compliance Assessment) included in inst/paper/"));
 children.push(new Paragraph({ children: [new PageBreak()] }));
 
@@ -284,9 +284,9 @@ children.push(new Paragraph({ children: [new PageBreak()] }));
 // ===== SUPPLEMENTARY =====
 children.push(heading1("Supplementary Materials"));
 children.push(heading2("Table 1 — Plot Style Ontology"));
-children.push(para("The complete 10-software × 15-attribute mapping across all five ontology dimensions (Theme, Palette, Geom, Annotation, Convention) is provided in the file inst/paper/table1_style_ontology.md within the ggmultiplot package repository."));
+children.push(para("The complete 10-software × 15-attribute mapping across all five ontology dimensions (Theme, Palette, Geom, Annotation, Convention) is provided in the file inst/paper/table1_style_ontology.md within the multiplot package repository."));
 children.push(heading2("Table 2 — Compliance Assessment"));
-children.push(para("The full CVD safety, grayscale fidelity, and CMYK compatibility evaluation with CIELAB L* values and per-colour gamut analysis is provided in the file inst/paper/table2_compliance_assessment.md within the ggmultiplot package repository."));
+children.push(para("The full CVD safety, grayscale fidelity, and CMYK compatibility evaluation with CIELAB L* values and per-colour gamut analysis is provided in the file inst/paper/table2_compliance_assessment.md within the multiplot package repository."));
 
 // ===== Assemble =====
 const doc = new Document({
@@ -315,7 +315,7 @@ const doc = new Document({
       default: new Header({
         children: [new Paragraph({
           alignment: AlignmentType.RIGHT,
-          children: [new TextRun({ text: "ggmultiplot Manuscript", font: "Arial", size: 18, italics: true, color: "888888" })]
+          children: [new TextRun({ text: "multiplot Manuscript", font: "Arial", size: 18, italics: true, color: "888888" })]
         })]
       })
     },
@@ -335,7 +335,7 @@ const doc = new Document({
 });
 
 // Write
-const outPath = "C:/Users/fengq/Desktop/ggmultiplot_manuscript.docx";
+const outPath = "C:/Users/fengq/Desktop/multiplot_manuscript.docx";
 Packer.toBuffer(doc).then(buffer => {
   fs.writeFileSync(outPath, buffer);
   console.log("Document written to " + outPath);

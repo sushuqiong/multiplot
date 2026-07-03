@@ -145,5 +145,5 @@ Status: ✅ verified  |  ⚠️ inferred from documentation (no screenshot)  |  
 1. Obtain official GraphPad Prism 8+ default column bar graph screenshot
 2. Obtain official SPSS 25+ default bar chart output screenshot
 3. Obtain MATLAB R2014b+ default `bar()` output screenshot
-4. Side-by-side comparison with ggmultiplot output
+4. Side-by-side comparison with multiplot output
 5. Compute SSIM or perceptual ΔE for key visual elements

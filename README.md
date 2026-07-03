@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/repo-cover.svg" alt="ggmultiplot cover" width="100%">
+  <img src="assets/repo-cover.svg" alt="multiplot cover" width="100%">
 </p>
 
 <p align="center">
@@ -10,14 +10,14 @@
   <a href="https://github.com/sushuqiong/multiplot/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/sushuqiong/multiplot?style=social"></a>
 </p>
 
-# ggmultiplot
+# multiplot
 
 Reproduce the default statistical plot styles of 10 major graphing software
 packages in R with **a single function call** — built on top of **ggplot2**.
 
 ```r
 library(ggplot2)
-library(ggmultiplot)
+library(multiplot)
 
 ggplot(mpg, aes(class, hwy)) +
   geom_boxplot(aes(fill = class)) +
@@ -31,14 +31,14 @@ ggplot(mpg, aes(class, hwy)) +
 - **Publication-friendly helpers**: Prism-style columns, error bars, boxplots, and comparison annotations.
 - **Still pure ggplot2**: user-added scales after `ggchoice()` keep priority, so every style remains easy to customize.
 
-## Why ggmultiplot?
+## Why multiplot?
 
 Every statistical graphing software (GraphPad Prism, SPSS, OriginPro, Stata,
 MATLAB, ...) has a distinctive default visual style. When you move between
 software, your plots look different. When you publish in R, reviewers often
 expect a specific "look."
 
-`ggmultiplot` solves this by bundling each software's complete default style
+`multiplot` solves this by bundling each software's complete default style
 into one function: **`ggchoice()`**.
 
 ## Supported Software Styles
@@ -67,7 +67,7 @@ remotes::install_github("sushuqiong/multiplot")
 
 ```r
 library(ggplot2)
-library(ggmultiplot)
+library(multiplot)
 
 p <- ggplot(mpg, aes(class, hwy)) + geom_boxplot(aes(fill = class))
 

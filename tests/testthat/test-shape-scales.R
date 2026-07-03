@@ -11,6 +11,6 @@ test_that("all shape scales return ScaleDiscrete", {
 })
 
 test_that("shape scales produce valid shape codes for 5 groups", {
-  expect_type(ggmultiplot:::gen_shape(c(16,15,17,18,21))(5), "double")
-  expect_equal(length(ggmultiplot:::gen_shape(c(16,15,17,18,21))(7)), 7)
+  expect_type(multiplot:::gen_shape(c(16,15,17,18,21))(5), "double")
+  expect_equal(length(multiplot:::gen_shape(c(16,15,17,18,21))(7)), 7)
 })

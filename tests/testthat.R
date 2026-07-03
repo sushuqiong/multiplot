@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(ggmultiplot)
+library(multiplot)
 
-test_check("ggmultiplot")
+test_check("multiplot")

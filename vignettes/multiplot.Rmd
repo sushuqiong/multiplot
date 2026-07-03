@@ -1,22 +1,22 @@
 ---
-title: "ggmultiplot — 10 Software Style Gallery"
-author: "ggmultiplot"
+title: "multiplot — 10 Software Style Gallery"
+author: "multiplot"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ggmultiplot Style Gallery}
+  %\VignetteIndexEntry{multiplot Style Gallery}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.width = 8, fig.height = 5)
-library(ggmultiplot)
+library(multiplot)
 library(ggplot2)
 ```
 
 ## Overview
 
-`ggmultiplot` lets you reproduce the default plot styles of 10 major
+`multiplot` lets you reproduce the default plot styles of 10 major
 statistical graphing software packages with **a single function call**:
 `ggchoice("style")`.
 

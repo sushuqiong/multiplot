@@ -132,7 +132,7 @@ SigmaPlot) are print-optimal.
 | **MedCalc** | 2 | 3 | 4 | **3.0** | Replace red-green pairs |
 | **OriginPro** | 1 | 2 | 2 | **1.7** | **Not recommended** for colour publication; use in B&W or with alternative palette |
 
-### Recommendation for ggmultiplot Users
+### Recommendation for multiplot Users
 
 For journal submission:
 - **Safe choice**: `ggchoice("academic")` or `ggchoice("sigmaplot")` — CVD-safe, grayscale-proof, CMYK-compatible
@@ -143,7 +143,7 @@ For journal submission:
 
 The formality of this assessment (CVD simulation + CIELAB L* extraction +
 CMYK gamut mapping) constitutes the "systematic benchmark" that elevates
-ggmultiplot from "mere software description" to a publishable methodology
+multiplot from "mere software description" to a publishable methodology
 contribution, satisfying the gap analysis requirement identified in the
 conceptual framework.
 
