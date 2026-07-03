@@ -68,8 +68,8 @@ ggplot(mpg, aes(class, hwy)) +
 ```
 
 ### 4. Stata (s2color scheme)
-*Light bluish background tint, 15-colour s2color palette,
-thin bluish grid. Factory default prior to Stata 18.*
+*Light bluish background tint (#F4F7FA), horizontal bluish grid only,
+15-colour s2color palette, legend below plot. Default prior to Stata 18.*
 
 ```{r}
 ggplot(mpg, aes(class, hwy)) +
@@ -220,13 +220,13 @@ Available continuous scales: `scale_color/fill_prism_c()`,
 | Prism | sans | Off | Black box (ticks outward) | Pastel-bold |
 | SPSS | sans | Light grey | Black box | Blue-dominant |
 | OriginPro | sans | Off | Black box (ticks outward) | Black→Red→Green→Blue |
-| Stata s2color | sans | Light bluish | Thin grey | 15-colour cycle |
+| Stata s2color | sans | Horizontal bluish | Thin grey (legend bottom) | 15-colour cycle |
 | Academic | sans | Off | Off (axes only) | Grayscale |
 | SigmaPlot | sans | Off | Black box | Black + grayscale |
 | JMP | sans | Off | Off (axes only) | JMP blue + Tableau |
 | MATLAB | sans | Off | Black box | R2014b 7-colour |
 | Minitab | sans | Off | Dark blue | Dark blue primary |
-| MedCalc | sans | Light grey | Black box | Clinical contrast |
+| MedCalc | sans | Off | Black box (legend inside) | Clinical contrast |
 
 ---
 

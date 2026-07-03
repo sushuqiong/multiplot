@@ -39,7 +39,7 @@ const t1D = [
   ["Prism","White","Off","Black box","Sans (Arial)","Outward","Right"],
   ["SPSS","White","Light grey","Black box","Sans (Arial)","Inward","Right"],
   ["OriginPro","White","Off","Black box","Sans (Arial)","Outward","Right, boxed"],
-  ["Stata s2color","Light blue tint","Bluish, thin","Grey, thin","Sans","Inward","Right"],
+  ["Stata s2color","Light blue tint","Horizontal bluish","Grey, thin","Sans","Inward","Bottom"],
   ["Academic","White","Off","None (axes)","Sans","Inward","Bottom"],
   ["SigmaPlot","White","Off","Black box","Sans (Arial)","Inward","Right, boxed"],
   ["JMP","White","Off","None (axes)","Sans (Arial)","Outward","Bottom"],

@@ -35,7 +35,7 @@ into one function: **`ggchoice()`**.
 | **JMP** | `"jmp"` | No grid, no frame, tick marks outside, clean |
 | **MATLAB** (R2014b+) | `"matlab"` | Black outer box, 7-colour R2014b order, inward ticks |
 | **Minitab** | `"minitab"` | Grey bg, dark blue lines, white grid, blue strips |
-| **MedCalc** (ROC) | `"medcalc"` | Square area, fine grey grid, clinical contrast |
+| **MedCalc** (ROC) | `"medcalc"` | White bg, legend inside plot, clinical contrast |
 
 ## Installation
 
