@@ -46,7 +46,7 @@ df_bar <- data.frame(
 fig2 <- ggplot(df_bar, aes(group, mean)) +
   geom_col_prism(fill = "#5B9BD5") +
   geom_errorbar_prism(aes(ymin = mean - sd, ymax = mean + sd)) +
-  ggchoice("prism", axis_offset = TRUE) +
+  ggchoice("prism") +
   labs(title = "", x = "", y = "Value")
 ggsave("figures/Figure2.pdf", fig2, width = 7, height = 5)
 ggsave("figures/Figure2.png", fig2, width = 7, height = 5, dpi = 300)
@@ -56,7 +56,7 @@ cat("[3/7] Prism scatter with shape mapping\n")
 set.seed(123)
 fig3 <- ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   geom_point(aes(colour = Species, fill = Species, shape = Species), size = 3) +
-  ggchoice("prism") + scale_shape_prism() +
+  ggchoice("prism", axis_offset = TRUE) + scale_shape_prism() +
   labs(title = "", x = "Sepal Length", y = "Petal Length")
 ggsave("figures/Figure3.pdf", fig3, width = 8, height = 5)
 ggsave("figures/Figure3.png", fig3, width = 8, height = 5, dpi = 300)
@@ -108,7 +108,7 @@ ggsave("figures/Figure6.png", fig6, width = 12, height = 5, dpi = 300)
 cat("[7/7] Scale override + axis offset\n")
 fig7 <- ggplot(mpg, aes(class, hwy)) +
   geom_boxplot_prism(aes(fill = class)) +
-  ggchoice("prism", axis_offset = TRUE) +
+  ggchoice("prism") +
   scale_fill_brewer(palette = "Set2") +
   labs(title = "", x = "Vehicle class", y = "HWY MPG")
 ggsave("figures/Figure7.pdf", fig7, width = 8, height = 5)
