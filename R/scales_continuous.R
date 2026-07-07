@@ -9,7 +9,7 @@ matlab_continuous  <- c("#352A87", "#0363E1", "#1485D3", "#06A696", "#34B847",
                         "#85D444", "#D9EC3A", "#F4E32E", "#FAD11F")
 stata_continuous   <- c("#000080", "#2E86C1", "#F4F7FA", "#E74C3C", "#800000")
 academic_continuous <- c("#000000", "#404040", "#808080", "#BFBFBF", "#FFFFFF")
-minitab_continuous <- c("#1F497D", "#4BACC6", "#F5F5F5", "#F79646", "#C0504D")
+minitab_continuous <- c("#1F497D", "#4BACC6", "#F0F0F0", "#F79646", "#C0504D")
 medcalc_continuous <- c("#000000", "#C0392B", "#E74C3C", "#F39C12", "#FFEAA7")
 
 # ---- Prism continuous (blue-to-red sequential) ----
