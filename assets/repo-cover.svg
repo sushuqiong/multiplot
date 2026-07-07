@@ -1,5 +1,5 @@
 <svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">ggmultiplot repository cover</title>
+  <title id="title">multiplot repository cover</title>
   <desc id="desc">A visual overview showing many statistical plotting styles unified in ggplot2.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
@@ -23,7 +23,7 @@
 
   <g transform="translate(82 78)">
     <text x="0" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="800" fill="#475569">R package for publication-style figures</text>
-    <text x="0" y="142" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="72" font-weight="850" fill="url(#titleGradient)">ggmultiplot</text>
+    <text x="0" y="142" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="72" font-weight="850" fill="url(#titleGradient)">multiplot</text>
     <text x="4" y="194" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="650" fill="#334155">One function call. Ten familiar statistical plot styles.</text>
     <g transform="translate(4 244)">
       <rect width="120" height="42" rx="21" fill="#EFF6FF"/>
