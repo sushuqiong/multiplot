@@ -1,4 +1,4 @@
-# multiplot: A Unified Framework and R Implementation for Reproducing Biomedical Statistical Plot Styles Across Ten Major Graphing Software Packages
+# multiplot: A Unified Framework and R Implementation for Reproducing Biomedical Statistical Plot Styles Across Nine Graphing Software Packages and an Academic Publication Style
 
 ## Abstract
 
@@ -12,12 +12,12 @@ re-styling per target journal is inefficient.
 **Results**: We present (1) a formal Plot Style Ontology that decomposes any
 statistical graphing software's default output into a 5-tuple of
 {Theme, Palette, Geom, Annotation, Convention} dimensions; (2) a systematic
-compliance assessment of ten software default palettes across colour vision
+compliance assessment of ten supported default palettes across colour vision
 deficiency (CVD) safety, grayscale print fidelity, and CMYK gamut compatibility;
 and (3) **multiplot**, an open-source R package implementing the ontology as a
 ggplot2 extension. A single `ggchoice("prism")` call applies the complete visual
 style of the target software. The package exports 18 functions, requires only
-ggplot2 (≥3.4.0), and passes R CMD check with zero errors or warnings.
+ggplot2 (>=3.4.0), and is designed to pass R CMD check with zero errors or warnings.
 
 **Conclusions**: multiplot fills a gap between general-purpose ggplot2 theme
 packages and single-software emulators, providing the first unified framework
@@ -57,7 +57,7 @@ offers themes inspired by publications (The Economist, Wall Street Journal) and
 software (Stata, Excel) but prioritises aesthetic variety over fidelity to
 software defaults. **cowplot** [10] provides a clean publication-ready default
 theme but makes no attempt to emulate specific software. None of these packages
-provide (a) multi-software coverage, (b) a formal framework for reasoning about
+provide (a) multi-style coverage, (b) a formal framework for reasoning about
 plot style differences, or (c) systematic guidance on which default styles meet
 publication accessibility standards.
 
@@ -67,9 +67,9 @@ Its contributions are:
 1. A **Plot Style Ontology** that formalises any graphing software's default
    visual output as a 5-tuple of {Theme, Palette, Geom, Annotation, Convention};
 2. A single-function entry point, `ggchoice("style")`, that applies the complete
-   style (theme + colour scale + fill scale) of ten major statistical graphing
-   software packages;
-3. A systematic **compliance assessment** of each software's default palette
+   style (theme + colour scale + fill scale) of nine statistical graphing
+   software-derived styles plus one academic publication style;
+3. A systematic **compliance assessment** of each supported style's default palette
    against CVD safety, grayscale print fidelity, and CMYK gamut compatibility,
    providing actionable guidance for journal submission.
 
@@ -99,21 +99,21 @@ in ggplot2 without modifying its internal rendering pipeline.
 
 ### 2.2 Software Selection and Style Extraction
 
-We selected ten software packages covering the most commonly used statistical
-graphing tools in biomedical research [1,2]:
+We selected nine graphing software packages commonly used in biomedical
+research and added one academic publication-style benchmark [1,2]:
 
 1. GraphPad Prism (v8+)
 2. IBM SPSS Statistics (v12–24 classic default)
 3. OriginPro (classic default; OriginLab)
 4. Stata (s2color scheme, factory default pre-v18)
-5. Academic/AMS (generic journal submission style)
+5. Academic (generic journal submission style; not a standalone software package)
 6. SigmaPlot (v8.0+; Systat Software)
 7. JMP (v13+; SAS Institute)
 8. MATLAB (R2014b+ default; MathWorks)
 9. Minitab (v17+; Minitab LLC)
 10. MedCalc (v20+; MedCalc Software)
 
-For each software, we extracted the default visual parameters from:
+For each software-derived style, we extracted the default visual parameters from:
 - Official software documentation and user guides;
 - Default scheme/theme definition files (e.g., Stata's `scheme-s2color.scheme`,
   MATLAB's `ColorOrder` defaults);
@@ -154,13 +154,13 @@ The architecture follows a layered design:
   with Prism-style p-value formatting (P < 0.0001 cutoff, significance stars).
 
 All themes and scales are internal (not exported), keeping the user-facing API
-to 17 exported functions. The package has zero compiled code and imports only
+to 29 exported functions. The package has zero compiled code and imports only
 ggplot2. The `stat_compare_means_prism()` function soft-depends on ggpubr
 (loaded on first use).
 
 ### 2.4 Compliance Assessment Methodology
 
-We assessed each software's default discrete palette across three dimensions:
+We assessed each supported style's default discrete palette across three dimensions:
 
 **CVD Safety.** Each palette was simulated under three colour vision deficiency
 types using the methodology of [12]: deuteranopia (M-cone loss, ~6% male
@@ -185,7 +185,7 @@ All colour computations were performed using the `colorspace` [13] and
 
 | Feature | multiplot | ggprism | r2spss | ggthemes | cowplot |
 |---|---|---|---|---|---|
-| Multi-software coverage | **10** | 1 (Prism) | 1 (SPSS) | ~8 themes† | 1 (generic) |
+| Multi-style coverage | **10** | 1 (Prism) | 1 (SPSS) | ~8 themes† | 1 (generic) |
 | Formal style ontology | **Yes** | No | No | No | No |
 | Compliance assessment | **Yes** | No | No | No | No |
 | Single-function style switch | **Yes** | Partial‡ | Partial‡ | Partial‡ | N/A |
@@ -204,21 +204,20 @@ scientific graphing software.
 ### 3.1 Ontology Mapping
 
 The complete ontology mapping is presented in Table 1 (Supplementary Materials).
-Key findings from the cross-software comparison:
+Key findings from the cross-style comparison:
 
-- **Grid usage**: 6/10 software default to grid OFF (Prism, OriginPro, JMP,
-  MATLAB, SigmaPlot, Minitab); 3/10 use light grids (SPSS, Stata, MedCalc);
-  1/10 has no grid by design (Academic).
+- **Grid usage**: 7/10 supported styles do not show major grids (Prism,
+  OriginPro, JMP, MATLAB, SigmaPlot, Minitab, Academic); 3/10 use light grids
+  (SPSS, Stata, MedCalc).
 - **Frame**: 8/10 use a full box border; 2/10 use axes-only (Academic, JMP).
-- **Font**: 10/10 default to sans-serif (Arial/Helvetica variants). No major
-  statistical graphing software defaults to a serif font for chart elements.
+- **Font**: 10/10 use sans-serif chart text in the implemented default style.
 - **Legend**: 5/10 place right; 2/10 place bottom; MedCalc places inside the
   plot area.
 - **Palette strategy**: 5/10 use qualitative colour cycles; 1/10 uses grayscale;
   1/10 uses B&W-then-grayscale.
 
-The formalisation reveals that no two software packages share an identical
-5-tuple, confirming that each software's "look" is a genuinely distinctive
+The formalisation reveals that no two supported styles share an identical
+5-tuple, confirming that each style's "look" is a genuinely distinctive
 combination rather than minor variation around a common template.
 
 ### 3.2 Compliance Assessment
@@ -236,7 +235,7 @@ Key findings:
 | OriginPro | 1.0 | 2.0 | 2.0 | **1.7** |
 
 The most common failure mode is red-green colour pair confusability
-(deuteranopia/protanopia), affecting 8/10 software default palettes. Only
+(deuteranopia/protanopia), affecting 8/10 supported default palettes. Only
 grayscale-based defaults (Academic, SigmaPlot) are fully CVD-safe. Notably,
 MATLAB R2014b+ deliberately improved CVD accessibility (3.0 vs. the older
 jet-based default which would score 1.0), demonstrating that software
@@ -295,9 +294,9 @@ functions requiring explicit coordination by the user.
 ### 4.3 Limitations
 
 1. **Fidelity**: Theme parameters were verified against real screenshots for
-   Prism, SPSS, and MATLAB (3/10 software), with three discrepancies corrected
+   Prism, SPSS, and MATLAB (3/10 software-derived styles), with three discrepancies corrected
    (Prism tick direction outward, SPSS light grey grid present, MATLAB outer
-   box present). The remaining 7/10 software rely on documentation and scheme
+   box present). The remaining styles rely on documentation, scheme
    file extraction. A formal perceptual fidelity study with human raters and
    quantitative ΔE colour difference metrics is planned.
 2. **Software versioning**: Software defaults evolve (e.g., SPSS 25+ modern
@@ -327,7 +326,7 @@ functions requiring explicit coordination by the user.
 
 ## 5. Availability
 
-- **Package**: multiplot v0.1.0
+- **Package**: multiplot v0.3.2
 - **Language**: R (≥4.0)
 - **License**: MIT
 - **Dependencies**: ggplot2 (≥3.4.0); ggpubr (optional, for `stat_compare_means_prism()`)
@@ -377,7 +376,7 @@ functions requiring explicit coordination by the user.
 ## Supplementary Materials
 
 ### Table 1 — Plot Style Ontology
-See `inst/paper/table1_style_ontology.md` for the complete 10-software ×
+See `inst/paper/table1_style_ontology.md` for the complete 10-style x
 15-attribute mapping across all five ontology dimensions.
 
 ### Table 2 — Compliance Assessment
@@ -390,11 +389,11 @@ and per-colour gamut analysis.
 ## Appendix A: Demonstration Figures
 
 The following figures were generated by the demonstration script
-(`demo_multiplot.R`, included in the package repository):
+(`inst/examples/multiplot_demo.R`, included in the package repository):
 
 **Figure S1.** 10-style comparison — the same boxplot (mpg dataset: highway
-fuel economy by vehicle class) rendered in all 10 software styles, illustrating
-the visual diversity across software defaults.
+fuel economy by vehicle class) rendered in all 10 supported styles, illustrating
+the visual diversity across software-derived and academic defaults.
 
 **Figure S2.** Prism-style bar chart with T-bar error bars (`geom_col_prism()`
 + `geom_errorbar_prism()`), demonstrating the characteristic Prism column

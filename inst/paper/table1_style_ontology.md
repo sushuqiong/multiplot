@@ -1,8 +1,8 @@
-# Table 1 — Plot Style Ontology: Formalised Mapping of 10 Graphing Software Default Styles
+# Table 1 — Plot Style Ontology: Formalised Mapping of 10 Supported Plot Styles
 
 ## Ontology Definition
 
-A statistical plotting software's default visual style can be decomposed into a
+A supported statistical plot style can be decomposed into a
 5-tuple formalisation:
 
 $$
@@ -23,7 +23,7 @@ where:
 
 ## Table 1a — Theme Ontology
 
-| Software | Background | Grid Major | Grid Minor | Frame/Border | Axis Line | Tick Direction | Font Family | Title Style | Legend Position | Legend Border | Strip/Facet |
+| Style | Background | Grid Major | Grid Minor | Frame/Border | Axis Line | Tick Direction | Font Family | Title Style | Legend Position | Legend Border | Strip/Facet |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | **Prism** | White `#FFFFFF` | Off | Off | Black box (0.5 pt) | On, black (0.5 pt) | **Outward** (2.5 mm) | Sans (Arial) | Bold, +2 pt | Right, no border | None | Grey90 fill, no border |
 | **SPSS (12–24)** | White `#FFFFFF` | **On, grey90 (0.3 pt)** | Off | Black box (0.6 pt) | On, black (0.6 pt) | Inward (2.5 mm) | Sans (Arial) | Bold centred, +2 pt | Right, clean | None | Grey85 fill, black border |
@@ -38,13 +38,13 @@ where:
 
 ## Table 1b — Palette Ontology
 
-| Software | Type | N Colours | Colour Strategy | Colour 1 | Colour 2 | Colour 3 | Colour 4 | Colour 5 | Source |
+| Style | Type | N Colours | Colour Strategy | Colour 1 | Colour 2 | Colour 3 | Colour 4 | Colour 5 | Source |
 |---|---|---|---|---|---|---|---|---|---|
 | **Prism** | Qualitative | 10 | Pastel-to-bold | `#5B9BD5` (blue) | `#ED7D31` (orange) | `#A5A5A5` (grey) | `#FFC000` (yellow) | `#4472C4` (dk blue) | Prism v8+ non-B&W schemes |
 | **SPSS (12–24)** | Qualitative | 10 | Blue-dominant, low-saturation corporate | `#3E58AC` (SPSS blue) | `#6B6B7B` | `#4A7A6A` | `#8B7B5A` | `#5A5A7A` | SPSS legacy: all desaturated, L* 30-55, no rainbow |
 | **OriginPro** | Qualitative | 10 | Black→Red→Green→Blue increment | `#000000` (black) | `#FF0000` (red) | `#008000` (green) | `#0000FF` (blue) | `#00FFFF` (cyan) | Origin classic default colour list |
 | **Stata s2color** | Qualitative | 15 | Named colour cycle (navy, maroon, forest_green, …) | `#000080` (navy) | `#800000` (maroon) | `#228B22` (forest_green) | `#FF8C00` (dkorange) | `#008080` (teal) | scheme-s2color.scheme (Stata pre-18) |
-| **Academic** | Qualitative | 10 | Grayscale | `#000000` (black) | `#525252` (dk grey) | `#969696` (mid grey) | `#BDBDBD` (lt grey) | `#D9D9D9` (v lt grey) | AMS/Science journal convention |
+| **Academic** | Qualitative | 10 | Grayscale | `#000000` (black) | `#525252` (dk grey) | `#969696` (mid grey) | `#BDBDBD` (lt grey) | `#D9D9D9` (v lt grey) | Academic publication convention |
 | **SigmaPlot** | Qualitative | 10 | B&W to Grayscale | `#000000` (black) | `#595959` | `#8C8C8C` | `#BFBFBF` | `#D9D9D9` | SigmaPlot 8.0+ single-series default |
 | **JMP** | Qualitative | 10 | Tableau-inspired categorical | `#1F77B4` (JMP blue) | `#FF7F0E` (orange) | `#2CA02C` (green) | `#D62728` (red) | `#9467BD` (purple) | JMP default categorical theme |
 | **MATLAB (R2014b+)** | Qualitative | 7 | Parula-like muted spectrum | `#0072BD` (blue) | `#D95319` (orange) | `#EDB120` (yellow) | `#7E2F8E` (purple) | `#77AC30` (green) | R2014b new colour order (exact RGB from MathWorks) |
@@ -53,7 +53,7 @@ where:
 
 ## Table 1c — Geom & Annotation Defaults
 
-| Software | Default Bar Fill | Default Line Colour | Default Point Shape | Error Bar Style | Sig. Notation | Reference Lines |
+| Style | Default Bar Fill | Default Line Colour | Default Point Shape | Error Bar Style | Sig. Notation | Reference Lines |
 |---|---|---|---|---|---|---|
 | **Prism** | Solid colour (palette[1]) | Black (axis), palette (data) | Square/scatter (auto) | T-bar, cap extends | P values + stars (****P<0.0001) | None by default |
 | **SPSS** | Blue `#3E58AC`, solid, thin black border | Black (axis), palette (data) | Circle | Symmetric, cap lines | P values (numeric) | None by default |
@@ -68,7 +68,7 @@ where:
 
 ## Table 1d — Convention Dimensions
 
-| Software | Default Aspect Ratio | Y-Axis Range Start | Axis Label Orientation | Multi-Panel Default | Key Design Principle |
+| Style | Default Aspect Ratio | Y-Axis Range Start | Axis Label Orientation | Multi-Panel Default | Key Design Principle |
 |---|---|---|---|---|---|
 | **Prism** | Auto (data-driven) | Auto (0 or data min) | Horizontal (Y), Horizontal (X) | Independent | Publication-ready out-of-box |
 | **SPSS** | Auto, ~4:3 | Auto (0) | Vertical (Y), Horizontal (X) | Single | SPSS legacy consistency |
@@ -83,12 +83,12 @@ where:
 
 ---
 
-## Summary of Inter-Software Variation
+## Summary of Inter-Style Variation
 
-- **Grid usage**: 6/10 default to grid OFF (Prism, Origin, JMP, MATLAB, SigmaPlot, Minitab); 3/10 use light grids (SPSS, Stata, MedCalc); 1/10 has no grid by design (Academic)
+- **Grid usage**: 7/10 supported styles do not show major grids (Prism, Origin, JMP, MATLAB, SigmaPlot, Minitab, Academic); 3/10 use light grids (SPSS, Stata, MedCalc)
 - **Frame/border**: 8/10 use a full box border; 2/10 use axes-only (Academic, JMP)
-- **Font**: 10/10 default to sans-serif (Arial/Helvetica). No popular statistical graphing software defaults to serif for chart elements.
+- **Font**: 10/10 use sans-serif chart text in the implemented default style.
 - **Legend position**: 5/10 place right; 2/10 place bottom; MedCalc places inside the plot area
 - **Palette strategy**: 5/10 use qualitative colour cycles; 1/10 uses grayscale; 1/10 uses B&W-then-grayscale
 
-_Data compiled from official software documentation, default scheme files, and direct software output inspection (see References)._
+_Data compiled from official software documentation, default scheme files, direct software output inspection, and the academic publication-style benchmark (see References)._

@@ -49,7 +49,7 @@ const bottomRow = (texts, widths) => new TableRow({
 // ============================================================
 // Table 1 — Theme Ontology
 // ============================================================
-const t1Header = ["Software", "Background", "Grid", "Frame", "Font", "Ticks", "Legend"];
+const t1Header = ["Style", "Background", "Grid", "Frame", "Font", "Ticks", "Legend"];
 const t1Rows = [
   ["Prism", "White", "Off", "Black box", "Sans (Arial)", "Outward", "Right"],
   ["SPSS", "White", "Light grey", "Black box", "Sans (Arial)", "Inward", "Right"],
@@ -100,7 +100,7 @@ const t1_ontology = new Table({
 // ============================================================
 // Table 2 — Compliance Assessment
 // ============================================================
-const t2Header = ["Software", "CVD Safety", "Grayscale", "CMYK", "Overall", "Key Limitation"];
+const t2Header = ["Style", "CVD Safety", "Grayscale", "CMYK", "Overall", "Key Limitation"];
 const t2Rows = [
   ["Academic", "5", "5", "5", "5.0", "None — grayscale is universally accessible"],
   ["SigmaPlot", "5", "5", "5", "5.0", "None — B&W/grayscale default"],
@@ -192,11 +192,11 @@ children.push(emptyLine());
 children.push(emptyLine());
 children.push(new Paragraph({
   alignment: AlignmentType.CENTER, spacing: { after: 200 },
-  children: [new TextRun({ text: "multiplot: Reproducing statistical plot styles of ten graphing software packages in R", bold: true, font: "Arial", size: 32 })]
+  children: [new TextRun({ text: "multiplot: Emulating statistical plot styles across nine graphing software packages and an academic publication style in R", bold: true, font: "Arial", size: 32 })]
 }));
 children.push(new Paragraph({
   alignment: AlignmentType.CENTER, spacing: { after: 80 },
-  children: [new TextRun({ text: "Feng Qiao", font: "Arial", size: 24 })]
+  children: [new TextRun({ text: "Shuqiong Su, Aiqun Liu*", font: "Arial", size: 24 })]
 }));
 children.push(new Paragraph({
   alignment: AlignmentType.CENTER, spacing: { after: 80 },
@@ -207,17 +207,17 @@ children.push(new PageBreak());
 // ---- ABSTRACT ----
 children.push(h1("Abstract"));
 children.push(p("Researchers in biomedicine routinely move between different graphing tools—GraphPad Prism for pharmacology, SPSS for survey analysis, OriginPro for multi-panel figures, Stata for econometric plots, and MATLAB for engineering visualizations. Each tool has a distinctive default visual style: its own combination of background colour, grid presence, font choice, and palette. These defaults become second nature to regular users, and manuscripts reviewed by someone accustomed to one tool's appearance can feel unfamiliar when figures are produced with another."));
-children.push(p("Here we introduce multiplot, an R package built on ggplot2 that captures the default visual styles of ten widely used statistical graphing packages. The package reduces the entire style of any supported software to a single function call: ggchoice(\"prism\") applies the GraphPad Prism look, ggchoice(\"spss\") the SPSS look, and so on. Each call bundles a complete theme, a discrete colour scale, and a discrete fill scale. Because ggplot2's layering rules give later additions priority, users can freely override any scale after ggchoice() without losing the theme."));
-children.push(p("Beyond the software itself, we contribute a formal Plot Style Ontology that decomposes each tool's default output into five dimensions—Theme, Palette, Geom, Annotation, and Convention—and a systematic assessment of each default palette against three publication compliance criteria: colour vision deficiency safety, grayscale print fidelity, and CMYK gamut compatibility. Among the ten software defaults examined, only grayscale-based styles (Academic, SigmaPlot) earned perfect scores across all three dimensions. The most common vulnerability was red-green confusion, affecting eight of ten default palettes."));
-children.push(p("multiplot exports 18 functions, requires only ggplot2 (>= 3.4.0), contains no compiled code, and passes R CMD check with no errors or warnings. The package is freely available under the MIT license from https://github.com/sushuqiong/multiplot."));
+children.push(p("Here we introduce multiplot, an R package built on ggplot2 that captures nine software-derived graphing styles plus one academic publication style. The package reduces the entire style of any supported target to a single function call: ggchoice(\"prism\") applies the GraphPad Prism look, ggchoice(\"spss\") the SPSS look, and so on. Each call bundles a complete theme, a discrete colour scale, and a discrete fill scale. Because ggplot2's layering rules give later additions priority, users can freely override any scale after ggchoice() without losing the theme."));
+children.push(p("Beyond the software itself, we contribute a formal Plot Style Ontology that decomposes each supported style into five dimensions—Theme, Palette, Geom, Annotation, and Convention—and a systematic assessment of each default palette against three publication compliance criteria: colour vision deficiency safety, grayscale print fidelity, and CMYK gamut compatibility. Among the ten supported defaults examined, only grayscale-based styles (Academic, SigmaPlot) earned perfect scores across all three dimensions. The most common vulnerability was red-green confusion, affecting eight of ten default palettes."));
+children.push(p("multiplot exports 29 functions, requires only ggplot2 (>= 3.4.0), contains no compiled code, and is distributed under the MIT license from https://github.com/sushuqiong/multiplot."));
 children.push(new PageBreak());
 
 // ---- INTRODUCTION ----
 children.push(h1("Introduction"));
 children.push(p("Walk through any biomedical research department and you will find a patchwork of graphing software. A pharmacology lab might swear by GraphPad Prism for its dose-response curves and built-in statistical comparisons. The epidemiologists next door likely produce their survey-weighted bar charts in SPSS. The bioinformatics group prefers ggplot2 in R for its flexibility, while the engineers down the hall run MATLAB for signal processing plots. Each community develops a deep familiarity with the default look of its primary tool—the particular shade of blue on a Prism column, the light grey grid behind an SPSS bar chart, the Navy-Maroon-Forest Green colour cycle of Stata's s2color scheme."));
 children.push(p("When researchers from these different traditions collaborate on a manuscript, something mundane but frustrating happens: the figures look wrong. Not because the underlying statistics are flawed, but because the visual conventions differ from what each reader expects. A reviewer who has spent twenty years reading SPSS output may find an R-generated ggplot unfamiliar even when the data presentation is technically correct. Meanwhile, a computationally reproducible analysis pipeline in R produces output that does not match the visual norms of the target journal or the expectations of co-authors who work primarily in other tools."));
-children.push(p("Several R packages have addressed pieces of this problem. ggprism", cite("1"), "provides excellent GraphPad Prism-inspired themes and palettes but covers only that one software. r2spss", cite("2"), "replicates SPSS output formatting, including both legacy and modern SPSS graph styles, but is similarly focused on a single tool. ggthemes", cite("3"), "offers themes inspired by publications and software tools but prioritizes variety over fidelity to any particular software's defaults. cowplot", cite("4"), "provides a clean, publication-ready default theme without attempting to emulate specific software. None of these packages offers multi-software coverage, a formal vocabulary for reasoning about what makes one style different from another, or guidance on which default styles meet accessibility standards for publication."));
-children.push(p("multiplot fills these three gaps at once: it covers ten graphing software packages with a single-function interface, it formalises the notion of \"software style\" through a five-component ontology, and it provides a systematic compliance benchmark that helps researchers choose styles appropriate for colour-blind readers, grayscale printing, and CMYK reproduction. The package is designed to sit cleanly on top of ggplot2 without modifying its internals, so it coexists with any other ggplot2 extension."));
+children.push(p("Several R packages have addressed pieces of this problem. ggprism", cite("1"), "provides excellent GraphPad Prism-inspired themes and palettes but covers only that one software. r2spss", cite("2"), "replicates SPSS output formatting, including both legacy and modern SPSS graph styles, but is similarly focused on a single tool. ggthemes", cite("3"), "offers themes inspired by publications and software tools but prioritizes variety over fidelity to any particular software's defaults. cowplot", cite("4"), "provides a clean, publication-ready default theme without attempting to emulate specific software. None of these packages offers broad multi-style coverage, a formal vocabulary for reasoning about what makes one style different from another, or guidance on which default styles meet accessibility standards for publication."));
+children.push(p("multiplot fills these three gaps at once: it covers nine graphing software packages and one academic publication style with a single-function interface, it formalises the notion of a plotting style through a five-component ontology, and it provides a systematic compliance benchmark that helps researchers choose styles appropriate for colour-blind readers, grayscale printing, and CMYK reproduction. The package is designed to sit cleanly on top of ggplot2 without modifying its internals, so it coexists with any other ggplot2 extension."));
 children.push(new PageBreak());
 
 // ---- METHODS ----
@@ -232,7 +232,7 @@ children.push(h2("Operation"));
 children.push(p("The package requires R >= 4.0 and ggplot2 >= 3.4.0. Installation from GitHub uses remotes::install_github(\"sushuqiong/multiplot\"). No compilation is needed, and the only hard dependency is ggplot2 (ggpubr is optional, required only for stat_compare_means_prism())."));
 
 children.push(h2("Style extraction and verification"));
-children.push(p("Default visual parameters for each of the ten software packages were extracted from four sources: official documentation and user guides; default scheme or theme definition files (e.g., Stata's scheme-s2color.scheme, MATLAB's ColorOrder specification); direct software output inspection using real screenshots; and published descriptions in the methodology literature", cite("5,6"), ". For Prism, SPSS, and MATLAB, our theme implementations were verified against actual software screenshots. Three discrepancies were caught and corrected during this process: Prism axis ticks point outward (not inward as we initially assumed), SPSS includes a light grey background grid (not a blank canvas), and MATLAB draws a full outer box frame (not internal axes only). The remaining seven software styles were verified against documentation and scheme files; a formal perceptual fidelity study with human raters is planned for future work."));
+children.push(p("Default visual parameters for the nine software-derived styles were extracted from official documentation and user guides, default scheme or theme definition files (e.g., Stata's scheme-s2color.scheme, MATLAB's ColorOrder specification), direct software output inspection where available, and published descriptions in the methodology literature", cite("5,6"), ". For Prism, SPSS, and MATLAB, our theme implementations were verified against actual software screenshots. Three discrepancies were caught and corrected during this process: Prism axis ticks point outward (not inward as we initially assumed), SPSS includes a light grey background grid (not a blank canvas), and MATLAB draws a full outer box frame (not internal axes only). The remaining software-derived styles were checked against documentation and scheme files where available; the Academic style was treated as an internally defined publication-oriented benchmark rather than a software default."));
 children.push(new PageBreak());
 
 // ---- RESULTS / USE CASES ----
@@ -240,7 +240,7 @@ children.push(h1("Use Cases"));
 
 children.push(p("Figures 1 through 7 illustrate the range of styles and plot types supported by multiplot. All figures were generated with the package and require only the code shown in the figure captions."));
 
-children.push(caption("Figure 1. Ten-style boxplot comparison. The same underlying data (mpg dataset: highway fuel economy by vehicle class) rendered in all ten software styles. Each panel differs only in its ggchoice() call; no manual theme adjustment was used."));
+children.push(caption("Figure 1. Ten-style boxplot comparison. The same underlying data (mpg dataset: highway fuel economy by vehicle class) rendered in all ten supported styles. Each panel differs only in its ggchoice() call; no manual theme adjustment was used."));
 children.push(p("[Figure 1 — see figures/Figure1.pdf]", { italics: true, size: 20 }));
 
 children.push(caption("Figure 2. Prism-style bar chart with T-shaped error bars. The bar uses geom_col_prism() (solid fill, thin black border, compact width) and the error bars use geom_errorbar_prism() (wider cap for the characteristic Prism T-bar appearance). The overall style is set by ggchoice(\"prism\")."));
@@ -264,32 +264,32 @@ children.push(new PageBreak());
 
 // ---- TABLE 1 ----
 children.push(h2("Table 1. Plot Style Ontology — Theme Dimensions"));
-children.push(p("The table below summarises the theme-level parameters for all ten supported software packages. Each cell represents the default setting in the software's factory configuration. Full palette, geom, annotation, and convention dimensions are documented in the package vignette and supplementary materials."));
+children.push(p("The table below summarises the theme-level parameters for all ten supported styles. Software-derived rows describe the target software's factory configuration where available; Academic is an internally defined publication-oriented benchmark. Full palette, geom, annotation, and convention dimensions are documented in the package vignette and supplementary materials."));
 children.push(t1_ontology);
 children.push(emptyLine());
 
 // ---- TABLE 2 ----
 children.push(h2("Table 2. Publication Compliance Assessment"));
-children.push(p("Each software's default discrete palette was scored from 1 (poor) to 5 (excellent) for colour vision deficiency safety (deuteranopia, protanopia, and tritanopia), grayscale print fidelity (CIELAB L* separation under D65 illuminant), and CMYK gamut compatibility (ΔE to ISO Coated v2 profile). An overall score is the arithmetic mean of the three dimensions."));
+children.push(p("Each supported style's default discrete palette was scored from 1 (poor) to 5 (excellent) for colour vision deficiency safety (deuteranopia, protanopia, and tritanopia), grayscale print fidelity (CIELAB L* separation under D65 illuminant), and CMYK gamut compatibility (Delta E to ISO Coated v2 profile). An overall score is the arithmetic mean of the three dimensions."));
 children.push(t2_compliance);
 children.push(new PageBreak());
 
 // ---- DISCUSSION ----
 children.push(h1("Discussion"));
 children.push(p("The idea that drove this project is simple: if a researcher can switch software with one keystroke, they should be able to switch a plot's visual style just as easily. ggchoice() turns what would otherwise require remembering a dozen theme and scale functions into a single, discoverable call."));
-children.push(p("The Plot Style Ontology formalises something that experienced data visualizers know intuitively—that a graphing tool's \"look\" is not a single property but a bundle of independent dimensions. By making those dimensions explicit, the ontology serves both as a design document (it told us exactly which parameters to extract from each software) and as a pedagogical tool (it gives researchers a vocabulary for describing why a Prism plot looks different from an SPSS plot). The ontology also reveals that no two software packages in our set share an identical 5-tuple, confirming that each defaults to a genuinely distinctive visual identity rather than a minor variation on a common template."));
+children.push(p("The Plot Style Ontology formalises something that experienced data visualizers know intuitively—that a graphing tool's \"look\" is not a single property but a bundle of independent dimensions. By making those dimensions explicit, the ontology serves both as a design document (it told us exactly which parameters to extract from each software-derived style) and as a pedagogical tool (it gives researchers a vocabulary for describing why a Prism plot looks different from an SPSS plot). The ontology also reveals that no two supported styles in our set share an identical 5-tuple, confirming that each defaults to a genuinely distinctive visual identity rather than a minor variation on a common template."));
 children.push(p("The compliance assessment results carry a clear practical message: among the ten default palettes we examined, only the two grayscale-based styles (Academic and SigmaPlot) are safe for all common forms of colour vision deficiency and print production. The other eight all exhibit some degree of red-green confusability, the most prevalent form of CVD. This is not a criticism of the software vendors—their defaults were designed for on-screen viewing in an era before accessibility standards were widely adopted—but it is a reason for researchers to choose their plotting style deliberately rather than accepting whatever default their software provides."));
-children.push(p("Several limitations should be acknowledged. First, our verification against real software screenshots currently covers three of ten packages (Prism, SPSS, MATLAB). Second, software defaults evolve: SPSS 25 introduced a modern chart engine with updated styling, and Stata 18 replaced s2color with the stcolor scheme. Third, our continuous colour scales use fixed keypoint interpolation rather than the exact algorithmic colour maps of the original software (MATLAB's parula is a piecewise Bézier curve; we approximate it with nine evenly spaced keypoints). Finally, multiplot covers only two-dimensional static ggplot2 output; interactive features such as JMP's hover tooltips or Prism's linked analyses lie outside its scope."));
+children.push(p("Several limitations should be acknowledged. First, direct screenshot verification currently covers three of the nine software-derived styles (Prism, SPSS, MATLAB), with additional documentation, template, or selected-plot checks for the remaining software-derived styles. Second, software defaults evolve: SPSS 25 introduced a modern chart engine with updated styling, and Stata 18 replaced s2color with the stcolor scheme. Third, our continuous colour scales use fixed keypoint interpolation rather than the exact algorithmic colour maps of the original software. Finally, multiplot covers only two-dimensional static ggplot2 output; interactive features such as JMP's hover tooltips or Prism's linked analyses lie outside its scope."));
 children.push(p("Future work will extend the package in two directions. First, a formal perceptual fidelity study (N >= 20 human raters) will compare multiplot output side-by-side with real software screenshots across all ten packages. Second, journal-specific templates—Nature, Cell, Science, The Lancet—can be built on the Academic base, incorporating each journal's specific font, dimension, and colour requirements. A Shiny gadget for interactive style preview would also lower the barrier for researchers new to R who want to explore the package's capabilities without writing code."));
 children.push(new PageBreak());
 
 // ---- DATA AND SOFTWARE AVAILABILITY ----
 children.push(h1("Data and software availability"));
 children.push(p("Source code: https://github.com/sushuqiong/multiplot"));
-children.push(p("Archived package: multiplot v0.1.0 (doi will be assigned via Zenodo upon publication)"));
+children.push(p("Archived package: multiplot v0.3.2 (final Zenodo DOI to be inserted after the v0.3.2 release archive is created)"));
 children.push(p("License: MIT"));
 children.push(p("R package dependencies: ggplot2 (>= 3.4.0); ggpubr (optional)"));
-children.push(p("All data used in the examples are from built-in R datasets (mpg, mtcars) that require no external download. Example code to reproduce all figures is available in the package vignette and in the file generate_figures.R in the repository root."));
+children.push(p("All data used in the examples are distributed with R or with the R packages used in the examples. Example code to reproduce all figures is available in the package vignette and in inst/examples/multiplot_demo.R in the repository."));
 
 // ---- ACKNOWLEDGEMENTS ----
 children.push(h1("Acknowledgements"));

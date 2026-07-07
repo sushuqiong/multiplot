@@ -2,8 +2,8 @@
 
 ## Assessment Criteria
 
-Three dimensions are scored 1–5 (5 = best) for each software's default
-palette/output style:
+Three dimensions are scored 1–5 (5 = best) for each supported style's
+default palette/output style:
 
 | Dimension | 1 (Poor) | 3 (Moderate) | 5 (Excellent) |
 |---|---|---|---|
@@ -21,9 +21,9 @@ palette/output style:
 
 ---
 
-## Table 2a — Per-Software Compliance Scores
+## Table 2a — Per-Style Compliance Scores
 
-| Software | CVD Safety | Grayscale Print | CMYK Compat. | **Overall** | Key Limitation |
+| Style | CVD Safety | Grayscale Print | CMYK Compat. | **Overall** | Key Limitation |
 |---|---|---|---|---|---|
 | **Prism** | 3/5 | 3/5 | 4/5 | **3.3** | Adjacent blues (#5B9BD5 vs #4472C4) can merge |
 | **SPSS (12–24)** | 2/5 | 3/5 | 4/5 | **3.0** | RED-GREEN: #C0392B ↔ #27AE60 are confusable for deuteranopia/protanopia |
@@ -45,7 +45,7 @@ palette/output style:
 For each palette, a quick "merge map" showing which colour pairs become
 indistinguishable under each CVD type.
 
-| Software | Deuteranopia Merges | Protanopia Merges | Tritanopia Merges | % Colours Distinguishable (all types) |
+| Style | Deuteranopia Merges | Protanopia Merges | Tritanopia Merges | % Colours Distinguishable (all types) |
 |---|---|---|---|---|
 | **Prism** | Orange (`#ED7D31`) ↔ Yellow (`#FFC000`) | Blue (`#5B9BD5`) ↔ Dark blue (`#4472C4`) marginally | Blue (`#5B9BD5`) ↔ Green (`#70AD47`)[^1] | 80% |
 | **SPSS** | **Red ↔ Green** (critical) | Red → dark brown; Green → near-yellow | Blue → greenish; Purple → red | 70% |
@@ -63,7 +63,7 @@ indistinguishable under each CVD type.
 **Key finding**: Academic and SigmaPlot (both B&W/grayscale) are the only
 two styles that are fully accessible across all CVD types. The most
 common failure mode is red-green confusion (deuteranopia/protanopia),
-affecting 8/10 software.
+affecting 8/10 supported styles.
 
 ---
 
@@ -73,7 +73,7 @@ Simulated lightness values (L* in CIELAB, 0=black, 100=white) for each
 palette's first 5 colours. Target: ≥5 distinguishable L* levels evenly
 spread across the 0–100 range.
 
-| Software | L* (Colour 1) | L* (Colour 2) | L* (Colour 3) | L* (Colour 4) | L* (Colour 5) | ΔL* Range | Distinct Levels |
+| Style | L* (Colour 1) | L* (Colour 2) | L* (Colour 3) | L* (Colour 4) | L* (Colour 5) | ΔL* Range | Distinct Levels |
 |---|---|---|---|---|---|---|---|
 | **Prism** | 63.5 (blue) | 59.8 (orange) | 65.3 (grey) | 79.3 (yellow) | 47.9 (dk blue) | 31.4 | 4 |
 | **SPSS** | 44.1 (blue) | 45.8 (red) | 54.2 (green) | 73.9 (yellow) | 39.1 (purple) | 34.8 | 4 |
@@ -97,7 +97,7 @@ failure mode is colours clustering in the L* 40–60 range (midtones).
 RGB→CMYK conversion risk assessment. Colours flagged if ΔE > 5 when
 converted from sRGB to ISO Coated v2 (FOGRA39) profile.
 
-| Software | In-Gamut Colours (of 10) | Worst Offender | ΔE (max) | Print Recommendation |
+| Style | In-Gamut Colours (of 10) | Worst Offender | ΔE (max) | Print Recommendation |
 |---|---|---|---|---|
 | **Prism** | 9/10 | `#FFC000` (yellow) slight desaturation | ~3 | Safe for digital press |
 | **SPSS** | 10/10 | — | ~2 | Safe for offset print |
@@ -111,7 +111,7 @@ converted from sRGB to ISO Coated v2 (FOGRA39) profile.
 | **MedCalc** | 9/10 | `#E41A1C` (red) marginal | ~3 | Safe for digital press |
 
 **Key finding**: Only OriginPro's classic palette (pure RGB primaries) is
-genuinely problematic for CMYK print. All other software are within
+genuinely problematic for CMYK print. All other styles are within
 acceptable ΔE < 5 for print production. Grayscale palettes (Academic,
 SigmaPlot) are print-optimal.
 
@@ -119,7 +119,7 @@ SigmaPlot) are print-optimal.
 
 ## Summary
 
-| Software | CVD | Grayscale | CMYK | Overall | Publication Readiness |
+| Style | CVD | Grayscale | CMYK | Overall | Publication Readiness |
 |---|---|---|---|---|---|
 | **Academic** | 5 | 5 | 5 | **5.0** | Ready for all journals |
 | **SigmaPlot** | 5 | 5 | 5 | **5.0** | Ready for all journals |

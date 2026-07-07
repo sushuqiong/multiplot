@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/repo-cover.svg" alt="multiplot cover" width="100%">
+  <img src="man/figures/repo-cover.svg" alt="multiplot cover" width="100%">
 </p>
 
 <p align="center">
@@ -12,8 +12,9 @@
 
 # multiplot
 
-Reproduce the default statistical plot styles of 10 major graphing software
-packages in R with **a single function call** — built on top of **ggplot2**.
+Emulate the default statistical plot styles of nine graphing software packages
+plus one academic publication style in R with **a single function call** — built
+on top of **ggplot2**.
 
 ```r
 library(ggplot2)
@@ -27,7 +28,7 @@ ggplot(mpg, aes(class, hwy)) +
 ## Highlights
 
 - **One API for many software looks**: `ggchoice()` applies theme, colour scale, fill scale, and axis details together.
-- **10 familiar statistical styles**: Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, MedCalc, and Academic.
+- **10 familiar visual styles**: Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, MedCalc, and Academic.
 - **Publication-friendly helpers**: Prism-style columns, error bars, boxplots, and comparison annotations.
 - **Still pure ggplot2**: user-added scales after `ggchoice()` keep priority, so every style remains easy to customize.
 
@@ -38,12 +39,13 @@ MATLAB, ...) has a distinctive default visual style. When you move between
 software, your plots look different. When you publish in R, reviewers often
 expect a specific "look."
 
-`multiplot` solves this by bundling each software's complete default style
-into one function: **`ggchoice()`**.
+`multiplot` solves this by bundling each software-inspired visual style into
+one function: **`ggchoice()`**. The `"academic"` style is an additional
+publication-oriented benchmark rather than a real software default.
 
-## Supported Software Styles
+## Supported Styles
 
-| Software | `ggchoice()` | Key Visuals |
+| Style | `ggchoice()` | Key Visuals |
 |---|---|---|
 | **GraphPad Prism** | `"prism"` | White bg, no grid, black box, sans-serif, pastel colours |
 | **SPSS** (v12–24) | `"spss"` | White bg, light grey grid, box border, muted professional palette, sans-serif |
@@ -55,6 +57,39 @@ into one function: **`ggchoice()`**.
 | **MATLAB** (R2014b+) | `"matlab"` | Black outer box, 7-colour R2014b order, inward ticks |
 | **Minitab** | `"minitab"` | Grey bg, dark blue lines, white grid, blue strips |
 | **MedCalc** (ROC) | `"medcalc"` | White bg, legend inside plot, clinical contrast |
+
+## Reproducing the manuscript figures
+
+The package demo script generates all ten figures used in the companion
+F1000Research Software Tool Article after `multiplot` has been installed:
+
+```r
+source(system.file("examples", "multiplot_demo.R", package = "multiplot"))
+```
+
+For a GitHub-install workflow:
+
+```r
+source("C:/Users/fengq/Desktop/multiplot_demo.R")
+```
+
+For local development from this repository:
+
+```r
+remotes::install_local(".", upgrade = "never")
+source(system.file("examples", "multiplot_demo.R", package = "multiplot"))
+```
+
+The demo installs `multiplot` from GitHub only if the package is not already
+available, and it does not remove or overwrite the user's global R library.
+
+## Verification status
+
+Direct screenshot checks currently cover Prism, SPSS, and MATLAB bar/box plots.
+Additional screenshot or template comparisons cover JMP, MedCalc, Minitab,
+OriginPro, SigmaPlot, and Stata for selected plot types. The package therefore
+aims for practical **style emulation**, not pixel-perfect reproduction of every
+commercial software output.
 
 ## Installation
 
@@ -120,7 +155,7 @@ ggplot(ToothGrowth, aes(supp, len)) +
 | `geom_boxplot_prism()` | Prism-style boxplot (black border, compact width, no outliers) |
 | `stat_compare_means_prism()` | Prism-style significance annotations (wraps `ggpubr`) |
 | `scale_shape_xxx()` | Software-specific point shape sequences (10 functions) |
-| `scale_color/fill_xxx()` | Discrete colour/fill scales for each software |
+| `ggchoice()` internal scales | Discrete colour/fill scales are applied automatically for each style |
 | `scale_color/fill_xxx_c()` | Continuous colour/fill scales (heatmaps, surfaces, gradients) |
 
 ## Continuous Scales
@@ -151,3 +186,8 @@ Available: `prism_c`, `origin_c`, `matlab_c`, `stata_c`, `academic_c`,
 ## License
 
 MIT — see [LICENSE](LICENSE) for details.
+
+## Citation and archived source
+
+The current development target is `multiplot` v0.3.2. A version-specific Zenodo
+DOI will be added here after the v0.3.2 GitHub release is archived.

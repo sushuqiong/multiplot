@@ -2,12 +2,13 @@
 # multiplot — Reproducible demo (shareable)
 # Installs from GitHub, generates all 10 manuscript figures.
 # Run anywhere: source("multiplot_demo.R")
-# Run: source("D:/ssq/generate_figures.R")
+# Local development use: install the package from the repository root first,
+# then source this file from any working directory.
 # ============================================================
-if ("multiplot" %in% .packages()) detach("package:multiplot", unload = TRUE)
-try(remove.packages("multiplot"), silent = TRUE)
-if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
-remotes::install_github("sushuqiong/multiplot", upgrade = "always")
+if (!requireNamespace("multiplot", quietly = TRUE)) {
+  if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+  remotes::install_github("sushuqiong/multiplot", upgrade = "never")
+}
 library(multiplot)
 library(ggplot2)
 suppressMessages(library(cowplot))
@@ -16,7 +17,7 @@ dir.create("figures", showWarnings = FALSE)
 cat("=== multiplot demo ===\n\n")
 
 # ---- Figure 1: 10-style boxplot comparison ----
-cat("[1/7] 10-style boxplot comparison\n")
+cat("[1/10] 10-style boxplot comparison\n")
 styles <- c("prism","spss","origin","stata","academic",
             "sigmaplot","jmp","matlab","minitab","medcalc")
 plots <- lapply(styles, function(s) {
@@ -33,7 +34,7 @@ ggsave("figures/Figure1.pdf", fig1, width = 18, height = 9)
 ggsave("figures/Figure1.png", fig1, width = 18, height = 9, dpi = 300)
 
 # ---- Figure 2: Prism bar + error bars + axis offset ----
-cat("[2/7] Prism bar chart + error bars + axis offset\n")
+cat("[2/10] Prism bar chart + error bars + axis offset\n")
 df_bar <- data.frame(
   group = c("Control","Treatment A","Treatment B"),
   mean  = c(10, 14, 8),
@@ -48,7 +49,7 @@ ggsave("figures/Figure2.pdf", fig2, width = 7, height = 5)
 ggsave("figures/Figure2.png", fig2, width = 7, height = 5, dpi = 300)
 
 # ---- Figure 3: Prism scatter + shape + color (inspired by ggprism) ----
-cat("[3/7] Prism scatter plot with shape mapping\n")
+cat("[3/10] Prism scatter plot with shape mapping\n")
 set.seed(123)
 fig3 <- ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   geom_point(aes(colour = Species, fill = Species, shape = Species), size = 3) +
@@ -59,7 +60,7 @@ ggsave("figures/Figure3.pdf", fig3, width = 8, height = 5)
 ggsave("figures/Figure3.png", fig3, width = 8, height = 5, dpi = 300)
 
 # ---- Figure 4: Prism violin + boxplot overlay (like ggprism ref) ----
-cat("[4/7] Prism violin + boxplot overlay\n")
+cat("[4/10] Prism violin + boxplot overlay\n")
 fig4 <- ggplot(iris, aes(Species, Sepal.Width)) +
   geom_violin(aes(colour = Species, fill = Species), trim = FALSE, alpha = 0.4) +
   geom_boxplot_prism(aes(fill = Species), width = 0.15) +
@@ -70,7 +71,7 @@ ggsave("figures/Figure4.pdf", fig4, width = 8, height = 5)
 ggsave("figures/Figure4.png", fig4, width = 8, height = 5, dpi = 300)
 
 # ---- Figure 5: SPSS line chart + points + shapes ----
-cat("[5/7] SPSS line chart with point shapes\n")
+cat("[5/10] SPSS line chart with point shapes\n")
 set.seed(456)
 time_df <- data.frame(
   time  = rep(1:10, 3),
@@ -87,7 +88,7 @@ ggsave("figures/Figure5.pdf", fig5, width = 8, height = 5)
 ggsave("figures/Figure5.png", fig5, width = 8, height = 5, dpi = 300)
 
 # ---- Figure 6: Continuous heatmaps (MATLAB + Academic) ----
-cat("[6/7] Continuous heatmaps\n")
+cat("[6/10] Continuous heatmaps\n")
 set.seed(42)
 dm <- expand.grid(gene = LETTERS[1:15], sample = 1:10)
 dm$expr <- rnorm(150)
@@ -106,7 +107,7 @@ ggsave("figures/Figure6.pdf", fig6, width = 12, height = 5)
 ggsave("figures/Figure6.png", fig6, width = 12, height = 5, dpi = 300)
 
 # ---- Figure 7: Scale override + axis offset demo ----
-cat("[7/7] Scale override + axis offset\n")
+cat("[7/10] Scale override + axis offset\n")
 fig7 <- ggplot(mpg, aes(class, hwy)) +
   geom_boxplot_prism(aes(fill = class)) +
   ggchoice("prism") +
@@ -142,6 +143,10 @@ km_fit <- survfit(Surv(time, status) ~ sex, data = lung)
 km_df <- data.frame(
   time = km_fit$time, surv = km_fit$surv,
   strata = rep(names(km_fit$strata), km_fit$strata)
+)
+km_df$strata <- factor(
+  ifelse(km_df$strata == "sex=1", "Male", "Female"),
+  levels = c("Male", "Female")
 )
 fig10 <- ggplot(km_df, aes(time, surv)) +
   geom_step(aes(colour = strata), linewidth = 1) +
