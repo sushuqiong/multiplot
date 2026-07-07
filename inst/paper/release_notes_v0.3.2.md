@@ -33,6 +33,11 @@ submission and public promotion.
 
 ## Suggested Zenodo metadata
 
+Published Zenodo record:
+
+- Version DOI: https://doi.org/10.5281/zenodo.21239178
+- Concept DOI: https://doi.org/10.5281/zenodo.21137144
+
 Title:
 
 `sushuqiong/multiplot: v0.3.2 -- F1000Research submission and website release`
@@ -59,4 +64,3 @@ Keywords:
 R, ggplot2, data visualization, statistical graphics, biomedical figures,
 GraphPad Prism, SPSS, OriginPro, Stata, MATLAB, Minitab, MedCalc, SigmaPlot,
 JMP, reproducible research
-

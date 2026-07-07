@@ -264,6 +264,8 @@ children.push(para("Language: R (≥4.0)"));
 children.push(para("License: MIT"));
 children.push(para("Dependencies: ggplot2 (≥3.4.0); ggpubr (optional, for stat_compare_means_prism())"));
 children.push(para("Source code: https://github.com/sushuqiong/multiplot"));
+children.push(para("Archived source code: https://doi.org/10.5281/zenodo.21239178"));
+children.push(para("All-version concept DOI: https://doi.org/10.5281/zenodo.21137144"));
 children.push(para("Documentation: Vignette included (vignette(\"multiplot\"))"));
 children.push(para("Supplementary Materials: Table 1 (Plot Style Ontology), Table 2 (Compliance Assessment) included in inst/paper/"));
 children.push(new Paragraph({ children: [new PageBreak()] }));

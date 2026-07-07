@@ -286,7 +286,7 @@ children.push(new PageBreak());
 // ---- DATA AND SOFTWARE AVAILABILITY ----
 children.push(h1("Data and software availability"));
 children.push(p("Source code: https://github.com/sushuqiong/multiplot"));
-children.push(p("Archived package: multiplot v0.3.2 (final Zenodo DOI to be inserted after the v0.3.2 release archive is created)"));
+children.push(p("Archived package: multiplot v0.3.2. Version DOI: https://doi.org/10.5281/zenodo.21239178; concept DOI: https://doi.org/10.5281/zenodo.21137144."));
 children.push(p("License: MIT"));
 children.push(p("R package dependencies: ggplot2 (>= 3.4.0); ggpubr (optional)"));
 children.push(p("All data used in the examples are distributed with R or with the R packages used in the examples. Example code to reproduce all figures is available in the package vignette and in inst/examples/multiplot_demo.R in the repository."));

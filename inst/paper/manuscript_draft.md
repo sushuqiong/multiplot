@@ -331,6 +331,8 @@ functions requiring explicit coordination by the user.
 - **License**: MIT
 - **Dependencies**: ggplot2 (≥3.4.0); ggpubr (optional, for `stat_compare_means_prism()`)
 - **Source code**: https://github.com/sushuqiong/multiplot
+- **Archived source code**: https://doi.org/10.5281/zenodo.21239178
+- **Concept DOI**: https://doi.org/10.5281/zenodo.21137144
 - **Documentation**: Vignette included (`vignette("multiplot")`)
 - **Supplementary Materials**: Table 1 (Plot Style Ontology), Table 2 (Compliance Assessment) included in `inst/paper/`
 
