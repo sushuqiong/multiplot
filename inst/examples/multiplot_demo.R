@@ -1,15 +1,15 @@
 # ============================================================
 # multiplot — Reproducible demo (shareable)
 # Installs from GitHub, generates all 10 manuscript figures.
-#
 # Run anywhere: source("multiplot_demo.R")
-# Output: figures/Figure1.pdf ... Figure10.pdf
+# Run: source("D:/ssq/generate_figures.R")
 # ============================================================
+if ("multiplot" %in% .packages()) detach("package:multiplot", unload = TRUE)
+try(remove.packages("multiplot"), silent = TRUE)
 if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
 remotes::install_github("sushuqiong/multiplot", upgrade = "always")
 library(multiplot)
 library(ggplot2)
-if (!requireNamespace("cowplot", quietly = TRUE)) install.packages("cowplot")
 suppressMessages(library(cowplot))
 
 dir.create("figures", showWarnings = FALSE)
