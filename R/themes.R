@@ -209,8 +209,8 @@ theme_sigmaplot <- function(base_size = 12, base_family = "sans") {
 
 # ---- JMP ----
 theme_jmp <- function(base_size = 12, base_family = "sans") {
-  clr <- list(axis = "grey50", axisTitle = "black", axisLabel = "grey40",
-              title = "black", tick = "grey50")
+  clr <- list(axis = "grey55", axisTitle = "black", axisLabel = "grey45",
+              title = "black", tick = "grey55")
   ts  <- base_size / 2.5
   mgn <- base_size * 0.35
   ggplot2::`%+replace%`(
@@ -219,8 +219,8 @@ theme_jmp <- function(base_size = 12, base_family = "sans") {
       panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
       panel.border       = ggplot2::element_blank(),
-      axis.line          = ggplot2::element_line(color = clr$axis, linewidth = 0.4),
-      axis.ticks         = ggplot2::element_line(color = clr$tick, linewidth = 0.3),
+      axis.line          = ggplot2::element_line(color = clr$axis, linewidth = 0.3),
+      axis.ticks         = ggplot2::element_line(color = clr$tick, linewidth = 0.25),
       axis.ticks.length  = ggplot2::unit(-ts, "pt"),
       axis.text          = ggplot2::element_text(color = clr$axisLabel, size = base_size * 0.95),
       axis.text.x        = ggplot2::element_text(margin = ggplot2::margin(t = mgn)),
@@ -232,7 +232,8 @@ theme_jmp <- function(base_size = 12, base_family = "sans") {
       legend.key.size    = ggplot2::unit(1.2, "lines"),
       legend.background  = ggplot2::element_rect(fill = "white", color = "grey80", linewidth = 0.3),
       legend.position    = "bottom",
-      legend.title       = ggplot2::element_text(size = base_size),
+      legend.title       = ggplot2::element_text(size = base_size - 1),
+      legend.text        = ggplot2::element_text(size = base_size - 2),
       strip.background   = ggplot2::element_rect(fill = "grey95", color = "grey75", linewidth = 0.3),
       strip.text         = ggplot2::element_text(size = base_size - 1),
       plot.title         = ggplot2::element_text(size = base_size + 2, face = "bold", hjust = 0.5, color = clr$title),
@@ -284,7 +285,7 @@ theme_minitab <- function(base_size = 12, base_family = "sans") {
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
-      panel.background   = ggplot2::element_rect(fill = "#F5F5F5"),
+      panel.background   = ggplot2::element_rect(fill = "#F0F0F0"),
       panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
       panel.border       = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.4),
@@ -318,7 +319,7 @@ theme_medcalc <- function(base_size = 12, base_family = "sans") {
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
-      panel.grid.major   = ggplot2::element_blank(),
+      panel.grid.major   = ggplot2::element_line(color = "grey93", linewidth = 0.2),
       panel.grid.minor   = ggplot2::element_blank(),
       panel.border       = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.5),
       axis.line          = ggplot2::element_blank(),
