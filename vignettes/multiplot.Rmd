@@ -21,7 +21,7 @@ library(ggplot2)
 
 ## Overview
 
-`multiplot` lets you emulate the default plot styles of nine statistical
+`multiplot` lets you approximate the default plot styles of nine statistical
 graphing software packages plus one academic publication style with **a single
 function call**: `ggchoice("style")`.
 

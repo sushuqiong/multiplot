@@ -1,9 +1,14 @@
 Package: multiplot
-Title: Emulate Statistical Plot Styles of Nine Software Packages and an Academic Style
-Version: 0.3.3
+Title: Approximate Statistical Plot Styles of Nine Software Packages and an Academic Style
+Version: 0.3.4
 Authors@R:
-    person("Shuqiong", "Su", , "sushuqiong@outlook.com", role = c("aut", "cre"))
-Description: One-stop ggplot2 extension that emulates the default plot styles
+    c(
+    person("Shuqiong", "Su", , "sushuqiong@outlook.com", role = c("aut", "cre")),
+    person("Shiyao", "Yang", role = "aut"),
+    person("Guozhen", "Chen", role = "aut"),
+    person("Aiqun", "Liu", role = "aut")
+    )
+Description: One-stop ggplot2 extension that approximates the default plot styles
     of nine statistical graphing software packages plus an additional academic
     publication style. A single ggchoice() call applies the complete visual
     style (theme + colour/fill scales) for GraphPad Prism, SPSS, OriginPro,
@@ -17,6 +22,7 @@ Imports:
     ggplot2 (>= 3.4.0)
 Suggests:
     colorspace,
+    cowplot,
     farver,
     ggpubr,
     knitr,

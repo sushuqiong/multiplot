@@ -1,7 +1,7 @@
 # Style Verification Log
 
 This log records the evidence used to tune the `multiplot` visual styles.
-The package is intended to provide practical ggplot2 style emulation rather
+The package is intended to provide practical ggplot2 style approximation rather
 than pixel-perfect reproduction of proprietary software outputs.
 
 Evidence levels:
@@ -46,4 +46,4 @@ Evidence levels:
 
 1. Archive side-by-side comparison panels for every style and plot type used in the paper.
 2. Add visual regression tests for representative bar, boxplot, scatter, density, heatmap, and survival plots.
-3. Report quantitative visual fidelity only after a formal perceptual or image-similarity study; until then, use "emulate" rather than "reproduce exactly".
+3. Report quantitative visual fidelity only after a formal perceptual or image-similarity study; until then, use "approximate" rather than "reproduce exactly".

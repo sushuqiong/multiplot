@@ -6,10 +6,11 @@ The current manuscript draft is generated from:
 node inst/paper/build_f1000_final.js
 ```
 
-The v0.3.3 output file is written to:
+The v0.3.4 output files are written to:
 
 ```text
-C:/Users/fengq/Desktop/开发R包multiplot/manuscript_of_multiplot_for_F1000Research_v0.3.3_draft.docx
+C:/Users/fengq/Desktop/开发R包multiplot/manuscript_of_multiplot_for_F1000Research_v0.3.4_draft.docx
+C:/Users/fengq/Desktop/开发R包multiplot/manuscript_of_multiplot_for_F1000Research_v0.3.4_preview_with_figures.docx
 ```
 
 This short Markdown file is retained only as an orientation note. The Word

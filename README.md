@@ -13,9 +13,9 @@
 
 # multiplot
 
-Emulate the default statistical plot styles of nine graphing software packages
-plus one academic publication style in R with **a single function call** — built
-on top of **ggplot2**.
+Approximate the default statistical plot styles of nine graphing software
+packages plus one academic publication style in R with **a single function
+call** — built on top of **ggplot2**.
 
 ```r
 library(ggplot2)
@@ -83,15 +83,17 @@ source(system.file("examples", "multiplot_demo.R", package = "multiplot"))
 ```
 
 The demo installs `multiplot` from GitHub only if the package is not already
-available, and it does not remove or overwrite the user's global R library.
+available, and it does not remove or overwrite the user's global R library. It
+also writes `figures/session_info.txt` to record the R session used to generate
+the figures.
 
 ## Verification status
 
 Direct screenshot checks currently cover Prism, SPSS, and MATLAB bar/box plots.
 Additional screenshot or template comparisons cover JMP, MedCalc, Minitab,
 OriginPro, SigmaPlot, and Stata for selected plot types. The package therefore
-aims for practical **style emulation**, not pixel-perfect reproduction of every
-commercial software output.
+aims for practical **style approximation**, not pixel-perfect reproduction of
+every commercial software output.
 
 Evidence levels used in the manuscript:
 
@@ -213,9 +215,9 @@ Available: `prism_c`, `origin_c`, `matlab_c`, `stata_c`, `academic_c`,
 - **Palettes are software-derived approximations.** See the vignette and
   `inst/paper/verification_log.md` for evidence level and version notes.
 - **Runtime dependencies are light.** Core plotting requires ggplot2. `ggpubr`
-  is optional for `stat_compare_means_prism()`, `survival` is used only in the
-  demo, and `colorspace`/`farver` are analysis-only dependencies for the
-  compliance benchmark.
+  is optional for `stat_compare_means_prism()`, `survival` and `cowplot` are
+  used only in the demo, and `colorspace`/`farver` are analysis-only
+  dependencies for the compliance benchmark.
 
 ## F1000Research manuscript
 
@@ -229,11 +231,11 @@ MIT — see [LICENSE](LICENSE) for details.
 
 ## Citation and archived source
 
-Current release: `multiplot` v0.3.3.
+Current release target: `multiplot` v0.3.4.
 
-- Version DOI: [10.5281/zenodo.21254423](https://doi.org/10.5281/zenodo.21254423)
+- Version DOI: to be added after the v0.3.4 Zenodo archive is minted.
 - Concept DOI: [10.5281/zenodo.21137144](https://doi.org/10.5281/zenodo.21137144)
-- GitHub release: <https://github.com/sushuqiong/multiplot/releases/tag/v0.3.3>
+- GitHub release: <https://github.com/sushuqiong/multiplot/releases/tag/v0.3.4>
 
 GraphPad Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, and
 MedCalc are trademarks or product names of their respective owners. `multiplot`

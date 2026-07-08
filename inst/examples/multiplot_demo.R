@@ -43,8 +43,8 @@ fig1 <- plot_grid(plotlist = plots, ncol = 5, nrow = 2,
 ggsave("figures/Figure1.pdf", fig1, width = 18, height = 9)
 ggsave("figures/Figure1.png", fig1, width = 18, height = 9, dpi = 300)
 
-# ---- Figure 2: Prism bar + error bars + axis offset ----
-cat("[2/10] Prism bar chart + error bars + axis offset\n")
+# ---- Figure 2: Prism bar chart + error bars ----
+cat("[2/10] Prism bar chart + error bars\n")
 df_bar <- data.frame(
   group = c("Control","Treatment A","Treatment B"),
   mean  = c(10, 14, 8),
@@ -118,11 +118,12 @@ ggsave("figures/Figure6.png", fig6, width = 12, height = 5, dpi = 300)
 
 # ---- Figure 7: Scale override + axis offset demo ----
 cat("[7/10] Scale override + axis offset\n")
-fig7 <- ggplot(mpg, aes(class, hwy)) +
-  geom_boxplot_prism(aes(fill = class)) +
-  ggchoice("prism") +
+fig7 <- ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(fill = class), shape = 21, size = 3,
+             colour = "black", alpha = 0.85) +
+  ggchoice("prism", axis_offset = TRUE) +
   scale_fill_brewer(palette = "Set2") +
-  labs(title = "", x = "Vehicle class", y = "HWY MPG")
+  labs(title = "", x = "Engine displacement", y = "HWY MPG", fill = "Vehicle class")
 ggsave("figures/Figure7.pdf", fig7, width = 8, height = 5)
 ggsave("figures/Figure7.png", fig7, width = 8, height = 5, dpi = 300)
 
@@ -132,11 +133,12 @@ set.seed(789)
 fig8 <- ggplot(mtcars, aes(wt, mpg)) +
   geom_point(aes(colour = factor(cyl), shape = factor(cyl)), size = 3) +
   ggchoice("stata") +
+  scale_shape_stata() +
   labs(title = "", x = "Weight (1000 lbs)", y = "MPG", colour = "Cylinders", shape = "Cylinders")
 ggsave("figures/Figure8.pdf", fig8, width = 8, height = 5)
 ggsave("figures/Figure8.png", fig8, width = 8, height = 5, dpi = 300)
 
-# ---- Figure 9: Origin density + rug plot ----
+# ---- Figure 9: Origin multi-group density plot ----
 cat("[9/10] Origin multi-group density\n")
 fig9 <- ggplot(mpg, aes(hwy, fill = class)) +
   geom_density(alpha = 0.4, linewidth = 0.5) +
@@ -149,7 +151,7 @@ ggsave("figures/Figure9.png", fig9, width = 8, height = 5, dpi = 300)
 cat("[10/10] SPSS-style Kaplan-Meier survival curve\n")
 if (!requireNamespace("survival", quietly = TRUE)) install.packages("survival")
 suppressMessages(library(survival))
-km_fit <- survfit(Surv(time, status) ~ sex, data = lung)
+km_fit <- survfit(Surv(time, status == 2) ~ sex, data = lung)
 km_df <- data.frame(
   time = km_fit$time, surv = km_fit$surv,
   strata = rep(names(km_fit$strata), km_fit$strata)
@@ -164,9 +166,12 @@ fig10 <- ggplot(km_df, aes(time, surv)) +
   scale_colour_manual(values = c(Male = "#3E58AC", Female = "#C0504D")) +
   labs(title = "", x = "Survival Time (days)", y = "Survival Probability",
        colour = "Sex") +
-  ylim(0, 1)
+  coord_cartesian(ylim = c(0, 1))
 ggsave("figures/Figure10.pdf", fig10, width = 8, height = 5)
 ggsave("figures/Figure10.png", fig10, width = 8, height = 5, dpi = 300)
 
+writeLines(capture.output(sessionInfo()), "figures/session_info.txt")
+
 cat("\n=== All 10 figures saved to figures/ ===\n")
 cat("Files:", paste(list.files("figures", pattern="*.pdf"), collapse=", "), "\n")
+cat("Session info:", normalizePath("figures/session_info.txt"), "\n")
