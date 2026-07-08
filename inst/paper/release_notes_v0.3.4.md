@@ -28,5 +28,5 @@ reviews of the v0.3.3 manuscript and demo materials.
 ## Archive
 
 - GitHub release: https://github.com/sushuqiong/multiplot/releases/tag/v0.3.4
-- Zenodo version DOI: to be added after Zenodo archives this release
+- Zenodo version DOI: https://doi.org/10.5281/zenodo.21265224
 - Zenodo concept DOI: https://doi.org/10.5281/zenodo.21137144
