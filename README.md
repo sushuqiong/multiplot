@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/sushuqiong/multiplot/actions/workflows/pkgdown.yaml"><img alt="pkgdown" src="https://github.com/sushuqiong/multiplot/actions/workflows/pkgdown.yaml/badge.svg"></a>
+  <a href="https://github.com/sushuqiong/multiplot/actions/workflows/R-CMD-check.yaml"><img alt="R-CMD-check" src="https://github.com/sushuqiong/multiplot/actions/workflows/R-CMD-check.yaml/badge.svg"></a>
   <a href="https://www.r-project.org/"><img alt="R" src="https://img.shields.io/badge/R-4.1%2B-276DC3?logo=r&logoColor=white"></a>
   <a href="https://ggplot2.tidyverse.org/"><img alt="ggplot2" src="https://img.shields.io/badge/ggplot2-extension-1A7F64"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/sushuqiong/multiplot"></a>
@@ -31,6 +32,7 @@ ggplot(mpg, aes(class, hwy)) +
 - **10 familiar visual styles**: Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, MedCalc, and Academic.
 - **Publication-friendly helpers**: Prism-style columns, error bars, boxplots, and comparison annotations.
 - **Still pure ggplot2**: user-added scales after `ggchoice()` keep priority, so every style remains easy to customize.
+- **Theme-only mode**: `ggchoice("prism", include_scales = FALSE)` applies the theme without replacing user colour/fill scales.
 
 ## Why multiplot?
 
@@ -91,6 +93,14 @@ OriginPro, SigmaPlot, and Stata for selected plot types. The package therefore
 aims for practical **style emulation**, not pixel-perfect reproduction of every
 commercial software output.
 
+Evidence levels used in the manuscript:
+
+| Level | Meaning | Current styles |
+|---|---|---|
+| A | Real software bar and box screenshots checked | Prism, SPSS, MATLAB |
+| B | Screenshot/template plus documentation checked | JMP, MedCalc, Minitab, OriginPro, SigmaPlot, Stata |
+| D | Internal benchmark, not a software default | Academic |
+
 ## Installation
 
 ```r
@@ -126,6 +136,18 @@ ggplot(mpg, aes(class, hwy)) +
   scale_fill_brewer(palette = "Set2")   # your colour choice wins
 ```
 
+This expected ggplot2 message may appear when you intentionally replace a
+default scale: `Scale for fill is already present. Adding another scale...`.
+Use `include_scales = FALSE` when you want only the theme and no default
+colour/fill scales:
+
+```r
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("prism", include_scales = FALSE) +
+  scale_fill_brewer(palette = "Set2")
+```
+
 ## Prism-style features
 
 **T-bar error bars + Prism-style columns:**
@@ -149,7 +171,7 @@ ggplot(ToothGrowth, aes(supp, len)) +
 
 | Function | Description |
 |---|---|
-| `ggchoice(style)` | Apply a software's full visual style (theme + scales + axis offset) |
+| `ggchoice(style, include_scales = TRUE)` | Apply a software-derived visual style (theme + scales + optional axis offset) |
 | `geom_errorbar_prism()` | Prism-style T-bar error bars |
 | `geom_col_prism()` | Prism-style column bars (solid fill, thin black border) |
 | `geom_boxplot_prism()` | Prism-style boxplot (black border, compact width, no outliers) |
@@ -157,6 +179,9 @@ ggplot(ToothGrowth, aes(supp, len)) +
 | `scale_shape_xxx()` | Software-specific point shape sequences (10 functions) |
 | `ggchoice()` internal scales | Discrete colour/fill scales are applied automatically for each style |
 | `scale_color/fill_xxx_c()` | Continuous colour/fill scales (heatmaps, surfaces, gradients) |
+
+Discrete palettes interpolate when the number of groups exceeds the source
+palette length. Shape scales repeat their marker sequence with `rep_len()`.
 
 ## Continuous Scales
 
@@ -177,11 +202,26 @@ Available: `prism_c`, `origin_c`, `matlab_c`, `stata_c`, `academic_c`,
 - **Theme always applies, scales are overridable.** `ggchoice()` returns a
   list of `theme()` + `scale_color()` + `scale_fill()`. Because ggplot2's `+`
   is "later wins," any `scale_*()` you add *after* `ggchoice()` takes priority.
+- **Font fallback is generic.** Style documentation names familiar fonts such
+  as Arial or Helvetica, but the package defaults to `base_family = "sans"` for
+  cross-platform portability. Users who need exact font rendering should install
+  the target font and pass `base_family`, or export with a font-aware device
+  such as `ragg`.
 - **No ggplot2 internals modified.** All themes inherit from `theme_bw()` or
   `theme_classic()`. All scales use `discrete_scale()`. Safe to use with any
   ggplot2 extension.
-- **Palettes researched from real software defaults** (see Style Reference
-  table in the vignette).
+- **Palettes are software-derived approximations.** See the vignette and
+  `inst/paper/verification_log.md` for evidence level and version notes.
+- **Runtime dependencies are light.** Core plotting requires ggplot2. `ggpubr`
+  is optional for `stat_compare_means_prism()`, `survival` is used only in the
+  demo, and `colorspace`/`farver` are analysis-only dependencies for the
+  compliance benchmark.
+
+## F1000Research manuscript
+
+The repository contains manuscript-support materials in `inst/paper/`,
+including the style ontology, compliance benchmark, verification log, and the
+script `compute_compliance_assessment.R` used to reproduce the Table 2 scores.
 
 ## License
 
@@ -189,8 +229,12 @@ MIT — see [LICENSE](LICENSE) for details.
 
 ## Citation and archived source
 
-Current release: `multiplot` v0.3.2.
+Current release target: `multiplot` v0.3.3.
 
-- Version DOI: [10.5281/zenodo.21239178](https://doi.org/10.5281/zenodo.21239178)
+- Version DOI: to be added after the v0.3.3 Zenodo archive is minted.
 - Concept DOI: [10.5281/zenodo.21137144](https://doi.org/10.5281/zenodo.21137144)
-- GitHub release: <https://github.com/sushuqiong/multiplot/releases/tag/v0.3.2>
+- GitHub release: <https://github.com/sushuqiong/multiplot/releases/tag/v0.3.3>
+
+GraphPad Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, and
+MedCalc are trademarks or product names of their respective owners. `multiplot`
+is not affiliated with, endorsed by, or sponsored by those owners.

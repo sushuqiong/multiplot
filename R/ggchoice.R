@@ -17,10 +17,14 @@
 #'   the characteristic Prism/SPSS axis separation gap.  Only effective for
 #'   \code{"prism"} and \code{"spss"} styles; ignored for others.
 #'   Default \code{FALSE}.
+#' @param include_scales If \code{TRUE} (default), return the style theme plus
+#'   its default colour and fill scales. If \code{FALSE}, return only the theme
+#'   and any requested axis-offset scales, allowing advanced users to keep their
+#'   own colour/fill scales.
 #' @param ... Ignored (reserved for future use).
 #'
-#' @return A list of ggplot2 theme + scale objects that can be added to a
-#'   ggplot with \code{+}.
+#' @return A list of ggplot2 theme and scale objects that can be added to a
+#'   ggplot with \code{+}, or a single theme for \code{"ggplot2"}.
 #' @export
 #'
 #' @examples
@@ -43,11 +47,17 @@
 #'   ggchoice()
 #'
 #' # Prism with axis offset: ggchoice("prism", axis_offset = TRUE)
+#'
+#' # Theme-only Prism look, keeping user-defined scales
+#' ggplot(mpg, aes(class, hwy)) +
+#'   geom_boxplot(aes(fill = class)) +
+#'   ggchoice("prism", include_scales = FALSE) +
+#'   scale_fill_brewer(palette = "Set2")
 ggchoice <- function(style = c("ggplot2", "prism", "spss", "origin", "stata",
                                 "academic", "sigmaplot", "jmp", "matlab",
                                 "minitab", "medcalc"),
                      base_size = 12, base_family = NULL,
-                     axis_offset = FALSE, ...) {
+                     axis_offset = FALSE, include_scales = TRUE, ...) {
 
   style <- match.arg(style)
 
@@ -98,11 +108,11 @@ ggchoice <- function(style = c("ggplot2", "prism", "spss", "origin", "stata",
     medcalc     = scale_fill_medcalc
   )
 
-  result <- list(
-    theme_fn(base_size = base_size, base_family = base_family),
-    scale_color_fn(),
-    scale_fill_fn()
-  )
+  result <- list(theme_fn(base_size = base_size, base_family = base_family))
+
+  if (isTRUE(include_scales)) {
+    result <- c(result, list(scale_color_fn(), scale_fill_fn()))
+  }
 
   # Axis offset: Prism-style axis gap.  Adds expansion to continuous
   # axes so they don't touch at the origin.

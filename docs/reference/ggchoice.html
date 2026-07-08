@@ -13,7 +13,7 @@ scales added after ggchoice() take priority."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">multiplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,7 @@ scales added <em>after</em> <code>ggchoice()</code> take priority.</p>
 <span>  base_size <span class="op">=</span> <span class="fl">12</span>,</span>
 <span>  base_family <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  axis_offset <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  include_scales <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -86,14 +87,21 @@ the characteristic Prism/SPSS axis separation gap.  Only effective for
 Default <code>FALSE</code>.</p></dd>
 
 
+<dt id="arg-include-scales">include_scales<a class="anchor" aria-label="anchor" href="#arg-include-scales"></a></dt>
+<dd><p>If <code>TRUE</code> (default), return the style theme plus
+its default colour and fill scales. If <code>FALSE</code>, return only the theme
+and any requested axis-offset scales, allowing advanced users to keep their
+own colour/fill scales.</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Ignored (reserved for future use).</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list of ggplot2 theme + scale objects that can be added to a
-ggplot with <code>+</code>.</p>
+    <p>A list of ggplot2 theme and scale objects that can be added to a
+ggplot with <code>+</code>, or a single theme for <code>"ggplot2"</code>.</p>
     </div>
 
     <div class="section level2">
@@ -122,6 +130,15 @@ ggplot with <code>+</code>.</p>
 <span class="r-plt img"><img src="ggchoice-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Prism with axis offset: ggchoice("prism", axis_offset = TRUE)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Theme-only Prism look, keeping user-defined scales</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">ggchoice</span><span class="op">(</span><span class="st">"prism"</span>, include_scales <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set2"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for <span style="color: #00BB00;">fill</span> is already present.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Adding another scale for <span style="color: #00BB00;">fill</span>, which will replace the existing scale.</span>
+<span class="r-plt img"><img src="ggchoice-4.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

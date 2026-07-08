@@ -34,6 +34,20 @@ Each `ggchoice()` call applies three things at once:
 **Scales are additive:** user-supplied `scale_*()` calls added *after*
 `ggchoice()` take priority, so you can always fine-tune.
 
+If you want only the visual theme and not the default colour/fill scales, use
+`include_scales = FALSE`:
+
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("prism", include_scales = FALSE) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(title = "Prism Theme Only + User Fill Scale")
+```
+
+The package defaults to `base_family = "sans"` for portability. Exact Arial or
+Helvetica rendering depends on installed system fonts and graphics devices.
+
 ---
 
 ## Style Gallery
@@ -220,18 +234,21 @@ Available continuous scales: `scale_color/fill_prism_c()`,
 
 ## Style Reference Table
 
-| Style | Default Font | Grid | Outer Frame | Palette Type |
-|----------|-------------|------|-------------|-------------|
-| Prism | sans | Off | Black box (ticks outward) | Pastel-bold |
-| SPSS | sans | Light grey | Black box | Blue-dominant |
-| OriginPro | sans | Off | Black box (ticks outward) | Black→Red→Green→Blue |
-| Stata s2color | sans | Horizontal bluish | Thin grey (legend bottom) | 15-colour cycle |
-| Academic | sans | Off | Off (axes only) | Grayscale |
-| SigmaPlot | sans | Off | Black box | Black + grayscale |
-| JMP | sans | Off | Off (axes only) | JMP blue + Tableau |
-| MATLAB | sans | Off | Black box | R2014b 7-colour |
-| Minitab | sans | Off | Dark blue | Dark blue primary |
-| MedCalc | sans | Off | Black box (legend inside) | Clinical contrast |
+| Style | Evidence | Default Font | Grid | Outer Frame | Palette Type |
+|----------|----------|-------------|------|-------------|-------------|
+| Prism | A | sans | Off | Black box (ticks outward) | Pastel-bold |
+| SPSS | A | sans | Light grey | Black box | Blue-dominant |
+| OriginPro | B | sans | Off | Black box (ticks outward) | Black→Red→Green→Blue |
+| Stata s2color | B | sans | Horizontal bluish | Thin grey (legend bottom) | 15-colour cycle |
+| Academic | D | sans | Off | Off (axes only) | Grayscale |
+| SigmaPlot | B | sans | Off | Black box | Black + grayscale |
+| JMP | B | sans | Off | Off (axes only) | JMP blue + Tableau |
+| MATLAB | A | sans | Off | Black box | R2014b 7-colour |
+| Minitab | B | sans | Off | Dark blue | Dark blue primary |
+| MedCalc | B | sans | Off | Black box (legend inside) | Clinical contrast |
+
+Evidence levels: A = real bar/box screenshots checked; B = selected screenshot
+or template plus documentation checked; D = internally defined benchmark.
 
 ---
 
@@ -239,3 +256,7 @@ Available continuous scales: `scale_color/fill_prism_c()`,
 
 Calling `ggchoice()` with no argument (or `ggchoice("ggplot2")`)
 returns plain `theme_bw()` — no scale changes applied.
+
+GraphPad Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, and
+MedCalc are trademarks or product names of their respective owners. `multiplot`
+is independent and is not affiliated with or endorsed by those owners.

@@ -4,12 +4,12 @@ This log records the evidence used to tune the `multiplot` visual styles.
 The package is intended to provide practical ggplot2 style emulation rather
 than pixel-perfect reproduction of proprietary software outputs.
 
-Status levels:
+Evidence levels:
 
-- **Screenshot verified**: checked against real software screenshots supplied for this project.
-- **Template screenshot checked**: checked against project screenshots for selected biomedical-style templates or a single plot type.
-- **Documentation inferred**: implemented from public documentation, scheme files, user guides, or widely documented defaults.
-- **Internal benchmark**: intentionally defined by this package, not a real software default.
+- **A — Real screenshot verified**: checked against supplied bar and boxplot screenshots from the target software.
+- **B — Partial screenshot/template + documentation checked**: checked against selected screenshots, biomedical-style templates, public documentation, scheme files, user guides, or widely documented defaults.
+- **C — Documentation inferred only**: implemented from documentation or scheme files without a supplied screenshot. No current style relies solely on this level after the supplied screenshot review.
+- **D — Internal benchmark**: intentionally defined by this package, not a real software default.
 
 ## Evidence Sources Used
 
@@ -22,18 +22,18 @@ Status levels:
 
 ## Per-Style Verification Summary
 
-| Style | Evidence status | Key confirmed elements | Main remaining limitation |
+| Style | Evidence level | Key confirmed elements | Main remaining limitation |
 |---|---|---|---|
-| Prism | Screenshot verified | White background, black frame, outward ticks, Prism-like bar and boxplot layout | Does not claim pixel-perfect Prism project export |
-| SPSS | Screenshot verified | Light grey grid, black frame, blue-dominant palette, bar/boxplot defaults | SPSS versions differ; implementation targets classic output rather than every modern chart theme |
-| MATLAB | Screenshot verified | R2014b+ colour order, full outer box, inward ticks, bar/boxplot behaviour | Continuous parula scale is keypoint interpolation rather than MathWorks' internal algorithm |
-| Stata s2color | Template screenshot checked + documentation inferred | Light bluish background, horizontal grid emphasis, s2color-style palette | Stata 18+ defaults changed from s2color to stcolor |
-| OriginPro | Template screenshot checked + documentation inferred | Classic black-red-green-blue palette, white background, boxed graph region | Origin themes vary substantially by version and template |
-| SigmaPlot | Template screenshot checked + documentation inferred | Conservative grayscale/B&W appearance and boxed scientific graph layout | Screenshot coverage is limited to selected examples |
-| JMP | Template screenshot checked + documentation inferred | Clean axes, minimal frame, JMP-like palette and marker defaults | JMP Graph Builder settings are user-configurable and version-dependent |
-| Minitab | Template screenshot checked + documentation inferred | Light grey background, dark-blue accent styling, quality-control style cues | Minitab graph preferences can be changed globally |
-| MedCalc | Template screenshot checked + documentation inferred | Clinical plot orientation, inside-plot legend style, high-contrast palette | MedCalc is strongest for ROC/diagnostic plots; general ggplot geoms are approximations |
-| Academic | Internal benchmark | Minimal grayscale, publication-safe axes, print-friendly palette | Not a software default; included as a publication-oriented fallback |
+| Prism | A | White background, black frame, outward ticks, Prism-like bar and boxplot layout | Does not claim pixel-perfect Prism project export |
+| SPSS | A | Light grey grid, black frame, blue-dominant palette, bar/boxplot defaults | SPSS versions differ; implementation targets classic output rather than every modern chart theme |
+| MATLAB | A | R2014b+ colour order, full outer box, inward ticks, bar/boxplot behaviour | Continuous parula scale is keypoint interpolation rather than MathWorks' internal algorithm |
+| Stata s2color | B | Light bluish background, horizontal grid emphasis, s2color-style palette | Stata 18+ defaults changed from s2color to stcolor |
+| OriginPro | B | Classic black-red-green-blue palette, white background, boxed graph region | Origin themes vary substantially by version and template |
+| SigmaPlot | B | Conservative grayscale/B&W appearance and boxed scientific graph layout | Screenshot coverage is limited to selected examples |
+| JMP | B | Clean axes, minimal frame, JMP-like palette and marker defaults | JMP Graph Builder settings are user-configurable and version-dependent |
+| Minitab | B | Light grey background, dark-blue accent styling, quality-control style cues | Minitab graph preferences can be changed globally |
+| MedCalc | B | Clinical plot orientation, inside-plot legend style, high-contrast palette | MedCalc is strongest for ROC/diagnostic plots; general ggplot geoms are approximations |
+| Academic | D | Minimal grayscale, publication-safe axes, print-friendly palette | Not a software default; included as a publication-oriented fallback |
 
 ## Critical Corrections Incorporated
 

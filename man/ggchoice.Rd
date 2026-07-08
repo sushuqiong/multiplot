@@ -10,6 +10,7 @@ ggchoice(
   base_size = 12,
   base_family = NULL,
   axis_offset = FALSE,
+  include_scales = TRUE,
   ...
 )
 }
@@ -30,11 +31,16 @@ the characteristic Prism/SPSS axis separation gap.  Only effective for
 \code{"prism"} and \code{"spss"} styles; ignored for others.
 Default \code{FALSE}.}
 
+\item{include_scales}{If \code{TRUE} (default), return the style theme plus
+its default colour and fill scales. If \code{FALSE}, return only the theme
+and any requested axis-offset scales, allowing advanced users to keep their
+own colour/fill scales.}
+
 \item{...}{Ignored (reserved for future use).}
 }
 \value{
-A list of ggplot2 theme + scale objects that can be added to a
-ggplot with \code{+}.
+A list of ggplot2 theme and scale objects that can be added to a
+ggplot with \code{+}, or a single theme for \code{"ggplot2"}.
 }
 \description{
 One-stop function that applies the complete visual style of a target
@@ -62,4 +68,10 @@ ggplot(mpg, aes(class, hwy)) +
   ggchoice()
 
 # Prism with axis offset: ggchoice("prism", axis_offset = TRUE)
+
+# Theme-only Prism look, keeping user-defined scales
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(aes(fill = class)) +
+  ggchoice("prism", include_scales = FALSE) +
+  scale_fill_brewer(palette = "Set2")
 }

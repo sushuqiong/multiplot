@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">multiplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,6 +79,20 @@ software</li>
 <p><strong>Scales are additive:</strong> user-supplied
 <code>scale_*()</code> calls added <em>after</em>
 <code><a href="../reference/ggchoice.html">ggchoice()</a></code> take priority, so you can always fine-tune.</p>
+<p>If you want only the visual theme and not the default colour/fill
+scales, use <code>include_scales = FALSE</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"prism"</span>, include_scales <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Prism Theme Only + User Fill Scale"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Scale for <span style="color: #00BB00;">fill</span> is already present.</span></span>
+<span><span class="co">## Adding another scale for <span style="color: #00BB00;">fill</span>, which will replace the existing scale.</span></span></code></pre>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-1-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p>The package defaults to <code>base_family = "sans"</code> for
+portability. Exact Arial or Helvetica rendering depends on installed
+system fonts and graphics devices.</p>
 <hr>
 </div>
 <div class="section level2">
@@ -89,12 +103,12 @@ software</li>
 </h3>
 <p><em>White background, no grid, black box border, sans-serif (Arial)
 font, bold title. Prism pastel-to-bold colour defaults.</em></p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"prism"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GraphPad Prism Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-1-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-2-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="spss-v1224-default">2. SPSS (v12–24 default)<a class="anchor" aria-label="anchor" href="#spss-v1224-default"></a>
@@ -103,12 +117,12 @@ font, bold title. Prism pastel-to-bold colour defaults.</em></p>
 sans-serif (Arial), muted professional palette with SPSS blue (#3E58AC)
 dominant. Legend right, title centred. Understated,
 publication-ready.</em></p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"spss"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"SPSS Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-2-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-3-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="originpro-classic-default">3. OriginPro (classic default)<a class="anchor" aria-label="anchor" href="#originpro-classic-default"></a>
@@ -116,12 +130,12 @@ publication-ready.</em></p>
 <p><em>Black-Red-Green-Blue palette, white bg, grid OFF (classic
 default), black axes + layer frame, legend with box, bold
 title.</em></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"origin"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"OriginPro Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-3-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-4-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="stata-s2color-scheme">4. Stata (s2color scheme)<a class="anchor" aria-label="anchor" href="#stata-s2color-scheme"></a>
@@ -129,72 +143,72 @@ title.</em></p>
 <p><em>Light bluish background tint (#F4F7FA), horizontal bluish grid
 only, 15-colour s2color palette, legend below plot. Default prior to
 Stata 18.</em></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"stata"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Stata s2color Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-4-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-5-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="academic-ams-science">5. Academic (AMS / Science)<a class="anchor" aria-label="anchor" href="#academic-ams-science"></a>
 </h3>
 <p><em>Minimal B&amp;W, no grid, thin axis lines, bottom legend. Ideal
 for journal submission.</em></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"academic"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Academic Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-5-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-6-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="sigmaplot">6. SigmaPlot<a class="anchor" aria-label="anchor" href="#sigmaplot"></a>
 </h3>
 <p><em>Single-series black, multi-series grayscale. White background, no
 grid, black box frame. Publication-ready defaults.</em></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"sigmaplot"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"SigmaPlot Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-6-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-7-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="jmp">7. JMP<a class="anchor" aria-label="anchor" href="#jmp"></a>
 </h3>
 <p><em>No grid, no outer frame (axes only), tick marks outside, bottom
 legend. Clean interactive feel.</em></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"jmp"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"JMP Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-7-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-8-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="matlab-r2014b">8. MATLAB (R2014b+)<a class="anchor" aria-label="anchor" href="#matlab-r2014b"></a>
 </h3>
 <p><em>Black outer box frame, 7-colour R2014b order (parula-like), right
 legend. Anti-aliased modern look with inward ticks.</em></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"matlab"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"MATLAB Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-8-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-9-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="minitab">9. Minitab<a class="anchor" aria-label="anchor" href="#minitab"></a>
 </h3>
 <p><em>Light grey background (#F5F5F5), dark blue frame (#1F497D), no
 grid, black title. Dark blue strip headers.</em></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"minitab"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Minitab Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-9-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-10-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="medcalc-roc-optimised">10. MedCalc (ROC-optimised)<a class="anchor" aria-label="anchor" href="#medcalc-roc-optimised"></a>
@@ -202,19 +216,19 @@ grid, black title. Dark blue strip headers.</em></p>
 <p><em>Square plot area, clean white background, legend inside plot area
 (lower right). Optimised for ROC curve presentation; grid off for
 uniform appearance in multi-panel layouts.</em></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"medcalc"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"MedCalc Style"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-10-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-11-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 <hr>
 </div>
 </div>
 <div class="section level2">
 <h2 id="prism-style-error-bars">Prism-style error bars<a class="anchor" aria-label="anchor" href="#prism-style-error-bars"></a>
 </h2>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Control"</span>, <span class="st">"Treatment A"</span>, <span class="st">"Treatment B"</span><span class="op">)</span>,</span>
 <span>  mean  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">14</span>, <span class="fl">8</span><span class="op">)</span>,</span>
@@ -226,14 +240,14 @@ uniform appearance in multi-panel layouts.</em></p>
 <span>  <span class="fu"><a href="../reference/geom_errorbar_prism.html">geom_errorbar_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">mean</span> <span class="op">-</span> <span class="va">sd</span>, ymax <span class="op">=</span> <span class="va">mean</span> <span class="op">+</span> <span class="va">sd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"prism"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Prism T-bar Error Bars"</span>, x <span class="op">=</span> <span class="st">""</span>, y <span class="op">=</span> <span class="st">"Value"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-11-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-12-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 </div>
 <div class="section level2">
 <h2 id="overriding-scales">Overriding scales<a class="anchor" aria-label="anchor" href="#overriding-scales"></a>
 </h2>
 <p>User scales added <em>after</em> <code><a href="../reference/ggchoice.html">ggchoice()</a></code> take
 priority:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_boxplot_prism.html">geom_boxplot_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"prism"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -241,7 +255,7 @@ priority:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Prism Theme + Custom Brewer Fill"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Scale for <span style="color: #00BB00;">fill</span> is already present.</span></span>
 <span><span class="co">## Adding another scale for <span style="color: #00BB00;">fill</span>, which will replace the existing scale.</span></span></code></pre>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-12-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-13-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 <hr>
 </div>
 <div class="section level2">
@@ -249,7 +263,7 @@ priority:</p>
 </h2>
 <p>For heatmaps, surface plots, or any continuous-colour visualization,
 use the <code>_c</code> suffix variants:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Simulated expression matrix</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
 <span><span class="va">dm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
@@ -266,8 +280,8 @@ use the <code>_c</code> suffix variants:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"MATLAB Parula Heatmap"</span>, x <span class="op">=</span> <span class="st">"Sample"</span>, y <span class="op">=</span> <span class="st">"Gene"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Scale for <span style="color: #00BB00;">fill</span> is already present.</span></span>
 <span><span class="co">## Adding another scale for <span style="color: #00BB00;">fill</span>, which will replace the existing scale.</span></span></code></pre>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-13-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<p><img src="multiplot_files/figure-html/unnamed-chunk-14-1.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Academic grayscale heatmap</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">dm</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">sample</span>, <span class="va">gene</span>, fill <span class="op">=</span> <span class="va">expr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -276,7 +290,7 @@ use the <code>_c</code> suffix variants:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Academic Grayscale Heatmap"</span>, x <span class="op">=</span> <span class="st">"Sample"</span>, y <span class="op">=</span> <span class="st">"Gene"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Scale for <span style="color: #00BB00;">fill</span> is already present.</span></span>
 <span><span class="co">## Adding another scale for <span style="color: #00BB00;">fill</span>, which will replace the existing scale.</span></span></code></pre>
-<p><img src="multiplot_files/figure-html/unnamed-chunk-13-2.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
+<p><img src="multiplot_files/figure-html/unnamed-chunk-14-2.png" alt="Example multiplot chart demonstrating one supported plot style." width="768"></p>
 <p>Available continuous scales: <code>scale_color/fill_prism_c()</code>,
 <code>scale_color/fill_origin_c()</code>,
 <code>scale_color/fill_matlab_c()</code>,
@@ -291,14 +305,16 @@ use the <code>_c</code> suffix variants:</p>
 </h2>
 <table class="table">
 <colgroup>
-<col width="18%">
-<col width="23%">
-<col width="10%">
-<col width="23%">
-<col width="23%">
+<col width="15%">
+<col width="15%">
+<col width="20%">
+<col width="9%">
+<col width="20%">
+<col width="20%">
 </colgroup>
 <thead><tr class="header">
 <th>Style</th>
+<th>Evidence</th>
 <th>Default Font</th>
 <th>Grid</th>
 <th>Outer Frame</th>
@@ -307,6 +323,7 @@ use the <code>_c</code> suffix variants:</p>
 <tbody>
 <tr class="odd">
 <td>Prism</td>
+<td>A</td>
 <td>sans</td>
 <td>Off</td>
 <td>Black box (ticks outward)</td>
@@ -314,6 +331,7 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 <tr class="even">
 <td>SPSS</td>
+<td>A</td>
 <td>sans</td>
 <td>Light grey</td>
 <td>Black box</td>
@@ -321,6 +339,7 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 <tr class="odd">
 <td>OriginPro</td>
+<td>B</td>
 <td>sans</td>
 <td>Off</td>
 <td>Black box (ticks outward)</td>
@@ -328,6 +347,7 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 <tr class="even">
 <td>Stata s2color</td>
+<td>B</td>
 <td>sans</td>
 <td>Horizontal bluish</td>
 <td>Thin grey (legend bottom)</td>
@@ -335,6 +355,7 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 <tr class="odd">
 <td>Academic</td>
+<td>D</td>
 <td>sans</td>
 <td>Off</td>
 <td>Off (axes only)</td>
@@ -342,6 +363,7 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 <tr class="even">
 <td>SigmaPlot</td>
+<td>B</td>
 <td>sans</td>
 <td>Off</td>
 <td>Black box</td>
@@ -349,6 +371,7 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 <tr class="odd">
 <td>JMP</td>
+<td>B</td>
 <td>sans</td>
 <td>Off</td>
 <td>Off (axes only)</td>
@@ -356,6 +379,7 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 <tr class="even">
 <td>MATLAB</td>
+<td>A</td>
 <td>sans</td>
 <td>Off</td>
 <td>Black box</td>
@@ -363,6 +387,7 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 <tr class="odd">
 <td>Minitab</td>
+<td>B</td>
 <td>sans</td>
 <td>Off</td>
 <td>Dark blue</td>
@@ -370,6 +395,7 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 <tr class="even">
 <td>MedCalc</td>
+<td>B</td>
 <td>sans</td>
 <td>Off</td>
 <td>Black box (legend inside)</td>
@@ -377,6 +403,9 @@ use the <code>_c</code> suffix variants:</p>
 </tr>
 </tbody>
 </table>
+<p>Evidence levels: A = real bar/box screenshots checked; B = selected
+screenshot or template plus documentation checked; D = internally
+defined benchmark.</p>
 <hr>
 </div>
 <div class="section level2">
@@ -385,6 +414,10 @@ use the <code>_c</code> suffix variants:</p>
 <p>Calling <code><a href="../reference/ggchoice.html">ggchoice()</a></code> with no argument (or
 <code>ggchoice("ggplot2")</code>) returns plain <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>
 — no scale changes applied.</p>
+<p>GraphPad Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB,
+Minitab, and MedCalc are trademarks or product names of their respective
+owners. <code>multiplot</code> is independent and is not affiliated with
+or endorsed by those owners.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

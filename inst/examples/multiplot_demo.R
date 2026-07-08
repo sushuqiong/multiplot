@@ -1,9 +1,16 @@
 # ============================================================
 # multiplot — Reproducible demo (shareable)
-# Installs from GitHub, generates all 10 manuscript figures.
-# Run anywhere: source("multiplot_demo.R")
-# Local development use: install the package from the repository root first,
-# then source this file from any working directory.
+# Generates all 10 manuscript figures as PNG and PDF under ./figures.
+#
+# GitHub-install workflow:
+#   source("multiplot_demo.R")
+#
+# Local development workflow from the repository root:
+#   remotes::install_local(".", upgrade = "never")
+#   source("inst/examples/multiplot_demo.R")
+#
+# If multiplot is missing, this script installs it from GitHub. It never removes
+# or overwrites packages already installed in the user's R library.
 # ============================================================
 if (!requireNamespace("multiplot", quietly = TRUE)) {
   if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
@@ -15,6 +22,9 @@ suppressMessages(library(cowplot))
 
 dir.create("figures", showWarnings = FALSE)
 cat("=== multiplot demo ===\n\n")
+cat("multiplot version:", as.character(utils::packageVersion("multiplot")), "\n")
+cat("Working directory:", normalizePath(getwd()), "\n")
+cat("Output directory:", normalizePath("figures"), "\n\n")
 
 # ---- Figure 1: 10-style boxplot comparison ----
 cat("[1/10] 10-style boxplot comparison\n")
@@ -150,7 +160,8 @@ km_df$strata <- factor(
 )
 fig10 <- ggplot(km_df, aes(time, surv)) +
   geom_step(aes(colour = strata), linewidth = 1) +
-  ggchoice("spss") +
+  ggchoice("spss", include_scales = FALSE) +
+  scale_colour_manual(values = c(Male = "#3E58AC", Female = "#C0504D")) +
   labs(title = "", x = "Survival Time (days)", y = "Survival Probability",
        colour = "Sex") +
   ylim(0, 1)

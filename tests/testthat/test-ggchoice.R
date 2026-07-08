@@ -28,6 +28,19 @@ test_that("ggchoice respects base_size", {
   expect_type(res, "list")
 })
 
+test_that("ggchoice can return a theme-only style", {
+  res <- ggchoice("prism", include_scales = FALSE)
+  expect_type(res, "list")
+  expect_length(res, 1)
+  expect_s3_class(res[[1]], "theme")
+})
+
+test_that("ggchoice theme-only mode can retain axis offset scales", {
+  res <- ggchoice("prism", include_scales = FALSE, axis_offset = TRUE)
+  expect_type(res, "list")
+  expect_true(length(res) > 1)
+})
+
 test_that("ggchoice rejects invalid style", {
   expect_error(ggchoice("nonexistent"))
 })

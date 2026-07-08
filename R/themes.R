@@ -285,7 +285,7 @@ theme_minitab <- function(base_size = 12, base_family = "sans") {
   ggplot2::`%+replace%`(
     ggplot2::theme_bw(base_size = base_size, base_family = base_family),
     ggplot2::theme(
-      panel.background   = ggplot2::element_rect(fill = "#F0F0F0"),
+      panel.background   = ggplot2::element_rect(fill = "#F5F5F5"),
       panel.grid.major   = ggplot2::element_blank(),
       panel.grid.minor   = ggplot2::element_blank(),
       panel.border       = ggplot2::element_rect(fill = NA, color = clr$axis, linewidth = 0.4),

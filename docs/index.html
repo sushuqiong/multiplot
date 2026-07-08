@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">multiplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
   <main id="main" class="col-md-9"><p align="center">
 <img src="reference/figures/repo-cover.svg" alt="multiplot cover" width="100%"></p>
 <p align="center">
-<a href="https://github.com/sushuqiong/multiplot/actions/workflows/pkgdown.yaml" class="external-link"><img alt="pkgdown" src="https://github.com/sushuqiong/multiplot/actions/workflows/pkgdown.yaml/badge.svg"></a> <a href="https://www.r-project.org/" class="external-link"><img alt="R" src="https://img.shields.io/badge/R-4.1%2B-276DC3?logo=r&amp;logoColor=white"></a> <a href="https://ggplot2.tidyverse.org/" class="external-link"><img alt="ggplot2" src="https://img.shields.io/badge/ggplot2-extension-1A7F64"></a> <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/sushuqiong/multiplot"></a> <a href="https://github.com/sushuqiong/multiplot/stargazers" class="external-link"><img alt="GitHub stars" src="https://img.shields.io/github/stars/sushuqiong/multiplot?style=social"></a>
+<a href="https://github.com/sushuqiong/multiplot/actions/workflows/pkgdown.yaml" class="external-link"><img alt="pkgdown" src="https://github.com/sushuqiong/multiplot/actions/workflows/pkgdown.yaml/badge.svg"></a> <a href="https://github.com/sushuqiong/multiplot/actions/workflows/R-CMD-check.yaml" class="external-link"><img alt="R-CMD-check" src="https://github.com/sushuqiong/multiplot/actions/workflows/R-CMD-check.yaml/badge.svg"></a> <a href="https://www.r-project.org/" class="external-link"><img alt="R" src="https://img.shields.io/badge/R-4.1%2B-276DC3?logo=r&amp;logoColor=white"></a> <a href="https://ggplot2.tidyverse.org/" class="external-link"><img alt="ggplot2" src="https://img.shields.io/badge/ggplot2-extension-1A7F64"></a> <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/sushuqiong/multiplot"></a> <a href="https://github.com/sushuqiong/multiplot/stargazers" class="external-link"><img alt="GitHub stars" src="https://img.shields.io/github/stars/sushuqiong/multiplot?style=social"></a>
 </p>
 <div class="section level1">
 <div class="page-header"><h1 id="multiplot">multiplot<a class="anchor" aria-label="anchor" href="#multiplot"></a>
@@ -74,6 +74,8 @@
 <strong>Publication-friendly helpers</strong>: Prism-style columns, error bars, boxplots, and comparison annotations.</li>
 <li>
 <strong>Still pure ggplot2</strong>: user-added scales after <code><a href="reference/ggchoice.html">ggchoice()</a></code> keep priority, so every style remains easy to customize.</li>
+<li>
+<strong>Theme-only mode</strong>: <code>ggchoice("prism", include_scales = FALSE)</code> applies the theme without replacing user colour/fill scales.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -167,7 +169,7 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"C:/Users/fengq/Desktop/multiplot_demo.R"</span><span class="op">)</span></span></code></pre></div>
 <p>For local development from this repository:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_local.html" class="external-link">install_local</a></span><span class="op">(</span><span class="st">"."</span>, upgrade <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_local.html" class="external-link">install_local</a></span><span class="op">(</span><span class="st">"."</span>, upgrade <span class="op">=</span> <span class="st">"never"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"examples"</span>, <span class="st">"multiplot_demo.R"</span>, package <span class="op">=</span> <span class="st">"multiplot"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The demo installs <code>multiplot</code> from GitHub only if the package is not already available, and it does not remove or overwrite the user’s global R library.</p>
 </div>
@@ -175,13 +177,43 @@
 <h2 id="verification-status">Verification status<a class="anchor" aria-label="anchor" href="#verification-status"></a>
 </h2>
 <p>Direct screenshot checks currently cover Prism, SPSS, and MATLAB bar/box plots. Additional screenshot or template comparisons cover JMP, MedCalc, Minitab, OriginPro, SigmaPlot, and Stata for selected plot types. The package therefore aims for practical <strong>style emulation</strong>, not pixel-perfect reproduction of every commercial software output.</p>
+<p>Evidence levels used in the manuscript:</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr>
+<th>Level</th>
+<th>Meaning</th>
+<th>Current styles</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Real software bar and box screenshots checked</td>
+<td>Prism, SPSS, MATLAB</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Screenshot/template plus documentation checked</td>
+<td>JMP, MedCalc, Minitab, OriginPro, SigmaPlot, Stata</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Internal benchmark, not a software default</td>
+<td>Academic</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># From GitHub</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"sushuqiong/multiplot"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"sushuqiong/multiplot"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
@@ -209,19 +241,25 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"prism"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set2"</span><span class="op">)</span>   <span class="co"># your colour choice wins</span></span></code></pre></div>
+<p>This expected ggplot2 message may appear when you intentionally replace a default scale: <code>Scale for fill is already present. Adding another scale...</code>. Use <code>include_scales = FALSE</code> when you want only the theme and no default colour/fill scales:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"prism"</span>, include_scales <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set2"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="prism-style-features">Prism-style features<a class="anchor" aria-label="anchor" href="#prism-style-features"></a>
 </h2>
 <p><strong>T-bar error bars + Prism-style columns:</strong></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">group</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/geom_col_prism.html">geom_col_prism</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#5B9BD5"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/geom_errorbar_prism.html">geom_errorbar_prism</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">mean</span> <span class="op">-</span> <span class="va">sd</span>, ymax <span class="op">=</span> <span class="va">mean</span> <span class="op">+</span> <span class="va">sd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"prism"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Statistical comparison annotations</strong> (requires <code>ggpubr</code>):</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">ToothGrowth</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">supp</span>, <span class="va">len</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">supp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"prism"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -241,8 +279,8 @@
 </tr></thead>
 <tbody>
 <tr>
-<td><code>ggchoice(style)</code></td>
-<td>Apply a software’s full visual style (theme + scales + axis offset)</td>
+<td><code>ggchoice(style, include_scales = TRUE)</code></td>
+<td>Apply a software-derived visual style (theme + scales + optional axis offset)</td>
 </tr>
 <tr>
 <td><code><a href="reference/geom_errorbar_prism.html">geom_errorbar_prism()</a></code></td>
@@ -275,12 +313,13 @@
 </tr>
 </tbody>
 </table>
+<p>Discrete palettes interpolate when the number of groups exceeds the source palette length. Shape scales repeat their marker sequence with <code><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep_len()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="continuous-scales">Continuous Scales<a class="anchor" aria-label="anchor" href="#continuous-scales"></a>
 </h2>
 <p>For heatmaps and continuous data, append <code>_c</code> to the scale name:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">volcano_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Var1</span>, <span class="va">Var2</span>, fill <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/ggchoice.html">ggchoice</a></span><span class="op">(</span><span class="st">"matlab"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -294,10 +333,19 @@
 <li>
 <strong>Theme always applies, scales are overridable.</strong> <code><a href="reference/ggchoice.html">ggchoice()</a></code> returns a list of <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme()</a></code> + <code>scale_color()</code> + <code>scale_fill()</code>. Because ggplot2’s <code>+</code> is “later wins,” any <code>scale_*()</code> you add <em>after</em> <code><a href="reference/ggchoice.html">ggchoice()</a></code> takes priority.</li>
 <li>
+<strong>Font fallback is generic.</strong> Style documentation names familiar fonts such as Arial or Helvetica, but the package defaults to <code>base_family = "sans"</code> for cross-platform portability. Users who need exact font rendering should install the target font and pass <code>base_family</code>, or export with a font-aware device such as <code>ragg</code>.</li>
+<li>
 <strong>No ggplot2 internals modified.</strong> All themes inherit from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic()</a></code>. All scales use <code><a href="https://ggplot2.tidyverse.org/reference/discrete_scale.html" class="external-link">discrete_scale()</a></code>. Safe to use with any ggplot2 extension.</li>
 <li>
-<strong>Palettes researched from real software defaults</strong> (see Style Reference table in the vignette).</li>
+<strong>Palettes are software-derived approximations.</strong> See the vignette and <code>inst/paper/verification_log.md</code> for evidence level and version notes.</li>
+<li>
+<strong>Runtime dependencies are light.</strong> Core plotting requires ggplot2. <code>ggpubr</code> is optional for <code><a href="reference/stat_compare_means_prism.html">stat_compare_means_prism()</a></code>, <code>survival</code> is used only in the demo, and <code>colorspace</code>/<code>farver</code> are analysis-only dependencies for the compliance benchmark.</li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="f1000research-manuscript">F1000Research manuscript<a class="anchor" aria-label="anchor" href="#f1000research-manuscript"></a>
+</h2>
+<p>The repository contains manuscript-support materials in <code>inst/paper/</code>, including the style ontology, compliance benchmark, verification log, and the script <code>compute_compliance_assessment.R</code> used to reproduce the Table 2 scores.</p>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -307,15 +355,15 @@
 <div class="section level2">
 <h2 id="citation-and-archived-source">Citation and archived source<a class="anchor" aria-label="anchor" href="#citation-and-archived-source"></a>
 </h2>
-<p>Current release: <code>multiplot</code> v0.3.2.</p>
+<p>Current release target: <code>multiplot</code> v0.3.3.</p>
 <ul>
-<li>Version DOI: <a href="https://doi.org/10.5281/zenodo.21239178" class="external-link">10.5281/zenodo.21239178</a>
-</li>
+<li>Version DOI: to be added after the v0.3.3 Zenodo archive is minted.</li>
 <li>Concept DOI: <a href="https://doi.org/10.5281/zenodo.21137144" class="external-link">10.5281/zenodo.21137144</a>
 </li>
-<li>GitHub release: <a href="https://github.com/sushuqiong/multiplot/releases/tag/v0.3.2" class="external-link uri">https://github.com/sushuqiong/multiplot/releases/tag/v0.3.2</a>
+<li>GitHub release: <a href="https://github.com/sushuqiong/multiplot/releases/tag/v0.3.3" class="external-link uri">https://github.com/sushuqiong/multiplot/releases/tag/v0.3.3</a>
 </li>
 </ul>
+<p>GraphPad Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, and MedCalc are trademarks or product names of their respective owners. <code>multiplot</code> is not affiliated with, endorsed by, or sponsored by those owners.</p>
 </div>
 </div>
 

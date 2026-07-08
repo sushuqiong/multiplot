@@ -43,3 +43,10 @@ test_that("all continuous fill scales return ScaleContinuous", {
     expect_s3_class(s, "ScaleContinuous")
   }
 })
+
+test_that("discrete palettes interpolate when groups exceed source palette length", {
+  pal <- scale_color_matlab()$palette
+  cols <- pal(12)
+  expect_length(cols, 12)
+  expect_true(all(grepl("^#", cols)))
+})
