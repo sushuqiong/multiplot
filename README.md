@@ -229,9 +229,9 @@ MIT — see [LICENSE](LICENSE) for details.
 
 ## Citation and archived source
 
-Current release target: `multiplot` v0.3.3.
+Current release: `multiplot` v0.3.3.
 
-- Version DOI: to be added after the v0.3.3 Zenodo archive is minted.
+- Version DOI: [10.5281/zenodo.21254423](https://doi.org/10.5281/zenodo.21254423)
 - Concept DOI: [10.5281/zenodo.21137144](https://doi.org/10.5281/zenodo.21137144)
 - GitHub release: <https://github.com/sushuqiong/multiplot/releases/tag/v0.3.3>
 
