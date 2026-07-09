@@ -91,6 +91,18 @@ const figurePreview = [
   {n: 9, w: 560, h: 350, cap: "Figure 9. OriginPro-style multi-group density plot."},
   {n: 10, w: 560, h: 350, cap: "Figure 10. SPSS-style Kaplan-Meier survival curve."}
 ];
+const figureCaptions = [
+  "Figure 1. Ten-style boxplot comparison. The same data (mpg: highway fuel economy by vehicle class) rendered in all ten supported styles using geom_boxplot_prism() + ggchoice(). Each panel differs only in its style argument; no manual theme adjustment was applied. X-axis labels are rotated 45 degrees.",
+  "Figure 2. Prism-style bar chart with T-bar error bars. Bars use geom_col_prism() (solid fill, thin black border); error bars use geom_errorbar_prism() (T-shaped caps). ggchoice(\"prism\") provides the clean white background and sans-serif typography.",
+  "Figure 3. Prism-style scatter plot with shape mapping and axis offset (iris dataset). Points use geom_point() with colour, fill, and shape aesthetics mapped to species. scale_shape_prism() applies the Prism default shape sequence (filled circle, square, triangle). ggchoice(\"prism\", axis_offset = TRUE) creates the characteristic Prism axis separation gap at the origin.",
+  "Figure 4. Prism-style violin plot with boxplot overlay. geom_violin() (semi-transparent fill) is combined with geom_boxplot_prism() (narrow, black-bordered). ggchoice(\"prism\") provides the clean white background and bold title characteristic of GraphPad Prism output.",
+  "Figure 5. SPSS-style line chart with point shapes. geom_line() + geom_point() with scale_shape_spss() applies the SPSS default shape sequence. The muted blue-dominant palette, light grey grid, and centred bold title match SPSS classic chart output.",
+  "Figure 6. Continuous colour scales for heatmap data. Panel A uses ggchoice(\"matlab\") + scale_fill_matlab_c() approximating the parula colormap. Panel B uses ggchoice(\"academic\") + scale_fill_academic_c() for a CVD-safe, grayscale-compatible sequential gradient.",
+  "Figure 7. Scale override and axis offset demonstration. The plot uses ggchoice(\"prism\", axis_offset = TRUE) for the Prism theme and axis gap, but scale_fill_brewer(palette = \"Set2\") replaces the default Prism colours with a ColorBrewer palette. Because ggplot2 resolves scale conflicts in favour of later additions, the user’s colour preference takes priority while all other Prism theme elements are preserved.",
+  "Figure 8. Stata s2color scatter plot (mtcars dataset). Points use the Stata default colour palette and shape sequence against a light bluish-tinted background with horizontal grid lines. Legend is positioned below the plot, matching Stata’s factory default.",
+  "Figure 9. OriginPro-style multi-group density plot. Semi-transparent fills are mapped to seven vehicle classes; because this exceeds the classic four-colour Origin cycle (Black, Red, Green, Blue), the discrete palette is interpolated to the required number of groups. ggchoice(\"origin\") applies the white background, outward ticks, and boxed legend characteristic of Origin’s default 2D graph output.",
+  "Figure 10. SPSS-style Kaplan-Meier survival curve. The lung cancer dataset (survival::lung) is stratified by sex (male vs female). The plot applies the SPSS-inspired theme with ggchoice(\"spss\", include_scales = FALSE) and manually specified blue/red sex colours, demonstrating theme-only use in a common biomedical survival-analysis example."
+];
 
 function imageParagraph(path, width, height) {
   return new Paragraph({
@@ -120,13 +132,13 @@ C.push(BR());
 // ---- ABSTRACT ----
 C.push(H1("Abstract"));
 C.push(body("Background",{sz:22}));
-C.push(body("Biomedical researchers routinely switch between different graphing tools—GraphPad Prism, SPSS, OriginPro, Stata, MATLAB, and others—each with a distinctive default visual style. This heterogeneity creates two practical problems: researchers and reviewers accustomed to one software’s conventions may perceive figures produced with another tool as unfamiliar, and computationally reproducible pipelines in R produce output that may not match a journal’s or co-author’s visual expectations."));
+C.push(body("Biomedical researchers routinely switch between graphing tools such as GraphPad Prism, SPSS, OriginPro, Stata, and MATLAB, each with distinctive default visual conventions. This heterogeneity can make otherwise correct R figures appear unfamiliar to collaborators or reviewers accustomed to another software environment."));
 C.push(body("Methods",{sz:22}));
-C.push(body("We developed multiplot, an open-source R package built on ggplot2, that provides software-derived style approximation layers for nine widely used statistical graphing packages together with an additional academic publication style. Each style is applied through a single function call, ggchoice(), which by default bundles a complete theme, discrete colour scale, and discrete fill scale; advanced users can request theme-only output with include_scales = FALSE. We formalised each supported style into a five-component Plot Style Ontology ({Theme, Palette, Geom, Annotation, Convention}) and extracted the relevant parameters from official documentation, default scheme files, and direct software output inspection. Each default palette was assessed against colour vision deficiency (CVD) safety, grayscale print fidelity, and approximate print-colour risk."));
+C.push(body("We developed multiplot, an open-source ggplot2 extension that provides software-derived style approximation layers for nine graphing packages and one academic publication style. ggchoice() applies a complete theme, discrete colour scale, and discrete fill scale in one call, while include_scales = FALSE allows theme-only use. We formalised styles using a five-component Plot Style Ontology and extracted parameters from documentation, scheme files, and direct output inspection. Default palettes were assessed for colour vision deficiency (CVD) safety, grayscale print fidelity, and approximate print-colour risk."));
 C.push(body("Results",{sz:22}));
-C.push(body("The package exports 29 user-facing functions, is implemented entirely in R, and uses ggplot2 as its only required package for core plotting functionality. Three of the nine software-derived styles (Prism, SPSS, MATLAB) were verified against real software screenshots, identifying three corrections: Prism axis ticks point outward, SPSS includes a light grey background grid, and MATLAB draws a full outer box frame. The remaining software-derived styles were checked against official documentation, user guides, scheme files, or selected screenshots where available, while the Academic style was treated as an internally defined publication-oriented benchmark. The compliance assessment showed that the grayscale-oriented Academic and SigmaPlot styles achieved the maximum scores in this benchmark; the most common vulnerability was reduced colour separability under simulated colour vision deficiency, including red-green confusion in several colour-based palettes."));
+C.push(body("multiplot exports 29 user-facing functions, is implemented entirely in R, and requires only ggplot2 for core plotting. Prism, SPSS, and MATLAB styles were verified against real software screenshots; other software-derived styles were checked against documentation, user guides, scheme files, or selected screenshots where available. The Academic style is an internally defined publication-oriented benchmark. In the compliance assessment, Academic and SigmaPlot achieved the maximum scores; the most common vulnerability was reduced colour separability under simulated CVD, including red-green confusion in several colour-based palettes."));
 C.push(body("Conclusions",{sz:22}));
-C.push(body("multiplot fills a gap between single-software theme packages and general-purpose ggplot2 extensions by providing, to our knowledge, a multi-software ggplot2 style approximation tool with a formal ontology framework and built-in publication compliance guidance."));
+C.push(body("multiplot provides a multi-software ggplot2 style approximation tool with a formal ontology framework, reproducible examples, and publication compliance guidance."));
 C.push(BR());
 C.push(H1("Keywords"));
 C.push(body("data visualization; ggplot2; R package; statistical graphics; GraphPad Prism; SPSS; colour vision deficiency; reproducible research",{sz:20}));
@@ -155,29 +167,17 @@ C.push(BR());
 // ---- RESULTS ----
 C.push(H1("Results"));
 C.push(H2("Plot Style Ontology"));
-C.push(body("Table 1 summarises the theme-level parameters and evidence levels for all ten supported styles. Each cell represents the target default or benchmark setting for that dimension. No two styles share an identical combination of the theme-level attributes in Table 1, supporting the view that these are distinctive visual identities rather than minor permutations of a single default theme."));
-C.push(H2("Table 1. Plot Style Ontology — Theme Dimensions"));
-C.push(t1); C.push(PL());
+C.push(body("Table 1 summarises the theme-level parameters and evidence levels for all ten supported styles and is provided in the Tables section at the end of the manuscript. Each cell represents the target default or benchmark setting for that dimension. No two styles share an identical combination of the theme-level attributes in Table 1, supporting the view that these are distinctive visual identities rather than minor permutations of a single default theme."));
 C.push(H2("Compliance Assessment"));
 C.push(body("Each supported style’s first five discrete palette colours were scored from 1 (poor) to 5 (excellent) across three publication-relevant dimensions. CVD safety was assessed by simulating each palette under deuteranopia, protanopia, and tritanopia with colorspace transformations based on Machado et al. [8]; Birch [7] is cited only for CVD prevalence. The CVD score uses the minimum pairwise CIE76 distance after simulation (grayscale palettes are treated as CVD-safe; critical pure red/green pairs are scored as high risk; otherwise ≥20=5, ≥15=4, ≥10=3, ≥4=2, <4=1). CIE76 is used here as a fast screening distance rather than a final prepress or perceptual-validation standard. Grayscale print fidelity uses CIELAB L* groups separated by at least 8 units, with total lightness-range checks. Print-colour risk uses a reproducible RGB saturation and pure-channel proxy rather than a bundled ICC profile, so it should be interpreted as a screening benchmark rather than a printer-specific prepress result. Scores are generated by inst/paper/compute_compliance_assessment.R using colorspace [9] and farver [10]. Overall is the arithmetic mean of the three dimension scores, rounded to one decimal place."));
-C.push(H2("Table 2. Publication Compliance Assessment"));
-C.push(t2); C.push(PL());
+C.push(body("Table 2 reports the publication compliance assessment and is provided in the Tables section at the end of the manuscript."));
 C.push(body("Only the two grayscale-oriented styles—Academic and SigmaPlot—achieved the maximum scores across all three assessed dimensions. MATLAB R2014b+ was the best-performing colour-based style in this benchmark. The most common failure mode was reduced separability under deuteranopia and protanopia simulations, including red-green confusability in several colour-based palettes. OriginPro’s classic palette, built from pure RGB primaries, performed worst because its pure red/green pair is critical for red-green CVD and its saturated primaries raise print-risk flags. As Crameri et al. [11] have documented, the misuse of colour in scientific communication remains widespread, and many software defaults were designed for on-screen viewing before accessibility standards were widely adopted. Researchers should therefore choose a plotting style deliberately rather than accepting whatever default their software provides."));
 C.push(BR());
 
 // ---- USE CASES ----
 C.push(H1("Use Cases"));
 C.push(body("Figures 1 through 10 illustrate the range of styles and plot types supported by multiplot. All examples use datasets distributed with R or commonly used R packages: mtcars and iris from base R, mpg from ggplot2, and lung from the survival package. No external data download is required. Beyond what is shown, multiplot provides per-software point shape scales (scale_shape_xxx()) that apply each tool’s default marker sequence, and an axis_offset parameter within ggchoice() that creates the axis separation gap characteristic of Prism and SPSS output."));
-C.push(FIGCAP("Figure 1. Ten-style boxplot comparison. The same data (mpg: highway fuel economy by vehicle class) rendered in all ten supported styles using geom_boxplot_prism() + ggchoice(). Each panel differs only in its style argument; no manual theme adjustment was applied. X-axis labels are rotated 45 degrees."));
-C.push(FIGCAP("Figure 2. Prism-style bar chart with T-bar error bars. Bars use geom_col_prism() (solid fill, thin black border); error bars use geom_errorbar_prism() (T-shaped caps). ggchoice(\"prism\") provides the clean white background and sans-serif typography."));
-C.push(FIGCAP("Figure 3. Prism-style scatter plot with shape mapping and axis offset (iris dataset). Points use geom_point() with colour, fill, and shape aesthetics mapped to species. scale_shape_prism() applies the Prism default shape sequence (filled circle, square, triangle). ggchoice(\"prism\", axis_offset = TRUE) creates the characteristic Prism axis separation gap at the origin."));
-C.push(FIGCAP("Figure 4. Prism-style violin plot with boxplot overlay. geom_violin() (semi-transparent fill) is combined with geom_boxplot_prism() (narrow, black-bordered). ggchoice(\"prism\") provides the clean white background and bold title characteristic of GraphPad Prism output."));
-C.push(FIGCAP("Figure 5. SPSS-style line chart with point shapes. geom_line() + geom_point() with scale_shape_spss() applies the SPSS default shape sequence. The muted blue-dominant palette, light grey grid, and centred bold title match SPSS classic chart output."));
-C.push(FIGCAP("Figure 6. Continuous colour scales for heatmap data. Panel A uses ggchoice(\"matlab\") + scale_fill_matlab_c() approximating the parula colormap. Panel B uses ggchoice(\"academic\") + scale_fill_academic_c() for a CVD-safe, grayscale-compatible sequential gradient."));
-C.push(FIGCAP("Figure 7. Scale override and axis offset demonstration. The plot uses ggchoice(\"prism\", axis_offset = TRUE) for the Prism theme and axis gap, but scale_fill_brewer(palette = \"Set2\") replaces the default Prism colours with a ColorBrewer palette. Because ggplot2 resolves scale conflicts in favour of later additions, the user’s colour preference takes priority while all other Prism theme elements are preserved."));
-C.push(FIGCAP("Figure 8. Stata s2color scatter plot (mtcars dataset). Points use the Stata default colour palette and shape sequence against a light bluish-tinted background with horizontal grid lines. Legend is positioned below the plot, matching Stata’s factory default."));
-C.push(FIGCAP("Figure 9. OriginPro-style multi-group density plot. Semi-transparent fills are mapped to seven vehicle classes; because this exceeds the classic four-colour Origin cycle (Black, Red, Green, Blue), the discrete palette is interpolated to the required number of groups. ggchoice(\"origin\") applies the white background, outward ticks, and boxed legend characteristic of Origin’s default 2D graph output."));
-C.push(FIGCAP("Figure 10. SPSS-style Kaplan-Meier survival curve. The lung cancer dataset (survival::lung) is stratified by sex (male vs female). The plot applies the SPSS-inspired theme with ggchoice(\"spss\", include_scales = FALSE) and manually specified blue/red sex colours, demonstrating theme-only use in a common biomedical survival-analysis example."));
+C.push(body("Figure legends are provided at the end of the manuscript. The figure files are uploaded separately as PNG and PDF outputs generated by inst/examples/multiplot_demo.R."));
 C.push(BR());
 
 // ---- DISCUSSION ----
@@ -189,29 +189,31 @@ C.push(body("Several limitations warrant mention. First, direct bar/box screensh
 C.push(BR());
 
 // ---- DATA AND SOFTWARE AVAILABILITY ----
-C.push(H1("Data and software availability"));
+C.push(H1("Data and Software Availability"));
 C.push(body("Underlying data",{sz:22}));
 C.push(body("All example data used in this manuscript are distributed with R or with the R packages used in the examples: mtcars and iris are included with base R, mpg is included with ggplot2, and lung is included with the survival package. No external datasets were used. The example code to reproduce all figures is included in the package vignette (vignette(\"multiplot\")) and as a standalone script at inst/examples/multiplot_demo.R in the source repository. After installing the package, users can locate and run the example script with source(system.file(\"examples\", \"multiplot_demo.R\", package = \"multiplot\"))."));
 C.push(body("Extended data",{sz:22}));
 C.push(body("Zenodo: multiplot — Software archive and extended data for manuscript submission. The v0.3.4 archive DOI is https://doi.org/10.5281/zenodo.21265224; the all-version concept DOI is https://doi.org/10.5281/zenodo.21137144. The Zenodo archive contains the following extended data files under the inst/paper/ directory: (1) table1_style_ontology.md — complete 10-style × 15-attribute ontology mapping across all five dimensions. (2) table2_compliance_assessment.md — full CVD safety, grayscale fidelity, and print-risk benchmark results. (3) compute_compliance_assessment.R and compliance_assessment_reproducibility.md — script and log used to reproduce Table 2. (4) verification_log.md — evidence tracking that distinguishes real screenshot checks, template screenshot checks, documentation-inferred settings, and the internally defined Academic benchmark. (5) session_info.txt — R session information used to generate the manuscript figures. Figure files are provided separately as PNG and PDF outputs generated by inst/examples/multiplot_demo.R. These files are also browsable directly from the GitHub repository. Extended data are available under the terms of the Creative Commons Attribution 4.0 International license (CC-BY 4.0)."));
 C.push(body("Software availability",{sz:22}));
 C.push(body("Software available from: https://github.com/sushuqiong/multiplot"));
+C.push(body("Software version: multiplot v0.3.4"));
 C.push(body("Archived source code at time of publication: https://doi.org/10.5281/zenodo.21265224"));
 C.push(body("License: MIT"));
+C.push(body("Minimal system requirements: R ≥ 4.0 with ggplot2 ≥ 3.4.0; the package is platform independent and has no compiled code."));
 C.push(body("The package can be installed in R via: remotes::install_github(\"sushuqiong/multiplot\")"));
 C.push(BR());
 
 // ---- AUTHOR CONTRIBUTIONS ----
-C.push(H1("Author contributions"));
+C.push(H1("Author Contributions"));
 C.push(body("Shuqiong Su: Conceptualization, Software, Validation, Visualization, Writing – Original Draft, and Writing – Review & Editing. Shiyao Yang: Validation, Visualization, and Writing – Review & Editing. Guozhen Chen: Validation, Visualization, and Writing – Review & Editing. Aiqun Liu: Supervision, Funding Acquisition, Clinical/Application Framing, and Writing – Review & Editing."));
 C.push(PL());
 
 // ---- COMPETING INTERESTS ----
-C.push(H1("Competing interests"));
+C.push(H1("Competing Interests"));
 C.push(body("No competing interests were disclosed. GraphPad Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, and MedCalc are trademarks or product names of their respective owners. multiplot is not affiliated with, endorsed by, or sponsored by those owners.")); C.push(PL());
 
 // ---- GRANT INFORMATION ----
-C.push(H1("Grant information"));
+C.push(H1("Grant Information"));
 C.push(body("This work was supported by grants from the Joint Project on Regional High-Incidence Diseases Research of the Guangxi Natural Science Foundation [grant number 2023GXNSFAA026298]; the Guangxi Medical and Health Key Cultivation Discipline Construction Project; and the Funding for the Development and Promotion of Suitable Medical and Health Technologies in Guangxi [grant number S2022107]. The funders had no role in the design of the software, style extraction, compliance assessment, manuscript preparation, or decision to submit the article for publication.")); C.push(PL());
 
 // ---- ACKNOWLEDGMENTS ----
@@ -238,10 +240,23 @@ refs.forEach((r,i) => {
   C.push(new Paragraph({spacing:{after:60},indent:{left:360,hanging:360},
     children:[new TextRun({text:`${i+1}. `,font:"Arial",size:18,bold:true}),new TextRun({text:r,font:"Arial",size:18})]}));
 });
+C.push(BR());
+
+// ---- TABLES AND FIGURE LEGENDS ----
+C.push(H1("Tables"));
+C.push(H2("Table 1. Plot Style Ontology — Theme Dimensions"));
+C.push(t1); C.push(PL());
+C.push(H2("Table 2. Publication Compliance Assessment"));
+C.push(t2); C.push(PL());
+C.push(BR());
+C.push(H1("Figure Legends"));
+figureCaptions.forEach(caption => C.push(FIGCAP(caption)));
 
 // ---- BUILD ----
 const outPath = "C:/Users/fengq/Desktop/开发R包multiplot/manuscript_of_multiplot_for_F1000Research_v0.3.4_draft.docx";
 const previewPath = "C:/Users/fengq/Desktop/开发R包multiplot/manuscript_of_multiplot_for_F1000Research_v0.3.4_preview_with_figures.docx";
+const checkedPath = "C:/Users/fengq/Desktop/manuscript_of_multiplot_for_F1000Research_v0.3.4_F1000_checked.docx";
+const checkedPreviewPath = "C:/Users/fengq/Desktop/manuscript_of_multiplot_for_F1000Research_v0.3.4_F1000_checked_preview_with_figures.docx";
 
 function makeDoc(children) {
   return new Document({
@@ -267,8 +282,12 @@ figurePreview.forEach(fig => {
 Packer.toBuffer(makeDoc(C)).then(buf=>{
   fs.writeFileSync(outPath,buf);
   console.log("Written: "+outPath+" ("+(buf.length/1024).toFixed(1)+" KB)");
+  fs.writeFileSync(checkedPath,buf);
+  console.log("Written: "+checkedPath+" ("+(buf.length/1024).toFixed(1)+" KB)");
   return Packer.toBuffer(makeDoc(previewChildren));
 }).then(buf=>{
   fs.writeFileSync(previewPath,buf);
   console.log("Written: "+previewPath+" ("+(buf.length/1024).toFixed(1)+" KB)");
+  fs.writeFileSync(checkedPreviewPath,buf);
+  console.log("Written: "+checkedPreviewPath+" ("+(buf.length/1024).toFixed(1)+" KB)");
 });
