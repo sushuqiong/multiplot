@@ -237,6 +237,12 @@ Current release: `multiplot` v0.3.4.
 - Concept DOI: [10.5281/zenodo.21137144](https://doi.org/10.5281/zenodo.21137144)
 - GitHub release: <https://github.com/sushuqiong/multiplot/releases/tag/v0.3.4>
 
+## Project maintenance
+
+- [CHANGELOG.md](./CHANGELOG.md)
+- [docs/release-process.md](./docs/release-process.md)
+- [.github/release-template.md](./.github/release-template.md)
+
 GraphPad Prism, SPSS, OriginPro, Stata, SigmaPlot, JMP, MATLAB, Minitab, and
 MedCalc are trademarks or product names of their respective owners. `multiplot`
 is not affiliated with, endorsed by, or sponsored by those owners.
